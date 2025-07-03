@@ -27,6 +27,16 @@ export async function middleware(request: NextRequest) {
   const secureHeaders = await createResponseWithSecureHeaders();
   const response = NextResponse.next(secureHeaders);
 
+
+  if (isRootPage(request)) {
+    const host = request.nextUrl.host;
+
+    const redirectUrl = `http://${host}/auth/sign-in`;
+
+    return NextResponse.redirect(redirectUrl);
+  }
+
+
   // set a unique request ID for each request
   // this helps us log and trace requests
   setRequestId(request);
@@ -56,6 +66,13 @@ export async function middleware(request: NextRequest) {
   // if no pattern handler returned a response,
   // return the session response
   return csrfResponse;
+}
+
+function isRootPage(req: NextRequest) {
+  const pages = [
+    '/'
+  ];
+  return pages.includes(req.nextUrl.pathname);
 }
 
 async function withCsrfMiddleware(

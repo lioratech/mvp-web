@@ -9,7 +9,7 @@ export function SiteHeader() {
   return (
     <Header
       logo={<AppLogo />}
-      navigation={<SiteNavigation />}
+      // navigation={<SiteNavigation />}
       actions={<SiteHeaderAccountSection />}
     />
   );
