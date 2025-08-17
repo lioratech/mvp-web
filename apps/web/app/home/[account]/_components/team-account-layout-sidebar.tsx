@@ -1,5 +1,4 @@
-import type { User } from '@supabase/supabase-js';
-
+import { JWTUserData } from '@kit/supabase/types';
 import {
   Sidebar,
   SidebarContent,
@@ -31,8 +30,7 @@ export function TeamAccountLayoutSidebar(props: {
   account: string;
   accountId: string;
   accounts: AccountModel[];
-  user: User;
-  workspace?: WorkspaceData;
+  user: JWTUserData;
 }) {
   return (
     <SidebarContainer
@@ -49,8 +47,7 @@ function SidebarContainer(props: {
   account: string;
   accountId: string;
   accounts: AccountModel[];
-  user: User;
-  workspace?: WorkspaceData;
+  user: JWTUserData;
 }) {
   const { account, accounts, user, workspace } = props;
   const userId = user.id;
@@ -68,7 +65,7 @@ function SidebarContainer(props: {
             accounts={accounts}
           />
 
-          <div className={'group-data-[minimized=true]:hidden'}>
+          <div className={'group-data-[minimized=true]/sidebar:hidden'}>
             <TeamAccountNotifications
               userId={userId}
               accountId={props.accountId}
