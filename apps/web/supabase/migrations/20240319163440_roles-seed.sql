@@ -29,6 +29,12 @@ values (
 (
   'owner',
   'members.manage'),
+  (
+  'owner',
+  'departments.manage'),
+(
+  'owner',
+  'payroll.manage'),
 (
   'owner',
   'invites.manage'),

@@ -17,6 +17,72 @@ export const config = {
   matcher: ['/((?!_next/static|_next/image|images|locales|assets|api/*).*)'],
 };
 
+
+const createTeamCookie = (userId: string) => `${userId}-selected-team-slug`;
+
+function handleTeamAccountsOnly(request: NextRequest, userId: string) {
+ // always allow access to the teams page
+ if (request.nextUrl.pathname === '/home/teams') {
+   return NextResponse.next();
+ }
+
+ if (request.nextUrl.pathname === '/home') {
+   return redirectToTeam(request, userId);
+ }
+
+ if (isTeamAccountRoute(request) && !isUserRoute(request)) {
+   return storeTeamSlug(request, userId);
+ }
+
+ if (isUserRoute(request)) {
+   return redirectToTeam(request, userId);
+ }
+
+ return NextResponse.next();
+}
+
+function isUserRoute(request: NextRequest) {
+ const pathName = request.nextUrl.pathname;
+ return ['settings', 'billing', 'members'].includes(pathName.split('/')[2]!);
+}
+
+function isTeamAccountRoute(request: NextRequest) {
+ const pathName = request.nextUrl.pathname;
+
+ return pathName.startsWith('/home/');
+}
+
+function storeTeamSlug(request: NextRequest, userId: string): NextResponse {
+ const accountSlug = request.nextUrl.pathname.split('/')[2];
+ const response = NextResponse.next();
+
+ if (accountSlug) {
+   const cookieName = createTeamCookie(userId);
+
+   response.cookies.set({
+     name: cookieName,
+     value: accountSlug,
+     path: '/',
+   });
+ }
+
+ return response;
+}
+
+function redirectToTeam(request: NextRequest, userId: string): NextResponse {
+ const cookieName = createTeamCookie(userId);
+ const lastTeamSlug = request.cookies.get(cookieName);
+
+ if (lastTeamSlug) {
+   return NextResponse.redirect(
+     new URL(`/home/${lastTeamSlug.value}`, request.url),
+   );
+ }
+
+ return NextResponse.redirect(new URL('/home/teams', request.url));
+}
+
+
 const getUser = (request: NextRequest, response: NextResponse) => {
   const supabase = createMiddlewareClient(request, response);
 
@@ -211,6 +277,9 @@ function getPatterns() {
             new URL(pathsConfig.auth.verifyMfa, origin).href,
           );
         }
+
+        return handleTeamAccountsOnly(req, user.id);
+
       },
     },
   ];

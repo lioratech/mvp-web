@@ -174,6 +174,7 @@ export function AccountSelector({
             <CommandInput placeholder={t('searchAccount')} className="h-9" />
 
             <CommandList>
+              {/* 
               <CommandGroup>
                 <CommandItem
                   onSelect={() => onAccountChange(undefined)}
@@ -189,7 +190,7 @@ export function AccountSelector({
                 </CommandItem>
               </CommandGroup>
 
-              <CommandSeparator />
+              <CommandSeparator /> */}
 
               <If condition={accounts.length > 0}>
                 <CommandGroup

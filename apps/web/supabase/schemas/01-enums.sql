@@ -8,7 +8,7 @@
 /*
 * Permissions
 - We create the permissions for the Supabase MakerKit. These permissions are used to manage the permissions for the roles
-- The permissions are 'roles.manage', 'billing.manage', 'settings.manage', 'members.manage', and 'invites.manage'.
+- The permissions are 'roles.manage', 'billing.manage', 'settings.manage', 'members.manage', 'invites.manage', and 'departments.manage'.
 - You can add more permissions as needed.
 */
 create type public.app_permissions as enum(
@@ -16,7 +16,10 @@ create type public.app_permissions as enum(
   'billing.manage',
   'settings.manage',
   'members.manage',
-  'invites.manage'
+  'invites.manage',
+  'departments.manage',
+  'payroll.manage',
+  'events.manage'
 );
 
 /*

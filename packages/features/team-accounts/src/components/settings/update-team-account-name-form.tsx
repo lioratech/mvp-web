@@ -24,7 +24,7 @@ import { Trans } from '@kit/ui/trans';
 import { TeamNameFormSchema } from '../../schema/update-team-name.schema';
 import { updateTeamAccountName } from '../../server/actions/team-details-server-actions';
 
-export const UpdateTeamAccountNameForm = (props: {
+export const UpdateTeamAccountForm = (props: {
   account: {
     name: string;
     slug: string;

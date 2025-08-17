@@ -20,11 +20,19 @@ type AccountModel = {
   image: string | null;
 };
 
+type WorkspaceData = {
+  account: {
+    role: string;
+    permissions: string[];
+  };
+};
+
 export function TeamAccountLayoutSidebar(props: {
   account: string;
   accountId: string;
   accounts: AccountModel[];
   user: User;
+  workspace?: WorkspaceData;
 }) {
   return (
     <SidebarContainer
@@ -32,6 +40,7 @@ export function TeamAccountLayoutSidebar(props: {
       accountId={props.accountId}
       accounts={props.accounts}
       user={props.user}
+      workspace={props.workspace}
     />
   );
 }
@@ -41,11 +50,12 @@ function SidebarContainer(props: {
   accountId: string;
   accounts: AccountModel[];
   user: User;
+  workspace?: WorkspaceData;
 }) {
-  const { account, accounts, user } = props;
+  const { account, accounts, user, workspace } = props;
   const userId = user.id;
 
-  const config = getTeamAccountSidebarConfig(account);
+  const config = getTeamAccountSidebarConfig(account, workspace);
   const collapsible = config.sidebarCollapsedStyle;
 
   return (

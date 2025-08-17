@@ -33,6 +33,13 @@ type Accounts = Array<{
   image: string | null;
 }>;
 
+type WorkspaceData = {
+  account: {
+    role: string;
+    permissions: string[];
+  };
+};
+
 const features = {
   enableTeamAccounts: featureFlagsConfig.enableTeamAccounts,
   enableTeamCreation: featureFlagsConfig.enableTeamCreation,
@@ -43,11 +50,12 @@ export const TeamAccountLayoutMobileNavigation = (
     account: string;
     userId: string;
     accounts: Accounts;
+    workspace?: WorkspaceData;
   }>,
 ) => {
   const signOut = useSignOut();
 
-  const Links = getTeamAccountSidebarConfig(props.account).routes.map(
+  const Links = getTeamAccountSidebarConfig(props.account, props.workspace).routes.map(
     (item, index) => {
       if ('children' in item) {
         return item.children.map((child) => {

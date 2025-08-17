@@ -1,0 +1,68 @@
+{
+  "page": {
+    "title": "Payroll"
+  },
+  "dashboard": {
+    "title": "Payroll Dashboard"
+  },
+  "metrics": {
+    "totalPayroll": "Total Payroll",
+    "averageCost": "Average Cost",
+    "totalEarnings": "Total Earnings",
+    "totalDeductions": "Total Deductions",
+    "activeEmployees": "{count} active employees",
+    "perEmployee": "per employee"
+  },
+  "tables": {
+    "employeesList": "Employees List",
+    "employeesDescription": "Complete details of all employees"
+  },
+  "table": {
+    "name": "Name",
+    "function": "Function",
+    "admission": "Admission",
+    "earnings": "Earnings",
+    "deductions": "Deductions",
+    "net": "Net"
+  },
+  "charts": {
+    "costsByFunction": "Costs by Function",
+    "costBreakdown": "Cost Breakdown",
+    "benefitsCost": "Benefits Cost"
+  },
+  "compliance": {
+    "title": "Compliance Verification",
+    "description": "Analysis of compliance with labor legislation",
+    "periculosidade": "Hazard Pay",
+    "fgts": "FGTS Base",
+    "inss": "INSS Base",
+    "valeTransporte": "Transport Allowance",
+    "compliant": "Compliant",
+    "partial": "Partial",
+    "issues": "Identified Issues",
+    "warnings": "Warnings and Recommendations",
+    "noIssues": "No critical issues identified",
+    "noWarnings": "No warnings identified"
+  },
+  "reports": {
+    "title": "Payroll Reports",
+    "description": "Generation and export of detailed reports",
+    "summary": "Executive Summary",
+    "detailed": "Detailed Report",
+    "compliance": "Compliance Report",
+    "export": "Export Report"
+  },
+  "analytics": {
+    "title": "Advanced Analytics",
+    "description": "Payroll insights and trends",
+    "trends": "Trends",
+    "distribution": "Salary Distribution",
+    "benefits": "Benefits Analysis",
+    "compliance": "Compliance",
+    "projections": "Projections"
+  },
+  "projections": {
+    "title": "Cost Projections",
+    "description": "Estimates based on current trend"
+  }
+} 

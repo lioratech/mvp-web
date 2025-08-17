@@ -48,6 +48,13 @@ function SidebarLayout({
     image: picture_url,
   }));
 
+  const workspaceData = {
+    account: {
+      role: data.account.role,
+      permissions: data.account.permissions,
+    },
+  };
+
   return (
     <TeamAccountWorkspaceContextProvider value={data}>
       <SidebarProvider defaultOpen={state.open}>
@@ -58,6 +65,7 @@ function SidebarLayout({
               accountId={data.account.id}
               accounts={accounts}
               user={data.user}
+              workspace={workspaceData}
             />
           </PageNavigation>
 
@@ -69,6 +77,7 @@ function SidebarLayout({
                 userId={data.user.id}
                 accounts={accounts}
                 account={account}
+                workspace={workspaceData}
               />
             </div>
           </PageMobileNavigation>
@@ -94,6 +103,13 @@ function HeaderLayout({
     image: picture_url,
   }));
 
+  const workspaceData = {
+    account: {
+      role: data.account.role,
+      permissions: data.account.permissions,
+    },
+  };
+
   return (
     <TeamAccountWorkspaceContextProvider value={data}>
       <Page style={'header'}>
@@ -109,6 +125,7 @@ function HeaderLayout({
               userId={data.user.id}
               accounts={accounts}
               account={account}
+              workspace={workspaceData}
             />
           </div>
         </PageMobileNavigation>

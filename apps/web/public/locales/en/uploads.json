@@ -1,0 +1,65 @@
+{
+  "page": {
+    "title": "Payroll Processing",
+    "description": "Extract data from payroll PDFs using company templates"
+  },
+  "uploadSection": {
+    "title": "PDF Upload",
+    "description": "Select the payroll PDF file for processing"
+  },
+  "fileInput": {
+    "label": "Select PDF file",
+    "help": "Only PDF files are accepted. Maximum size: 10MB"
+  },
+  "selectedFile": "Selected file: {name} ({size})",
+  "companySection": {
+    "title": "Company Selection",
+    "description": "Choose the company to apply the correct template"
+  },
+  "templateSection": {
+    "title": "Template Selection",
+    "description": "Choose the template that will be used to extract data"
+  },
+  "templateSelect": {
+    "label": "Template",
+    "placeholder": "Select a template..."
+  },
+  "processButton": "Extract Payroll",
+  "processing": "Processing...",
+  "previewSection": {
+    "title": "Extracted Data Preview",
+    "description": "View the data extracted from the payroll"
+  },
+  "noDataExtracted": "No data extracted yet. Upload a PDF and select a company to process.",
+  "tabs": {
+    "employee": "Employee",
+    "salary": "Salary",
+    "summary": "Summary"
+  },
+  "employee": {
+    "name": "Name",
+    "cpf": "CPF",
+    "position": "Position",
+    "department": "Department"
+  },
+  "salary": {
+    "base": "Base Salary",
+    "benefits": "Benefits",
+    "total": "Gross Total"
+  },
+  "deductions": {
+    "inss": "INSS",
+    "irrf": "IRRF",
+    "other": "Other Deductions"
+  },
+  "netSalary": "Net Salary",
+  "processingSuccess": "Data extracted successfully!",
+  "processingError": "Error extracting data from file",
+  "errors": {
+    "noFileSelected": "No file selected",
+    "noTemplateSelected": "No template selected",
+    "invalidFileType": "Only PDF files are allowed",
+    "fileTooLarge": "File must be 10MB or smaller",
+    "processingError": "Error processing file"
+  }
+} 

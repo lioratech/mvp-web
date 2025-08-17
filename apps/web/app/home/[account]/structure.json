@@ -1,0 +1,1105 @@
+{
+    "data": [
+        {
+            "cnpj": "00.138.629/0001-00",
+            "competencia": "Março/2025",
+            "empresa_id": "0350",
+            "endereco": "Avenida MARTIM FRANCISCO 1525 CAMILOPOLI SANTO ANDRE",
+            "funcionarios": [
+                {
+                    "admissao": "01/02/2014",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "327.962.418-58",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "144",
+                            "descricao": "VALE TRANSPORTE",
+                            "quantidade": 1.0,
+                            "valor": -17.5
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1117.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1157.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "ELENILSON ALFREDO DOS SANTOS",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "01/03/2014",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "030.240.965-31",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1099.88
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1175.12
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "JAQUES ALMEIDA ROCHA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "02/01/2009",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "967.556.282-04",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 2060.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "028",
+                            "descricao": "ADC. DE CAIXA",
+                            "quantidade": 20.0,
+                            "valor": 350.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -1050.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2775.0
+                        },
+                        {
+                            "codigo": "467",
+                            "descricao": "ART.4",
+                            "quantidade": null,
+                            "valor": 150.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1271.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1503.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 210.0
+                        }
+                    ],
+                    "funcao": "Frentista/Caixa",
+                    "nome": "MARIA ALINE LIMA RODRIGUES",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "03/11/2015",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "439.815.138-94",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 2060.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "028",
+                            "descricao": "ADC. DE CAIXA",
+                            "quantidade": 20.0,
+                            "valor": 350.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -1050.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2775.0
+                        },
+                        {
+                            "codigo": "467",
+                            "descricao": "ART.4",
+                            "quantidade": null,
+                            "valor": 150.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1271.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1503.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 210.0
+                        }
+                    ],
+                    "funcao": "Frentista/Caixa",
+                    "nome": "FABIANO DE JESUS SILVA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "02/09/2019",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "374.358.058-66",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 1971.67
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 26.0,
+                            "valor": 1516.67
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1406.87
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 455.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 1971.67
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 1971.67
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1072.58
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "MAYCON DA SILVA ZARANTONELI",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "cbo": "521135",
+                    "cpf": "374.358.058-66",
+                    "eventos": [
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 899.09
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 157.73
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "MAYCON DA SILVA ZARANTONELI",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "06/04/2020",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "321.384.978-28",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1099.88
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1175.12
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "ED CARLOS DA SILVA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "10/10/2019",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "000.985.924-16",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 3336.66
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 4.0,
+                            "valor": 233.33
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 0.0
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 70.0,
+                            "valor": 102.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 3336.66
+                        },
+                        {
+                            "codigo": "015",
+                            "descricao": "FERIAS EM DESCANSO",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "115",
+                            "descricao": "PAGTO FERIAS",
+                            "quantidade": null,
+                            "valor": -2752.33
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 3336.66
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 3069.73
+                        },
+                        {
+                            "codigo": "204",
+                            "descricao": "CESTA BASICA",
+                            "quantidade": null,
+                            "valor": -7.9
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 266.93
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 266.93
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "LENILSON BATISTA DA SILVA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "19/10/2022",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "508.270.088-05",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "144",
+                            "descricao": "VALE TRANSPORTE",
+                            "quantidade": 1.0,
+                            "valor": -17.5
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1117.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1157.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "MATHEUS NERE DE SOUZA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "11/05/2023",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "093.565.014-83",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 2060.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "028",
+                            "descricao": "ADC. DE CAIXA",
+                            "quantidade": 20.0,
+                            "valor": 350.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -1050.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2775.0
+                        },
+                        {
+                            "codigo": "467",
+                            "descricao": "ART.4",
+                            "quantidade": null,
+                            "valor": 150.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1271.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1503.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 210.0
+                        }
+                    ],
+                    "funcao": "Frentista/Caixa",
+                    "nome": "JESSE SILVA DA ROCHA OLIVEIRA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "11/12/2023",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "431.311.288-01",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1099.88
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1175.12
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "BRUNO CAIO DE BARROS MEDEIROS",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "23/02/2024",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "313.827.698-90",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 2060.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2625.0
+                        },
+                        {
+                            "codigo": "028",
+                            "descricao": "ADC. DE CAIXA",
+                            "quantidade": 20.0,
+                            "valor": 350.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -1050.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2775.0
+                        },
+                        {
+                            "codigo": "467",
+                            "descricao": "ART.4",
+                            "quantidade": null,
+                            "valor": 150.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1271.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1503.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 210.0
+                        }
+                    ],
+                    "funcao": "Frentista/Caixa",
+                    "nome": "MARILDA VIEIRA DA SILVA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "02/10/2024",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "389.954.505-25",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "144",
+                            "descricao": "VALE TRANSPORTE",
+                            "quantidade": 1.0,
+                            "valor": -17.5
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1117.38
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1157.62
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "WILSON JOSE DOS SANTOS",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "26/09/2024",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "412.996.668-50",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 455.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 0.0
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 105.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 455.0
+                        },
+                        {
+                            "codigo": "099",
+                            "descricao": "TROCO ATUAL",
+                            "quantidade": 497.02,
+                            "valor": 120.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2352.02
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 2352.02
+                        },
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 0.0
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 36.4
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "HENRIQUE OLIVEIRA EÇA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "admissao": "04/02/2025",
+                    "cbo": "521135",
+                    "condicao": "Ativo",
+                    "cpf": "555.484.508-83",
+                    "eventos": [
+                        {
+                            "codigo": "BASE_INSS",
+                            "descricao": "Base INSS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "001",
+                            "descricao": "SALARIO NORMAL",
+                            "quantidade": 30.0,
+                            "valor": 1750.0
+                        },
+                        {
+                            "codigo": "BASE_IRRF",
+                            "descricao": "Base IRRF",
+                            "quantidade": null,
+                            "valor": 1710.2
+                        },
+                        {
+                            "codigo": "012",
+                            "descricao": "30% ADC. PERICULOSIDADE",
+                            "quantidade": 525.0,
+                            "valor": 104.0
+                        },
+                        {
+                            "codigo": "BASE_FGTS",
+                            "descricao": "Base FGTS",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "120",
+                            "descricao": "ADIANTAMENTO SALARIAL",
+                            "quantidade": null,
+                            "valor": -910.0
+                        },
+                        {
+                            "codigo": "TOT_VENC_",
+                            "descricao": "Tot.Venc.",
+                            "quantidade": null,
+                            "valor": 2275.0
+                        },
+                        {
+                            "codigo": "TOT_DESC_",
+                            "descricao": "Tot.Desc.",
+                            "quantidade": null,
+                            "valor": 1099.88
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "EDUARDO FUJIWARA NUNES DA SILVA",
+                    "salario_tipo": "Mensal"
+                },
+                {
+                    "cbo": "521135",
+                    "cpf": "555.484.508-83",
+                    "eventos": [
+                        {
+                            "codigo": "*LÍQUIDO*",
+                            "descricao": "*Líquido*",
+                            "quantidade": null,
+                            "valor": 1175.12
+                        },
+                        {
+                            "codigo": "VLR__FGTS",
+                            "descricao": "Vlr. FGTS",
+                            "quantidade": null,
+                            "valor": 182.0
+                        }
+                    ],
+                    "funcao": "Frentista",
+                    "nome": "EDUARDO FUJIWARA NUNES DA SILVA",
+                    "salario_tipo": "Mensal"
+                }
+            ],
+            "nome": "POSTO DE SERVIÇOS REQUINTE COMERCIO DE COMBUSTIVEIS LTDA"
+        }
+    ],
+    "filename": "350_-_Folha_de_Pagamento_-_Ref._03.2025.pdf",
+    "success": true
+}

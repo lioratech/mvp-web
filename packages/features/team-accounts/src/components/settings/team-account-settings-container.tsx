@@ -11,7 +11,7 @@ import { Trans } from '@kit/ui/trans';
 
 import { TeamAccountDangerZone } from './team-account-danger-zone';
 import { UpdateTeamAccountImage } from './update-team-account-image-container';
-import { UpdateTeamAccountNameForm } from './update-team-account-name-form';
+import { UpdateTeamAccountForm } from './update-team-account-name-form';
 
 export function TeamAccountSettingsContainer(props: {
   account: {
@@ -60,7 +60,7 @@ export function TeamAccountSettingsContainer(props: {
         </CardHeader>
 
         <CardContent>
-          <UpdateTeamAccountNameForm
+          <UpdateTeamAccountForm
             path={props.paths.teamAccountSettings}
             account={props.account}
           />

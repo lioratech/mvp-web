@@ -1,0 +1,68 @@
+{
+  "page": {
+    "title": "Folha de Pagamento"
+  },
+  "dashboard": {
+    "title": "Dashboard de Folha de Pagamento"
+  },
+  "metrics": {
+    "totalPayroll": "Total da Folha",
+    "averageCost": "Custo Médio",
+    "totalEarnings": "Total Vencimentos",
+    "totalDeductions": "Total Descontos",
+    "activeEmployees": "{count} funcionários ativos",
+    "perEmployee": "por funcionário"
+  },
+  "tables": {
+    "employeesList": "Lista de Funcionários",
+    "employeesDescription": "Detalhes completos de todos os funcionários"
+  },
+  "table": {
+    "name": "Nome",
+    "function": "Função",
+    "admission": "Admissão",
+    "earnings": "Vencimentos",
+    "deductions": "Descontos",
+    "net": "Líquido"
+  },
+  "charts": {
+    "costsByFunction": "Custos por Função",
+    "costBreakdown": "Composição de Custos",
+    "benefitsCost": "Custo dos Benefícios"
+  },
+  "compliance": {
+    "title": "Verificação de Compliance",
+    "description": "Análise de conformidade com a legislação trabalhista",
+    "periculosidade": "Adicional de Periculosidade",
+    "fgts": "Base FGTS",
+    "inss": "Base INSS",
+    "valeTransporte": "Vale Transporte",
+    "compliant": "Conforme",
+    "partial": "Parcial",
+    "issues": "Problemas Identificados",
+    "warnings": "Avisos e Recomendações",
+    "noIssues": "Nenhum problema crítico identificado",
+    "noWarnings": "Nenhum aviso identificado"
+  },
+  "reports": {
+    "title": "Relatórios de Folha de Pagamento",
+    "description": "Geração e exportação de relatórios detalhados",
+    "summary": "Resumo Executivo",
+    "detailed": "Relatório Detalhado",
+    "compliance": "Relatório de Compliance",
+    "export": "Exportar Relatório"
+  },
+  "analytics": {
+    "title": "Análises Avançadas",
+    "description": "Insights e tendências da folha de pagamento",
+    "trends": "Tendências",
+    "distribution": "Distribuição Salarial",
+    "benefits": "Análise de Benefícios",
+    "compliance": "Compliance",
+    "projections": "Projeções"
+  },
+  "projections": {
+    "title": "Projeções de Custos",
+    "description": "Estimativas baseadas na tendência atual"
+  }
+} 
