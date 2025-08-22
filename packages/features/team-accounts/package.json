@@ -15,7 +15,8 @@
     "./webhooks": "./src/server/services/webhooks/index.ts"
   },
   "dependencies": {
-    "nanoid": "^5.1.5"
+    "nanoid": "^5.1.5",
+    "react-text-mask": "^5.5.0"
   },
   "devDependencies": {
     "@hookform/resolvers": "^5.2.1",

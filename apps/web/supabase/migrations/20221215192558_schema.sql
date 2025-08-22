@@ -303,6 +303,8 @@ create table if not exists
     id uuid unique not null default extensions.uuid_generate_v4 (),
     primary_owner_user_id uuid references auth.users on delete cascade not null default auth.uid (),
     name varchar(255) not null,
+    cnpj varchar(18),
+    branch numeric(3, 0),
     slug text unique,
     email varchar(320) unique,
     is_personal_account boolean default false not null,

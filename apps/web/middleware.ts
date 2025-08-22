@@ -248,6 +248,7 @@ function getPatterns() {
       handler: async (req: NextRequest, res: NextResponse) => {
         const { data } = await getUser(req, res);
 
+        const user = data?.claims;
         const origin = req.nextUrl.origin;
         const next = req.nextUrl.pathname;
 
@@ -271,7 +272,11 @@ function getPatterns() {
           );
         }
 
-        return handleTeamAccountsOnly(req, user.id);
+        if (user) {
+          return handleTeamAccountsOnly(req, user.id);
+        }
+
+        return NextResponse.redirect(new URL('/home/teams', req.url));
 
       },
     },

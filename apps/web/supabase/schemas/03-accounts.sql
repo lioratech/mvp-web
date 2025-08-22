@@ -20,6 +20,7 @@ create table if not exists
     updated_by uuid references auth.users,
     picture_url varchar(1000),
     public_data jsonb default '{}'::jsonb not null,
+    cnpj varchar(18),
     primary key (id)
   );
 
@@ -34,6 +35,8 @@ comment on column public.accounts.slug is 'The slug of the account';
 comment on column public.accounts.primary_owner_user_id is 'The primary owner of the account';
 
 comment on column public.accounts.email is 'The email of the account. For teams, this is the email of the team (if any)';
+
+comment on column public.accounts.cnpj is 'The CNPJ of the company associated with the team account';
 
 -- Enable RLS on the accounts table
 alter table "public"."accounts" enable row level security;

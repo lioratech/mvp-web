@@ -4,6 +4,8 @@ import { TeamNameSchema } from './create-team.schema';
 
 export const TeamNameFormSchema = z.object({
   name: TeamNameSchema,
+  cnpj: z.string().min(14).max(18),
+  branch: z.preprocess((val) => parseInt(val as string, 10), z.number().int()),
 });
 
 export const UpdateTeamNameSchema = TeamNameFormSchema.merge(

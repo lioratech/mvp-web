@@ -18,7 +18,7 @@ export class TeamAccountsApi {
   async getTeamAccount(slug: string) {
     const { data, error } = await this.client
       .from('accounts')
-      .select('*')
+      .select('*, cnpj')
       .eq('slug', slug)
       .single();
 

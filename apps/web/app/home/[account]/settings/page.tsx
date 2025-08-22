@@ -40,6 +40,8 @@ async function TeamAccountSettingsPage(props: TeamAccountSettingsPageProps) {
     pictureUrl: data.picture_url,
     slug: data.slug as string,
     primaryOwnerUserId: data.primary_owner_user_id,
+    cnpj: data.cnpj,
+    branch: data.branch,
   };
 
   const features = {

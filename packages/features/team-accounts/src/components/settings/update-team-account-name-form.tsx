@@ -21,6 +21,8 @@ import { Input } from '@kit/ui/input';
 import { toast } from '@kit/ui/sonner';
 import { Trans } from '@kit/ui/trans';
 
+import MaskedInput from 'react-text-mask';
+
 import { TeamNameFormSchema } from '../../schema/update-team-name.schema';
 import { updateTeamAccountName } from '../../server/actions/team-details-server-actions';
 
@@ -28,6 +30,8 @@ export const UpdateTeamAccountForm = (props: {
   account: {
     name: string;
     slug: string;
+    cnpj: string;
+    branch: string;
   };
 
   path: string;
@@ -39,11 +43,14 @@ export const UpdateTeamAccountForm = (props: {
     resolver: zodResolver(TeamNameFormSchema),
     defaultValues: {
       name: props.account.name,
+      cnpj: props.account.cnpj,
+      branch: String(props.account.branch),
     },
   });
 
   return (
     <div className={'space-y-8'}>
+      <pre>{JSON.stringify(props.account, null, 2)}</pre>
       <Form {...form}>
         <form
           data-test={'update-team-account-name-form'}
@@ -56,6 +63,8 @@ export const UpdateTeamAccountForm = (props: {
                 const result = await updateTeamAccountName({
                   slug: props.account.slug,
                   name: data.name,
+                  cnpj: data.cnpj,
+                  branch: parseInt(data.branch, 10),
                   path: props.path,
                 });
 
@@ -82,29 +91,91 @@ export const UpdateTeamAccountForm = (props: {
             });
           })}
         >
-          <FormField
-            name={'name'}
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>
-                    <Trans i18nKey={'teams:teamNameInputLabel'} />
-                  </FormLabel>
+         
 
-                  <FormControl>
-                    <Input
-                      data-test={'team-name-input'}
-                      required
-                      placeholder={''}
-                      {...field}
-                    />
-                  </FormControl>
+          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+            <FormField
+              name={'name'}
+              render={({ field }) => {
+                return (
+                  <FormItem className="flex-grow">
+                    <FormLabel>
+                      <Trans i18nKey={'teams:teamNameInputLabel'} />
+                    </FormLabel>
 
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
+                    <FormControl>
+                      <Input
+                        data-test={'team-name-input'}
+                        required
+                        placeholder={''}
+                        className={'w-full'}
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+
+            <FormField
+              name={'cnpj'}
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>
+                      <Trans i18nKey={'teams:cnpjInputLabel'} defaults='CNPJ' />
+                    </FormLabel>
+
+                    <FormControl>
+                      <MaskedInput
+                        mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+                        {...field}
+                        render={(ref, props) => (
+                          <Input
+                            data-test={'cnpj-input'}
+                            required
+                            placeholder={''}
+                            ref={ref}
+                            {...props}
+                          />
+                        )}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+
+            <FormField
+              name={'branch'}
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>
+                      <Trans i18nKey={'teams:branchInputLabel'} defaults='Filial' />
+                    </FormLabel>
+
+                    <FormControl>
+                      <Input
+                        data-test={'branch-input'}
+                        required
+                        type={'number'}
+                        placeholder={''}
+                        className={'w-20'}
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+          </div>
 
           <div>
             <Button

@@ -20,6 +20,7 @@ export function TeamAccountSettingsContainer(props: {
     id: string;
     pictureUrl: string | null;
     primaryOwnerUserId: string;
+    cnpj: string;
   };
 
   paths: {

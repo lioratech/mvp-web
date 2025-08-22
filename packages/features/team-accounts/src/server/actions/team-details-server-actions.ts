@@ -12,7 +12,7 @@ export const updateTeamAccountName = enhanceAction(
   async (params) => {
     const client = getSupabaseServerClient();
     const logger = await getLogger();
-    const { name, path, slug } = params;
+    const { name, path, slug, cnpj, branch } = params;
 
     const ctx = {
       name: 'team-accounts.update',
@@ -26,11 +26,13 @@ export const updateTeamAccountName = enhanceAction(
       .update({
         name,
         slug,
+        cnpj,
+        branch,
       })
       .match({
         slug,
       })
-      .select('slug')
+      .select('slug, cnpj')
       .single();
 
     if (error) {
