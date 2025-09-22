@@ -2,11 +2,15 @@
 
 import { useState } from 'react';
 import { useTransition } from 'react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { toast } from '@kit/ui/sonner';
 import { useTranslation } from 'react-i18next';
 
+import { useSupabase } from '@kit/supabase/hooks/use-supabase';
+import { Badge } from '@kit/ui/badge';
+import { Button } from '@kit/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -24,20 +28,30 @@ import {
   FormMessage,
 } from '@kit/ui/form';
 import { Input } from '@kit/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from '@kit/ui/select';
+import { toast } from '@kit/ui/sonner';
 import { Textarea } from '@kit/ui/textarea';
-import { Button } from '@kit/ui/button';
 import { Trans } from '@kit/ui/trans';
 
-import { CreateEventSchema, type CreateEventData } from '../_lib/schema/event.schema';
+import {
+  type CreateEventData,
+  CreateEventSchema,
+} from '../_lib/schema/event.schema';
 import { createEventAction } from '../_lib/server/server-actions';
+import { MainEventSelector } from './main-event-selector';
 
 interface CreateEventDialogProps {
   children: React.ReactNode;
 }
 
-export function CreateEventDialog({ 
-  children, 
-  accountId 
+export function CreateEventDialog({
+  children,
+  accountId,
 }: CreateEventDialogProps & { accountId: string }) {
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
@@ -53,27 +67,46 @@ export function CreateEventDialog({
     },
   });
 
+  const supabase = useSupabase();
+  const { data: mainEvents, error: mainEventsError } = useQuery({
+    queryKey: ['mainEvents'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('main_events')
+        .select('id, description, type');
+      if (error) {
+        console.error('Error fetching main events:', error);
+        throw new Error(error.message);
+      }
+      return data;
+    },
+  });
+
   const onSubmit = (data: CreateEventData) => {
     startTransition(async () => {
       try {
-        await toast.promise(createEventAction({
-          ...data,
-          accountId,
-        }), {
-          loading: t('payroll-events:creatingEvent'),
-          success: t('payroll-events:eventCreated'),
-          error: t('payroll-events:errorCreatingEvent'),
-        });
+        await toast.promise(
+          createEventAction({
+            ...data,
+            accountId,
+          }),
+          {
+            loading: t('payroll-events:creatingEvent'),
+            success: t('payroll-events:eventCreated'),
+            error: t('payroll-events:errorCreatingEvent'),
+          },
+        );
 
         setOpen(false);
         form.reset();
-        // Refresh the page to show the new event
         window.location.reload();
       } catch (error) {
         console.error('Error creating event:', error);
       }
     });
   };
+
+  console.log('Teste', mainEvents);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -90,6 +123,36 @@ export function CreateEventDialog({
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="main_event_id"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <Trans
+                      i18nKey="payroll-events:mainEvent"
+                      defaults="Evento Principal"
+                    />
+                  </FormLabel>
+                  <FormControl>
+                    <MainEventSelector
+                      value={field.value}
+                      onChange={(value) => {
+                        field.onChange(Number(value));
+                        const selectedEvent = mainEvents?.find(
+                          (event) => String(event.id) === value,
+                        );
+                        if (selectedEvent) {
+                          form.setValue('name', selectedEvent.description);
+                        }
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="name"
@@ -156,11 +219,7 @@ export function CreateEventDialog({
                     <Trans i18nKey="payroll-events:color" />
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      type="color"
-                      className="w-16 h-10 p-1"
-                      {...field}
-                    />
+                    <Input type="color" className="h-10 w-16 p-1" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -185,4 +244,4 @@ export function CreateEventDialog({
       </DialogContent>
     </Dialog>
   );
-} 
+}

@@ -6,7 +6,7 @@ import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { getLogger } from '@kit/shared/logger';
 import { z } from 'zod';
 
-import { CreateEventServerSchema, UpdateEventSchema } from '../schema/event.schema';
+import { CreateEventServerSchema, UpdateEventSchema, UploadEventSchema } from '../schema/event.schema';
 
 export const createEventAction = enhanceAction(
   async function (data, user) {
@@ -43,6 +43,7 @@ export const createEventAction = enhanceAction(
         color: data.color,
         created_by: user.id,
         updated_by: user.id,
+        main_event_id: data.main_event_id || null,
       })
       .select()
       .single();
@@ -82,6 +83,7 @@ export const updateEventAction = enhanceAction(
         description: data.description || null,
         color: data.color,
         updated_by: user.id,
+        main_event_id: data.main_event_id || null,
       })
       .eq('id', data.id)
       .eq('account_id', data.accountId!)

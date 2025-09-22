@@ -43,6 +43,7 @@ export type Database = {
           description: string | null
           external_id: string | null
           id: string
+          main_event_id: number | null
           name: string
           updated_at: string | null
           updated_by: string | null
@@ -55,6 +56,7 @@ export type Database = {
           description?: string | null
           external_id?: string | null
           id?: string
+          main_event_id?: number | null
           name: string
           updated_at?: string | null
           updated_by?: string | null
@@ -67,6 +69,7 @@ export type Database = {
           description?: string | null
           external_id?: string | null
           id?: string
+          main_event_id?: number | null
           name?: string
           updated_at?: string | null
           updated_by?: string | null
@@ -91,6 +94,13 @@ export type Database = {
             columns: ["account_id"]
             isOneToOne: false
             referencedRelation: "user_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "account_payroll_events_main_event_id_fkey"
+            columns: ["main_event_id"]
+            isOneToOne: false
+            referencedRelation: "main_events"
             referencedColumns: ["id"]
           },
         ]
@@ -398,6 +408,48 @@ export type Database = {
           },
         ]
       }
+      main_events: {
+        Row: {
+          created_at: string | null
+          description: string
+          id: number
+          incidence_fgts: boolean
+          incidence_inss: boolean
+          incidence_irrf: boolean
+          reference_days: boolean
+          reference_hours: boolean
+          reference_value: boolean
+          type: Database["public"]["Enums"]["event_type"]
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          id: number
+          incidence_fgts: boolean
+          incidence_inss: boolean
+          incidence_irrf: boolean
+          reference_days: boolean
+          reference_hours: boolean
+          reference_value: boolean
+          type: Database["public"]["Enums"]["event_type"]
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          id?: number
+          incidence_fgts?: boolean
+          incidence_inss?: boolean
+          incidence_irrf?: boolean
+          reference_days?: boolean
+          reference_hours?: boolean
+          reference_value?: boolean
+          type?: Database["public"]["Enums"]["event_type"]
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       nonces: {
         Row: {
           client_token: string
@@ -619,6 +671,309 @@ export type Database = {
           },
         ]
       }
+      payroll_departments: {
+        Row: {
+          account_id: string
+          cost_center: string | null
+          created_at: string | null
+          department_code: string
+          id: string
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          account_id: string
+          cost_center?: string | null
+          created_at?: string | null
+          department_code: string
+          id?: string
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          account_id?: string
+          cost_center?: string | null
+          created_at?: string | null
+          department_code?: string
+          id?: string
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payroll_departments_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_departments_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_account_workspace"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_departments_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payroll_employees: {
+        Row: {
+          account_id: string
+          branch: string | null
+          cbo: string | null
+          cpf: string
+          created_at: string | null
+          employee_code: string
+          employment_type: string
+          hire_date: string
+          id: string
+          name: string
+          position_code: string | null
+          position_description: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          account_id: string
+          branch?: string | null
+          cbo?: string | null
+          cpf: string
+          created_at?: string | null
+          employee_code: string
+          employment_type: string
+          hire_date: string
+          id?: string
+          name: string
+          position_code?: string | null
+          position_description?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          account_id?: string
+          branch?: string | null
+          cbo?: string | null
+          cpf?: string
+          created_at?: string | null
+          employee_code?: string
+          employment_type?: string
+          hire_date?: string
+          id?: string
+          name?: string
+          position_code?: string | null
+          position_description?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payroll_employees_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_employees_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_account_workspace"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_employees_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payroll_events: {
+        Row: {
+          amount: number
+          category: string | null
+          created_at: string | null
+          description: string
+          event_code: string
+          event_type: string
+          id: string
+          quantity: number
+          sheet_id: string
+        }
+        Insert: {
+          amount?: number
+          category?: string | null
+          created_at?: string | null
+          description: string
+          event_code: string
+          event_type: string
+          id?: string
+          quantity?: number
+          sheet_id: string
+        }
+        Update: {
+          amount?: number
+          category?: string | null
+          created_at?: string | null
+          description?: string
+          event_code?: string
+          event_type?: string
+          id?: string
+          quantity?: number
+          sheet_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payroll_events_sheet_id_fkey"
+            columns: ["sheet_id"]
+            isOneToOne: false
+            referencedRelation: "payroll_sheets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payroll_periods: {
+        Row: {
+          account_id: string
+          created_at: string | null
+          id: string
+          issue_date: string
+          period: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          account_id: string
+          created_at?: string | null
+          id?: string
+          issue_date: string
+          period: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          account_id?: string
+          created_at?: string | null
+          id?: string
+          issue_date?: string
+          period?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payroll_periods_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_periods_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_account_workspace"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_periods_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payroll_sheets: {
+        Row: {
+          base_salary: number
+          created_at: string | null
+          department_id: string | null
+          employee_id: string
+          employment_status: string
+          fgts_amount: number
+          fgts_base: number
+          id: string
+          inss_base: number
+          irrf_base: number
+          monthly_hours: number
+          net_pay: number
+          period_id: string
+          salary: number
+          total_deductions: number
+          total_earnings: number
+          updated_at: string | null
+        }
+        Insert: {
+          base_salary: number
+          created_at?: string | null
+          department_id?: string | null
+          employee_id: string
+          employment_status: string
+          fgts_amount?: number
+          fgts_base?: number
+          id?: string
+          inss_base?: number
+          irrf_base?: number
+          monthly_hours: number
+          net_pay?: number
+          period_id: string
+          salary: number
+          total_deductions?: number
+          total_earnings?: number
+          updated_at?: string | null
+        }
+        Update: {
+          base_salary?: number
+          created_at?: string | null
+          department_id?: string | null
+          employee_id?: string
+          employment_status?: string
+          fgts_amount?: number
+          fgts_base?: number
+          id?: string
+          inss_base?: number
+          irrf_base?: number
+          monthly_hours?: number
+          net_pay?: number
+          period_id?: string
+          salary?: number
+          total_deductions?: number
+          total_earnings?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payroll_sheets_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "payroll_departments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_sheets_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "payroll_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payroll_sheets_period_id_fkey"
+            columns: ["period_id"]
+            isOneToOne: false
+            referencedRelation: "payroll_periods"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       role_permissions: {
         Row: {
           id: number
@@ -792,6 +1147,41 @@ export type Database = {
       }
     }
     Views: {
+      department_summary: {
+        Row: {
+          average_hours: number | null
+          average_salary: number | null
+          company_name: string | null
+          department_name: string | null
+          period: string | null
+          total_deductions: number | null
+          total_earnings: number | null
+          total_employees: number | null
+          total_net_pay: number | null
+          total_salaries: number | null
+        }
+        Relationships: []
+      }
+      people_analytics: {
+        Row: {
+          company_name: string | null
+          cpf: string | null
+          department_name: string | null
+          employee_name: string | null
+          fgts_amount: number | null
+          fgts_base: number | null
+          inss_base: number | null
+          issue_date: string | null
+          monthly_hours: number | null
+          net_pay: number | null
+          period: string | null
+          position_description: string | null
+          salary: number | null
+          total_deductions: number | null
+          total_earnings: number | null
+        }
+        Relationships: []
+      }
       user_account_workspace: {
         Row: {
           id: string | null
@@ -985,6 +1375,14 @@ export type Database = {
         Args: { account_id: string; user_id: string }
         Returns: boolean
       }
+      process_payroll_data: {
+        Args: {
+          p_account_id: string
+          p_company_data: Json
+          p_competencies_data: Json
+        }
+        Returns: string
+      }
       revoke_nonce: {
         Args: { p_id: string; p_reason?: string }
         Returns: boolean
@@ -1086,6 +1484,7 @@ export type Database = {
         | "departments.manage"
         | "payroll.manage"
       billing_provider: "stripe" | "lemon-squeezy" | "paddle"
+      event_type: "provento" | "desconto" | "outro"
       notification_channel: "in_app" | "email"
       notification_type: "info" | "warning" | "error"
       payment_status: "pending" | "succeeded" | "failed"
@@ -1762,6 +2161,7 @@ export const Constants = {
         "payroll.manage",
       ],
       billing_provider: ["stripe", "lemon-squeezy", "paddle"],
+      event_type: ["provento", "desconto", "outro"],
       notification_channel: ["in_app", "email"],
       notification_type: ["info", "warning", "error"],
       payment_status: ["pending", "succeeded", "failed"],

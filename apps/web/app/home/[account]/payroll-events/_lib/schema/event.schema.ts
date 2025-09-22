@@ -6,6 +6,7 @@ export const CreateEventSchema = z.object({
   description: z.string().optional(),
   color: z.string().regex(/^#[0-9A-F]{6}$/i, 'Invalid color format'),
   accountId: z.string().uuid().optional(),
+  main_event_id: z.number().int().positive(),
 });
 
 export const CreateEventServerSchema = CreateEventSchema.extend({

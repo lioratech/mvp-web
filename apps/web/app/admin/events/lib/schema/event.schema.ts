@@ -1,0 +1,13 @@
+import { z } from 'zod';
+
+export const UploadEventSchema = z.object({
+  id: z.number().int().positive(),
+  description: z.string().min(1),
+  type: z.enum(['provento', 'desconto', 'outro']),
+  reference_days: z.boolean(),
+  reference_hours: z.boolean(),
+  reference_value: z.boolean(),
+  incidence_inss: z.boolean(),
+  incidence_irrf: z.boolean(),
+  incidence_fgts: z.boolean(),
+});

@@ -1,0 +1,93 @@
+===============================================
+DADOS DOS GRÁFICOS - DASHBOARD TURNOVER
+===============================================
+
+## 1. HEADCOUNT CHART
+- Total de colaboradores: 152
+- Homens: 80 (52.6%)
+- Mulheres: 72 (47.4%)
+
+## 2. COLABORADORES POR FAIXA ETÁRIA
+Faixa Etária | Homens | Mulheres | Total
+-------------|--------|----------|-------
+20-25 anos   | 15     | 12       | 27
+26-30 anos   | 18     | 16       | 34
+31-35 anos   | 20     | 18       | 38
+36-40 anos   | 12     | 14       | 26
+41-45 anos   | 10     | 8        | 18
+46-50 anos   | 3      | 3        | 6
+51-55 anos   | 2      | 1        | 3
+
+## 3. COLABORADORES POR ÁREA
+Área         | Homens | Mulheres | Total
+-------------|--------|----------|-------
+Produção     | 35     | 15       | 50
+Vendas       | 22     | 11       | 33
+RH           | 8      | 20       | 28
+TI           | 10     | 8        | 18
+Financeiro   | 3      | 8        | 11
+Marketing    | 2      | 5        | 7
+Jurídico     | 0      | 5        | 5
+
+## 4. COLABORADORES POR CARGO
+Cargo                | Homens | Mulheres | Total
+---------------------|--------|----------|-------
+Gerente              | 8      | 5        | 13
+Coordenador          | 12     | 8        | 20
+Analista             | 25     | 30       | 55
+Técnico de Campo     | 18     | 7        | 25
+Assistente           | 10     | 15       | 25
+Auxiliar             | 7      | 7        | 14
+
+## 5. CRESCIMENTO/DIMINUIÇÃO DE COLABORADORES (Últimos 12 meses)
+Mês           | Ativos | Demitidos | Saldo
+--------------|--------|-----------|-------
+Janeiro 2024  | 180    | 8         | +172
+Fevereiro 2024| 185    | 5         | +180
+Março 2024    | 190    | 7         | +183
+Abril 2024    | 195    | 6         | +189
+Maio 2024     | 200    | 9         | +191
+Junho 2024    | 205    | 12        | +193
+Julho 2024    | 210    | 20        | +190
+Agosto 2024   | 215    | 8         | +207
+Setembro 2024 | 220    | 6         | +214
+Outubro 2024  | 225    | 5         | +220
+Novembro 2024 | 230    | 7         | +223
+Dezembro 2024 | 235    | 6         | +229
+
+## 6. COLABORADORES POR TIPO DE CONTRATO
+Tipo de Contrato | Quantidade
+-----------------|----------
+CLT              | 35
+PJ               | 10
+Estagiário       | 9
+Temporário       | 8
+
+## 7. COLABORADORES POR FILIAL
+Filial           | Quantidade
+-----------------|----------
+Pinheiros        | 35
+Campinas         | 10
+Belo Horizonte   | 9
+Curitiba         | 8
+Salvador         | 5
+
+## 8. TURNOVER POR DEPARTAMENTO
+Departamento | Taxa de Turnover (%)
+-------------|--------------------
+Vendas       | 15.2
+Produção     | 12.8
+TI           | 8.5
+RH           | 6.2
+Financeiro   | 4.1
+Marketing    | 3.8
+Jurídico     | 2.1
+
+## 9. CARGOS DE LIDERANÇA
+Cargo                | Quantidade
+---------------------|----------
+Gerente Geral        | 5
+Gerente de Área      | 8
+Coordenador Sênior   | 12
+Coordenador          | 20
+

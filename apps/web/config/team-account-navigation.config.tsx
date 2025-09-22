@@ -5,10 +5,10 @@ import {
   User,
   Users,
   Building2,
-  Calendar,
   Tags,
   DollarSign,
-  Upload
+  Upload,
+  ArrowRight
 } from 'lucide-react';
 
 import { NavigationConfigSchema } from '@kit/ui/navigation-schema';
@@ -31,18 +31,28 @@ const getRoutes = (
     label: 'common:routes.application',
     children: [
       {
-        label: 'common:routes.dashboard',
+        label: 'Painel executivo',
         path: pathsConfig.app.accountHome.replace('[account]', account),
         Icon: <LayoutDashboard className={iconClasses} />,
-        end: true,
-      },
+        children: [ {
+          label: 'Estrutura salarial',
+          path: pathsConfig.app.accountHome.replace('[account]', account),
+          Icon: <ArrowRight className={iconClasses} />,
+        },
+        {
+          label: 'Força de trabalho',
+          path: pathsConfig.app.accountTurnoverPanels.replace('[account]', account),
+          Icon: <ArrowRight className={iconClasses} />,
+          end: true,
+        },
+      ]},
+     
     ],
   },
   {
     label: 'common:routes.settings',
     collapsible: false,
     children: [
-      // Only show settings menu item for users with 'owner' role
       workspace?.account.role === 'owner'
         ? {
             label: 'common:routes.settings',
@@ -87,11 +97,11 @@ const getRoutes = (
           path: createPath('/home/[account]/payroll-events', account),
           Icon: <Tags className={iconClasses} />,
         },
-        {
-          label: 'payroll:page.title',
-          path: createPath('/home/[account]/payroll', account),
-          Icon: <DollarSign className={iconClasses} />,
-        },
+        // {
+        //   label: 'payroll:page.title',
+        //   path: createPath('/home/[account]/payroll', account),
+        //   Icon: <DollarSign className={iconClasses} />,
+        // },
         {
           label: 'uploads:page.title',
           path: createPath('/home/[account]/uploads', account),

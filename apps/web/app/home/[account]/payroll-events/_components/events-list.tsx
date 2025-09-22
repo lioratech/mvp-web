@@ -14,6 +14,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Trans } from '@kit/ui/trans';
 import { If } from '@kit/ui/if';
 import { EmptyState, EmptyStateHeading, EmptyStateText } from '@kit/ui/empty-state';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@kit/ui/select';
 
 import { Search, Edit, Trash2, List, Grid3X3, Calendar } from 'lucide-react';
 
@@ -32,14 +33,16 @@ export function EventsList({ accountId }: { accountId: string }) {
   const workspace = useTeamAccountWorkspace();
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('table');
+  const [filterType, setFilterType] = useState('Todos');
   const { t } = useTranslation('payroll-events');
 
+  // Update the query to fetch main_event_id and its details
   const { data: events, isLoading } = useQuery({
     queryKey: ['account_payroll_events', accountId],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('account_payroll_events')
-        .select('*')
+        .select('*, main_events(id, description, type)')
         .eq('account_id', accountId)
         .order('name');
 
@@ -51,24 +54,27 @@ export function EventsList({ accountId }: { accountId: string }) {
     },
   });
 
-  // Permissão customizada
   const canManageEvents =
     (workspace.account.permissions as string[]).includes('payroll.manage') ||
     workspace.account.role === 'owner';
 
-  // Filtrar eventos baseado na busca
   const filteredEvents = useMemo(() => {
-    if (!events || !searchQuery.trim()) {
-      return events || [];
-    }
+    if (!events) return [];
 
-    const query = searchQuery.toLowerCase();
-    return events.filter((event) =>
-      event.name.toLowerCase().includes(query) ||
-      event.external_id?.toLowerCase().includes(query) ||
-      event.description?.toLowerCase().includes(query)
-    );
-  }, [events, searchQuery]);
+    return events.filter((event) => {
+      const matchesSearch =
+        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.external_id?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.description?.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesType =
+        filterType === 'Todos' || // Treat 'Todos' as 'ALL'
+        (filterType === 'outros' && !['provento', 'desconto'].includes(event.main_events?.type)) ||
+        event.main_events?.type === filterType;
+
+      return matchesSearch && matchesType;
+    });
+  }, [events, searchQuery, filterType]);
 
   if (isLoading) {
     return (
@@ -102,9 +108,9 @@ export function EventsList({ accountId }: { accountId: string }) {
     }>
       <Card>
         <CardHeader>
-          <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+          <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:space-x-4">
             <div className="flex flex-1 items-center space-x-2">
-              <div className="relative flex-1 max-w-sm">
+              <div className="relative flex-1 max-w-lg">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder={t('payroll-events:searchPlaceholder', 'Buscar eventos...')}
@@ -113,9 +119,22 @@ export function EventsList({ accountId }: { accountId: string }) {
                   className="pl-8"
                 />
               </div>
+              <div className="relative flex-1 max-w-[120px]">
+              <Select onValueChange={(value) => setFilterType(value)} className="w-[80px]">
+                <SelectTrigger>
+                  <span>{filterType || 'Todos'}</span>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Todos">Todos</SelectItem>
+                  <SelectItem value="provento">Provento</SelectItem>
+                  <SelectItem value="desconto">Desconto</SelectItem>
+                  <SelectItem value="outros">Outros</SelectItem>
+                </SelectContent>
+              </Select>
+              </div>
             </div>
-            
-            <div className="flex items-center space-x-2">
+
+            <div className="flex items-center space-x-4">
               <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as ViewMode)}>
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="table" className="flex items-center space-x-2">
@@ -156,7 +175,7 @@ export function EventsList({ accountId }: { accountId: string }) {
                         <Trans i18nKey="payroll-events:description" defaults="Descrição" />
                       </TableHead>
                       <TableHead>
-                        <Trans i18nKey="payroll-events:color" defaults="Cor" />
+                        <Trans i18nKey="payroll-events:mainEventDetails" defaults="Detalhes do Evento Principal" />
                       </TableHead>
                       <If condition={canManageEvents}>
                         <TableHead className="w-[100px]">
@@ -218,19 +237,23 @@ export function EventsList({ accountId }: { accountId: string }) {
                             </If>
                           </TableCell>
                           <TableCell>
-                            <If condition={event.color}>
-                              <div className="flex items-center space-x-2">
-                                <div 
-                                  className="h-4 w-4 rounded-full border"
-                                  style={{ backgroundColor: event.color || undefined }}
-                                />
-                                <Badge 
-                                  variant="secondary" 
-                                  className="text-xs"
-                                >
-                                  <Trans i18nKey="payroll-events:color" defaults="Cor" />
-                                </Badge>
-                              </div>
+                            <If condition={event.main_events}>
+                              <Badge variant="outline" className="font-mono text-xs">
+                                {event.main_events?.id}
+                              </Badge>
+                              <span className="ml-2">
+                                {event.main_events?.description}
+                              </span>
+                              <Badge
+                                variant={
+                                  event.main_events?.type === 'provento' ? 'success' :
+                                  event.main_events?.type === 'desconto' ? 'destructive' :
+                                  'outline'
+                                }
+                                className="ml-2 text-xs"
+                              >
+                                {event.main_events?.type}
+                              </Badge>
                             </If>
                           </TableCell>
                           <If condition={canManageEvents}>

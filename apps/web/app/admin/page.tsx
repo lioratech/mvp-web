@@ -13,5 +13,5 @@ function AdminPage() {
     </>
   );
 }
-
 export default AdminGuard(AdminPage);
+

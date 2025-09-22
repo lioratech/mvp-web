@@ -27,9 +27,19 @@ import { Input } from '@kit/ui/input';
 import { Textarea } from '@kit/ui/textarea';
 import { Button } from '@kit/ui/button';
 import { Trans } from '@kit/ui/trans';
+import { useQuery } from '@tanstack/react-query';
+import { useSupabase } from '@kit/supabase/hooks/use-supabase';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from '@kit/ui/select';
+import { Badge } from '@kit/ui/badge';
 
 import { UpdateEventSchema, type UpdateEventData } from '../_lib/schema/event.schema';
 import { updateEventAction } from '../_lib/server/server-actions';
+import { MainEventSelector } from './main-event-selector';
 
 interface UpdateEventDialogProps {
   children: React.ReactNode;
@@ -59,6 +69,7 @@ export function UpdateEventDialog({
       external_id: event.external_id || '',
       description: event.description || '',
       color: event.color || '#3B82F6',
+      main_event_id: event.main_event_id || null, 
     },
   });
 
@@ -70,6 +81,7 @@ export function UpdateEventDialog({
         external_id: event.external_id || '',
         description: event.description || '',
         color: event.color || '#3B82F6',
+        main_event_id: event.main_event_id || null, 
       });
     }
   }, [open, event, form]);
@@ -87,13 +99,34 @@ export function UpdateEventDialog({
         });
 
         setOpen(false);
-        // Refresh the page to show the updated event
+
         window.location.reload();
       } catch (error) {
         console.error('Error updating event:', error);
       }
     });
   };
+
+
+  const supabase = useSupabase();
+  const { data: mainEvents, error: mainEventsError } = useQuery({
+    queryKey: ['mainEvents'],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('main_events').select('id, description, type');
+      if (error) {
+        console.error('Error fetching main events:', error);
+        throw new Error(error.message);
+      }
+      return data;
+    },
+  });
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredEvents = searchTerm ? mainEvents?.filter(event =>
+    event.description.toLowerCase().includes(searchTerm) ||
+    String(event.id).includes(searchTerm)
+  ) : mainEvents;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -110,6 +143,36 @@ export function UpdateEventDialog({
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="main_event_id"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <Trans
+                      i18nKey="payroll-events:mainEvent"
+                      defaults="Evento Principal"
+                    />
+                  </FormLabel>
+                  <FormControl>
+                    <MainEventSelector
+                      value={field.value}
+                      onChange={(value) => {
+                        field.onChange(Number(value));
+                        const selectedEvent = mainEvents?.find(
+                          (event) => String(event.id) === value,
+                        );
+                        if (selectedEvent) {
+                          form.setValue('name', selectedEvent.description);
+                        }
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="name"
