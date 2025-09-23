@@ -84,7 +84,6 @@ export function UpdateDepartmentDialog({
         );
 
         setOpen(false);
-        // Refresh the page to show the updated department
         window.location.reload();
       } catch (error) {
         console.error('Error updating department:', error);

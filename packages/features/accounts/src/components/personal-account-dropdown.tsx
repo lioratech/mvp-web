@@ -167,7 +167,7 @@ export function PersonalAccountDropdown({
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link
+          {/* <Link
             className={'s-full flex cursor-pointer items-center space-x-2'}
             href={'/docs'}
           >
@@ -176,7 +176,7 @@ export function PersonalAccountDropdown({
             <span>
               <Trans i18nKey={'common:documentation'} />
             </span>
-          </Link>
+          </Link> */}
         </DropdownMenuItem>
 
         <If condition={isSuperAdmin}>

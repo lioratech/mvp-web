@@ -47,7 +47,6 @@ export function DeleteDepartmentDialog({
         );
 
         setOpen(false);
-        // Refresh the page to show the updated list
         window.location.reload();
       } catch (error) {
         console.error('Error deleting department:', error);

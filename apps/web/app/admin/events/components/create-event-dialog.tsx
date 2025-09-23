@@ -34,7 +34,7 @@ export function CreateEventDialog() {
   const form = useForm<CreateEventSchemaType>({
     resolver: zodResolver(CreateEventSchema),
     defaultValues: {
-      id: 0, // Provide a default number value
+      id: 0, 
       description: '',
       type: 'provento',
     },

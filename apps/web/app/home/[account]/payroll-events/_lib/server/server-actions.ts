@@ -15,7 +15,6 @@ export const createEventAction = enhanceAction(
 
     logger.info('Creating event', { userId: user.id, eventName: data.name, accountId: data.accountId });
 
-    // Check if user has permission to create payroll events
     const { data: hasPermission, error: permissionError } = await supabase
       .rpc('has_permission', {
         user_id: user.id,

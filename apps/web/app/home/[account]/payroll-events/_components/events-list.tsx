@@ -36,7 +36,6 @@ export function EventsList({ accountId }: { accountId: string }) {
   const [filterType, setFilterType] = useState('Todos');
   const { t } = useTranslation('payroll-events');
 
-  // Update the query to fetch main_event_id and its details
   const { data: events, isLoading } = useQuery({
     queryKey: ['account_payroll_events', accountId],
     queryFn: async () => {
@@ -68,7 +67,7 @@ export function EventsList({ accountId }: { accountId: string }) {
         event.description?.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesType =
-        filterType === 'Todos' || // Treat 'Todos' as 'ALL'
+        filterType === 'Todos' || 
         (filterType === 'outros' && !['provento', 'desconto'].includes(event.main_events?.type)) ||
         event.main_events?.type === filterType;
 
@@ -321,7 +320,6 @@ export function EventsList({ accountId }: { accountId: string }) {
   );
 }
 
-// Componente de Card para visualização em grade
 function EventCard({
   event,
   accountId,

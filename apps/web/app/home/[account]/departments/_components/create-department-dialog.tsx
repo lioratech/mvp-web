@@ -72,7 +72,6 @@ export function CreateDepartmentDialog({
 
         setOpen(false);
         form.reset();
-        // Refresh the page to show the new department
         window.location.reload();
       } catch (error) {
         console.error('Error creating department:', error);

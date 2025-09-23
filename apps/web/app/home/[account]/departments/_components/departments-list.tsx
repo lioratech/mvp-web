@@ -35,7 +35,6 @@ export function DepartmentsList({
   const [viewMode, setViewMode] = useState<ViewMode>('table');
   const { t } = useTranslation('departments');
 
-  // Filtrar departamentos baseado na busca
   const filteredDepartments = useMemo(() => {
     if (!searchQuery.trim()) {
       return departments;
@@ -246,7 +245,6 @@ export function DepartmentsList({
   );
 }
 
-// Componente de Card para visualização em grade
 function DepartmentCard({
   department,
   accountId,

@@ -12,7 +12,6 @@ export const loadDepartments = cache(async (accountId: string) => {
     .order('created_at', { ascending: false });
 
   if (error) {
-    // Log detalhado do erro para debug
     console.error('Erro Supabase ao carregar departamentos:', error);
     throw new Error('Erro ao carregar departamentos');
   }
