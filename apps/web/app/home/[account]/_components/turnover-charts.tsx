@@ -92,7 +92,7 @@ export default function TurnoverCharts() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
         <Card>
           <CardHeader>
-            <CardTitle>Headcount</CardTitle>
+            <CardTitle>Colaboradores</CardTitle>
           </CardHeader>
           <CardContent>
             <HeadcountChart data={headcountData} />
@@ -225,33 +225,33 @@ function generateAgeGroupData() {
 
 function generateAreaData() {
   return [
-    { area: 'TI', masculino: 6, feminino: 3 },
-    { area: 'RH', masculino: 1, feminino: 2 },
-    { area: 'Comercial', masculino: 17, feminino: 9 },
-    { area: 'Administrativo', masculino: 9, feminino: 6 },
     { area: 'Operações', masculino: 37, feminino: 21 },
     { area: 'Desenvolvimento', masculino: 22, feminino: 13 },
+    { area: 'Comercial', masculino: 17, feminino: 9 },
+    { area: 'Administrativo', masculino: 9, feminino: 6 },
+    { area: 'TI', masculino: 6, feminino: 3 },
     { area: 'Marketing', masculino: 4, feminino: 2 },
+    { area: 'RH', masculino: 1, feminino: 2 },
   ];
 }
 
 function generateRoleData() {
   return [
-    { role: 'Suporte Técnico', masculino: 6, feminino: 3 },
-    { role: 'Coord. de Vendas', masculino: 3, feminino: 2 },
-    { role: 'Vendedor', masculino: 14, feminino: 7 },
-    { role: 'Assist.Administrativo', masculino: 9, feminino: 5 },
-    { role: 'Coord.Administrativo', masculino: 1, feminino: 0 },
-    { role: 'Analista de DP', masculino: 2, feminino: 1 },
-    { role: 'Aux. de Suporte', masculino: 32, feminino: 17 },
-    { role: 'Coord. de Suporte', masculino: 6, feminino: 3 },
-    { role: 'Dev Python Sênior', masculino: 4, feminino: 2 },
-    { role: 'Dev Python Junior', masculino: 6, feminino: 3 },
-    { role: 'Dev Python Pleno', masculino: 4, feminino: 2 },
-    { role: 'Cood. de Desenvolvimento', masculino: 3, feminino: 1 },
-    { role: 'Analista de Marketing', masculino: 3, feminino: 2 },
-    { role: 'Coord. de Marketing', masculino: 1, feminino: 0 },
-    { role: 'Dev Full Stack', masculino: 7, feminino: 3 },
+    { role: 'Aux. de Suporte', masculino: 32, feminino: 17 }, // 49 total
+    { role: 'Vendedor', masculino: 14, feminino: 7 }, // 21 total
+    { role: 'Assist.Administrativo', masculino: 9, feminino: 5 }, // 14 total
+    { role: 'Dev Full Stack', masculino: 7, feminino: 3 }, // 10 total
+    { role: 'Suporte Técnico', masculino: 6, feminino: 3 }, // 9 total
+    { role: 'Coord. de Suporte', masculino: 6, feminino: 3 }, // 9 total
+    { role: 'Dev Python Junior', masculino: 6, feminino: 3 }, // 9 total
+    { role: 'Dev Python Sênior', masculino: 4, feminino: 2 }, // 6 total
+    { role: 'Dev Python Pleno', masculino: 4, feminino: 2 }, // 6 total
+    { role: 'Coord. de Vendas', masculino: 3, feminino: 2 }, // 5 total
+    { role: 'Analista de Marketing', masculino: 3, feminino: 2 }, // 5 total
+    { role: 'Cood. de Desenvolvimento', masculino: 3, feminino: 1 }, // 4 total
+    { role: 'Analista de DP', masculino: 2, feminino: 1 }, // 3 total
+    { role: 'Coord.Administrativo', masculino: 1, feminino: 0 }, // 1 total
+    { role: 'Coord. de Marketing', masculino: 1, feminino: 0 }, // 1 total
   ];
 }
 
@@ -545,7 +545,6 @@ function RoleChart(props: {
     },
   } satisfies ChartConfig;
 
-  // Função para quebrar texto em linhas
   const formatLabel = (text: string) => {
     const words = text.split(' ');
     if (words.length <= 2) return text;
@@ -556,7 +555,6 @@ function RoleChart(props: {
     return `${firstLine}\n${secondLine}`;
   };
 
-  // Componente customizado para labels com quebra de linha
   const CustomTick = (props: any) => {
     const { x, y, payload } = props;
     const text = formatLabel(payload.value);
@@ -584,7 +582,6 @@ function RoleChart(props: {
 
   const displayedData = props.showAll ? props.data : props.data.slice(0, 5);
 
-  // Ajustar altura baseada no número de itens (mais espaço para quebra de linha)
   const chartHeight = Math.max(200, displayedData.length * 50 + 100);
 
   return (
