@@ -305,9 +305,9 @@ export function InsightsModel() {
                 {analyse.current.map((item, index) => (
                   <div key={index} className="p-4 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      {/* <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-xs font-medium text-gray-600 dark:text-gray-300">{index + 1}</span>
-                      </div>
+                      </div> */}
                       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                         {item}
                       </p>
@@ -329,9 +329,9 @@ export function InsightsModel() {
                 {analyse.hiphotesis.map((item, index) => (
                   <div key={index} className="p-4 rounded-lg bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      {/* <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-xs font-medium text-purple-600 dark:text-purple-400">{index + 1}</span>
-                      </div>
+                      </div> */}
                       <p className="text-sm text-purple-700 dark:text-purple-300 leading-relaxed">
                         {item}
                       </p>

@@ -3,22 +3,21 @@
 import { useMemo, useState } from 'react';
 
 import {
+  AlertTriangle,
   ArrowDown,
   ArrowUp,
+  Brain,
   CircleDollarSign,
+  Clock,
   IdCardLanyard,
+  Lightbulb,
   Mars,
   Menu,
   TrendingUp,
   UserRoundMinus,
   Users,
   Venus,
-  AlertTriangle,
-  Clock,
-  Lightbulb,
-  Brain,
 } from 'lucide-react';
-import { InsightsModel } from "./insights-model";
 import {
   Area,
   AreaChart,
@@ -41,6 +40,7 @@ import {
 } from 'recharts';
 
 import { Badge } from '@kit/ui/badge';
+import { Button } from '@kit/ui/button';
 import {
   Card,
   CardContent,
@@ -74,6 +74,8 @@ import {
   TableRow,
 } from '@kit/ui/table';
 
+import { InsightsModel } from './insights-model';
+
 export default function TurnoverCharts() {
   const headcountData = useMemo(() => generateHeadcountData(), []);
   const ageGroupData = useMemo(() => generateAgeGroupData(), []);
@@ -82,19 +84,20 @@ export default function TurnoverCharts() {
   const growthData = useMemo(() => generateGrowthData(), []);
   const contractTypeData = useMemo(() => generateContractTypeData(), []);
   const branchData = useMemo(() => generateBranchData(), []);
-  const [timeRange, setTimeRange] = useState("12m");
+  const [timeRange, setTimeRange] = useState('12m');
+  const [showAllRoles, setShowAllRoles] = useState(false);
 
   return (
     <div className="animate-in fade-in flex flex-col space-y-6 pb-36 duration-500">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
-         <Card>
-           <CardHeader>
-             <CardTitle>Headcount</CardTitle>
-           </CardHeader>
-           <CardContent>
-             <HeadcountChart data={headcountData} />
-           </CardContent>
-         </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Headcount</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <HeadcountChart data={headcountData} />
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
@@ -107,7 +110,7 @@ export default function TurnoverCharts() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Colaboradores por Área</CardTitle>
+            <CardTitle>Colaboradores por área</CardTitle>
           </CardHeader>
           <CardContent>
             <AreaBarChart data={areaData} />
@@ -115,11 +118,31 @@ export default function TurnoverCharts() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Colaboradores por Cargo</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0">
+            <CardTitle>Colaboradores por cargo</CardTitle>
+            {roleData.length > 5 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAllRoles(!showAllRoles)}
+                className="flex items-center gap-2"
+              >
+                {showAllRoles ? (
+                  <>
+                    <ArrowUp className="h-4 w-4" />
+                    Ver menos
+                  </>
+                ) : (
+                  <>
+                    <ArrowDown className="h-4 w-4" />
+                    Ver mais ({roleData.length - 5} restantes)
+                  </>
+                )}
+              </Button>
+            )}
           </CardHeader>
           <CardContent>
-            <RoleChart data={roleData} />
+            <RoleChart data={roleData} showAll={showAllRoles} />
           </CardContent>
         </Card>
       </div>
@@ -127,7 +150,9 @@ export default function TurnoverCharts() {
       <div className="grid grid-cols-1">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
-            <CardTitle className="text-left">Crescimento/Diminuição de Colaboradores</CardTitle>
+            <CardTitle className="text-left">
+              Crescimento/Diminuição de Colaboradores
+            </CardTitle>
             <div className="flex items-center space-x-2">
               <Select value={timeRange} onValueChange={setTimeRange}>
                 <SelectTrigger className="w-[180px]">
@@ -142,44 +167,48 @@ export default function TurnoverCharts() {
             </div>
           </CardHeader>
           <CardContent>
-            <GrowthChart data={growthData} timeRange={timeRange} setTimeRange={setTimeRange} />
+            <GrowthChart
+              data={growthData}
+              timeRange={timeRange}
+              setTimeRange={setTimeRange}
+            />
           </CardContent>
         </Card>
       </div>
 
-       {/* Terceira linha */}
-       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-         {/* Colaboradores por tipo de contrato */}
-         <Card>
-           <CardHeader>
-             <CardTitle>Colaboradores por tipo de contrato</CardTitle>
-           </CardHeader>
-           <CardContent>
-             <ContractTypeChart data={contractTypeData} />
-           </CardContent>
-         </Card>
+      {/* Terceira linha */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* Colaboradores por tipo de contrato */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Colaboradores por tipo de contrato</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ContractTypeChart data={contractTypeData} />
+          </CardContent>
+        </Card>
 
-         <Card>
-           <CardHeader>
-             <CardTitle>Colaboradores por filial</CardTitle>
-           </CardHeader>
-           <CardContent>
-             <BranchChart data={branchData} />
-           </CardContent>
-         </Card>
-       </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Colaboradores por filial</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <BranchChart data={branchData} />
+          </CardContent>
+        </Card>
+      </div>
 
-       <div className="grid grid-cols-1">
-         <InsightsModel />
-       </div>
-     </div>
-   );
+      <div className="grid grid-cols-1">
+        <InsightsModel />
+      </div>
+    </div>
+  );
 }
 
 function generateHeadcountData() {
   return [
-    { name: 'Female', value: 72, fill: '#ec4899' },
-    { name: 'Male', value: 80, fill: '#3b82f6' },
+    { name: 'Female', value: 55, fill: '#ec4899' },
+    { name: 'Male', value: 97, fill: '#3b82f6' },
   ];
 }
 
@@ -196,52 +225,60 @@ function generateAgeGroupData() {
 
 function generateAreaData() {
   return [
-    { area: 'Tecnologia', masculino: 15, feminino: 8 },
-    { area: 'Recursos Humanos', masculino: 5, feminino: 12 },
-    { area: 'Vendas', masculino: 12, feminino: 6 },
-    { area: 'Marketing', masculino: 4, feminino: 8 },
-    { area: 'Financeiro', masculino: 6, feminino: 4 },
-    { area: 'Operações', masculino: 8, feminino: 5 },
-    { area: 'Jurídico', masculino: 3, feminino: 7 },
+    { area: 'TI', masculino: 6, feminino: 3 },
+    { area: 'RH', masculino: 1, feminino: 2 },
+    { area: 'Comercial', masculino: 17, feminino: 9 },
+    { area: 'Administrativo', masculino: 9, feminino: 6 },
+    { area: 'Operações', masculino: 37, feminino: 21 },
+    { area: 'Desenvolvimento', masculino: 22, feminino: 13 },
+    { area: 'Marketing', masculino: 4, feminino: 2 },
   ];
 }
 
 function generateRoleData() {
   return [
-    { role: 'Técnicos de Campo', masculino: 18, feminino: 7 },
-    { role: 'Suporte Técnico', masculino: 10, feminino: 5 },
-    { role: 'Atendimento', masculino: 5, feminino: 7 },
-    { role: 'Administrativo', masculino: 3, feminino: 5 },
-    { role: 'Operacional', masculino: 2, feminino: 3 },
-    { role: 'Gerencial', masculino: 4, feminino: 6 },
-    { role: 'Especialista', masculino: 6, feminino: 4 },
+    { role: 'Suporte Técnico', masculino: 6, feminino: 3 },
+    { role: 'Coord. de Vendas', masculino: 3, feminino: 2 },
+    { role: 'Vendedor', masculino: 14, feminino: 7 },
+    { role: 'Assist.Administrativo', masculino: 9, feminino: 5 },
+    { role: 'Coord.Administrativo', masculino: 1, feminino: 0 },
+    { role: 'Analista de DP', masculino: 2, feminino: 1 },
+    { role: 'Aux. de Suporte', masculino: 32, feminino: 17 },
+    { role: 'Coord. de Suporte', masculino: 6, feminino: 3 },
+    { role: 'Dev Python Sênior', masculino: 4, feminino: 2 },
+    { role: 'Dev Python Junior', masculino: 6, feminino: 3 },
+    { role: 'Dev Python Pleno', masculino: 4, feminino: 2 },
+    { role: 'Cood. de Desenvolvimento', masculino: 3, feminino: 1 },
+    { role: 'Analista de Marketing', masculino: 3, feminino: 2 },
+    { role: 'Coord. de Marketing', masculino: 1, feminino: 0 },
+    { role: 'Dev Full Stack', masculino: 7, feminino: 3 },
   ];
 }
 
 function generateGrowthData() {
   const monthlyData = [];
   const currentDate = new Date();
-  
+ 
   const baseData = [
-    { ativos: 180, demitidos: 15 },
-    { ativos: 185, demitidos: 12 },
-    { ativos: 192, demitidos: 18 },
-    { ativos: 200, demitidos: 8 },
-    { ativos: 205, demitidos: 10 },
-    { ativos: 210, demitidos: 15 },
-    { ativos: 208, demitidos: 20 },
-    { ativos: 215, demitidos: 12 },
-    { ativos: 220, demitidos: 8 },
-    { ativos: 225, demitidos: 10 },
-    { ativos: 230, demitidos: 5 },
-    { ativos: 235, demitidos: 7 },
+    { ativos: 125, demitidos: 5 },
+    { ativos: 130, demitidos: 3 },
+    { ativos: 129, demitidos: 1 },
+    { ativos: 133, demitidos: 3 },
+    { ativos: 137, demitidos: 5 },
+    { ativos: 135, demitidos: 1 },
+    { ativos: 140, demitidos: 6 },
+    { ativos: 139, demitidos: 2 },
+    { ativos: 145, demitidos: 3 },
+    { ativos: 140, demitidos: 1 },
+    { ativos: 148, demitidos: 2 },
+    { ativos: 152, demitidos: 2 }, // mês atual
   ];
 
   for (let i = 11; i >= 0; i--) {
     const date = new Date(currentDate);
     date.setMonth(date.getMonth() - i);
-    date.setDate(1); 
-    
+    date.setDate(1);
+ 
     monthlyData.push({
       date: date.toISOString().split('T')[0],
       ativos: baseData[11 - i].ativos,
@@ -254,10 +291,10 @@ function generateGrowthData() {
 
 function generateContractTypeData() {
   return [
-    { type: 'CLT', count: 35 },
-    { type: 'PJ', count: 10 },
+    { type: 'CLT', count: 108 },
+    { type: 'PJ', count: 24 },
     { type: 'Estagiário', count: 9 },
-    { type: 'Temporário', count: 8 },
+    { type: 'Temporário', count: 11 },
   ];
 }
 
@@ -271,28 +308,34 @@ function generateBranchData() {
   ];
 }
 
-function HeadcountChart(props: { data: { name: string; value: number; fill: string }[] }) {
+function HeadcountChart(props: {
+  data: { name: string; value: number; fill: string }[];
+}) {
+  const homens = props.data.find((item) => item.name === 'Male')?.value || 0;
+  const mulheres =
+    props.data.find((item) => item.name === 'Female')?.value || 0;
+
   const chartData = [
-    { 
-      month: "headcount", 
-      homens: 120, 
-      mulheres: 80 
-    }
+    {
+      month: 'headcount',
+      homens: homens,
+      mulheres: mulheres,
+    },
   ];
 
-  const totalEmployees = chartData[0].homens + chartData[0].mulheres;
+  const totalEmployees = homens + mulheres;
 
-  const percentHomens = Math.round((chartData[0].homens / totalEmployees) * 100);
-  const percentMulheres = Math.round((chartData[0].mulheres / totalEmployees) * 100);
+  const percentHomens = Math.round((homens / totalEmployees) * 100);
+  const percentMulheres = Math.round((mulheres / totalEmployees) * 100);
 
   const chartConfig = {
     homens: {
       label: `Homens (${percentHomens}%)`,
-      color: "#3b82f6", 
+      color: '#3b82f6',
     },
     mulheres: {
-      label: `Mulheres (${percentMulheres}%)`, 
-      color: "#ec4899", 
+      label: `Mulheres (${percentMulheres}%)`,
+      color: '#ec4899',
     },
   } satisfies ChartConfig;
 
@@ -314,12 +357,12 @@ function HeadcountChart(props: { data: { name: string; value: number; fill: stri
         <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
           <Label
             content={({ viewBox }) => {
-              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+              if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                 return (
-                  <text 
-                    x={viewBox.cx} 
-                    y={viewBox.cy} 
-                    textAnchor="middle" 
+                  <text
+                    x={viewBox.cx}
+                    y={viewBox.cy}
+                    textAnchor="middle"
                     dominantBaseline="middle"
                   >
                     <tspan
@@ -363,11 +406,11 @@ function HeadcountChart(props: { data: { name: string; value: number; fill: stri
 
 function AgeGroupChart(props: { data: { ageGroup: string; count: number }[] }) {
   const chartData = [
-    { ageGroup: '18-25', masculino: 8, feminino: 6 },
-    { ageGroup: '26-35', masculino: 22, feminino: 20 },
-    { ageGroup: '36-45', masculino: 18, feminino: 19 },
-    { ageGroup: '46-55', masculino: 12, feminino: 11 },
-    { ageGroup: '56+', masculino: 6, feminino: 5 },
+    { ageGroup: '18-25', masculino: 12, feminino: 8 },
+    { ageGroup: '26-35', masculino: 35, feminino: 20 },
+    { ageGroup: '36-45', masculino: 28, feminino: 15 },
+    { ageGroup: '46-55', masculino: 18, feminino: 10 },
+    { ageGroup: '56+', masculino: 4, feminino: 2 },
   ];
 
   const chartConfig = {
@@ -383,8 +426,8 @@ function AgeGroupChart(props: { data: { ageGroup: string; count: number }[] }) {
 
   return (
     <ChartContainer config={chartConfig}>
-      <BarChart 
-        accessibilityLayer 
+      <BarChart
+        accessibilityLayer
         data={chartData}
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
       >
@@ -421,7 +464,9 @@ function AgeGroupChart(props: { data: { ageGroup: string; count: number }[] }) {
   );
 }
 
-function AreaBarChart(props: { data: { area: string; masculino: number; feminino: number }[] }) {
+function AreaBarChart(props: {
+  data: { area: string; masculino: number; feminino: number }[];
+}) {
   const chartConfig = {
     masculino: {
       label: 'Masculino',
@@ -434,51 +479,61 @@ function AreaBarChart(props: { data: { area: string; masculino: number; feminino
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-72">
-      <BarChart
-        accessibilityLayer
-        data={props.data}
-        layout="vertical"
-        margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid horizontal={false} />
-        <YAxis
-          dataKey="area"
-          type="category"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          width={80}
-        />
-        <XAxis dataKey="masculino" type="number" hide />
-        <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-        <ChartLegend content={<ChartLegendContent />} />
-        <Bar
-          dataKey="masculino"
-          stackId="a"
-          fill="#3b82f6"
-          radius={[4, 0, 0, 4]}
-        />
-        <Bar
-          dataKey="feminino"
-          stackId="a"
-          fill="#ec4899"
-          radius={[0, 4, 4, 0]}
+    <div className="w-full overflow-hidden">
+      <ChartContainer config={chartConfig} className="h-72 w-full">
+        <BarChart
+          accessibilityLayer
+          data={props.data}
+          layout="vertical"
+          margin={{ top: 10, right: 60, left: 30, bottom: 5 }}
+          width={undefined}
+          height={undefined}
         >
-          <LabelList
-            dataKey={(entry) => entry.masculino + entry.feminino}
-            position="right"
-            offset={8}
-            className="fill-foreground font-semibold"
-            fontSize={12}
+          <CartesianGrid horizontal={false} />
+          <YAxis
+            dataKey="area"
+            type="category"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+            width={80}
           />
-        </Bar>
-      </BarChart>
-    </ChartContainer>
+          <XAxis dataKey="masculino" type="number" hide />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="line" />}
+          />
+          <ChartLegend content={<ChartLegendContent />} />
+          <Bar
+            dataKey="masculino"
+            stackId="a"
+            fill="#3b82f6"
+            radius={[4, 0, 0, 4]}
+          />
+          <Bar
+            dataKey="feminino"
+            stackId="a"
+            fill="#ec4899"
+            radius={[0, 4, 4, 0]}
+          >
+            <LabelList
+              dataKey={(entry) => entry.masculino + entry.feminino}
+              position="right"
+              offset={8}
+              className="fill-foreground font-semibold"
+              fontSize={12}
+            />
+          </Bar>
+        </BarChart>
+      </ChartContainer>
+    </div>
   );
 }
 
-function RoleChart(props: { data: { role: string; masculino: number; feminino: number }[] }) {
+function RoleChart(props: {
+  data: { role: string; masculino: number; feminino: number }[];
+  showAll: boolean;
+}) {
   const chartConfig = {
     masculino: {
       label: 'Masculino',
@@ -490,69 +545,123 @@ function RoleChart(props: { data: { role: string; masculino: number; feminino: n
     },
   } satisfies ChartConfig;
 
+  // Função para quebrar texto em linhas
+  const formatLabel = (text: string) => {
+    const words = text.split(' ');
+    if (words.length <= 2) return text;
+
+    const mid = Math.ceil(words.length / 2);
+    const firstLine = words.slice(0, mid).join(' ');
+    const secondLine = words.slice(mid).join(' ');
+    return `${firstLine}\n${secondLine}`;
+  };
+
+  // Componente customizado para labels com quebra de linha
+  const CustomTick = (props: any) => {
+    const { x, y, payload } = props;
+    const text = formatLabel(payload.value);
+    const lines = text.split('\n');
+
+    return (
+      <g>
+        {lines.map((line, index) => (
+          <text
+            key={index}
+            x={x}
+            y={y + index * 12}
+            textAnchor="end"
+            fontSize="12"
+            fill="currentColor"
+            className="break-words"
+            style={{ wordBreak: 'break-word', whiteSpace: 'pre-line' }}
+          >
+            {line}
+          </text>
+        ))}
+      </g>
+    );
+  };
+
+  const displayedData = props.showAll ? props.data : props.data.slice(0, 5);
+
+  // Ajustar altura baseada no número de itens (mais espaço para quebra de linha)
+  const chartHeight = Math.max(200, displayedData.length * 50 + 100);
+
   return (
-    <ChartContainer config={chartConfig} className="h-72">
-      <BarChart
-        accessibilityLayer
-        data={props.data}
-        layout="vertical"
-        margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+    <div className="w-full overflow-hidden">
+      <ChartContainer
+        config={chartConfig}
+        className={`w-full`}
+        style={{ height: `${chartHeight}px` }}
       >
-        <CartesianGrid horizontal={false} />
-        <YAxis
-          dataKey="role"
-          type="category"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          width={80}
-        />
-        <XAxis dataKey="masculino" type="number" hide />
-        <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-        <ChartLegend content={<ChartLegendContent />} />
-        <Bar
-          dataKey="masculino"
-          stackId="a"
-          fill="#3b82f6"
-          radius={[4, 0, 0, 4]}
-        />
-        <Bar
-          dataKey="feminino"
-          stackId="a"
-          fill="#ec4899"
-          radius={[0, 4, 4, 0]}
+        <BarChart
+          accessibilityLayer
+          data={displayedData}
+          layout="vertical"
+          margin={{ top: 10, right: 60, left: 90, bottom: 5 }}
+          width={undefined}
+          height={undefined}
         >
-          <LabelList
-            dataKey={(entry) => entry.masculino + entry.feminino}
-            position="right"
-            offset={8}
-            className="fill-foreground font-semibold"
-            fontSize={12}
+          <CartesianGrid horizontal={false} />
+          <YAxis
+            dataKey="role"
+            type="category"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+            width={80}
+            interval={0}
+            tick={<CustomTick />}
           />
-        </Bar>
-      </BarChart>
-    </ChartContainer>
+          <XAxis dataKey="masculino" type="number" hide />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="line" />}
+          />
+          <ChartLegend content={<ChartLegendContent />} />
+          <Bar
+            dataKey="masculino"
+            stackId="a"
+            fill="#3b82f6"
+            radius={[4, 0, 0, 4]}
+          />
+          <Bar
+            dataKey="feminino"
+            stackId="a"
+            fill="#ec4899"
+            radius={[0, 4, 4, 0]}
+          >
+            <LabelList
+              dataKey={(entry) => entry.masculino + entry.feminino}
+              position="right"
+              offset={8}
+              className="fill-foreground font-semibold"
+              fontSize={12}
+            />
+          </Bar>
+        </BarChart>
+      </ChartContainer>
+    </div>
   );
 }
 
-function GrowthChart(props: { 
+function GrowthChart(props: {
   data: { date: string; ativos: number; demitidos: number }[];
   timeRange: string;
   setTimeRange: (value: string) => void;
 }) {
-
   const filteredData = props.data.filter((item) => {
     const date = new Date(item.date);
     const currentDate = new Date();
     let monthsToSubtract = 12;
-    if (props.timeRange === "6m") {
+    if (props.timeRange === '6m') {
       monthsToSubtract = 6;
-    } else if (props.timeRange === "3m") {
+    } else if (props.timeRange === '3m') {
       monthsToSubtract = 3;
     }
     const startDate = new Date(currentDate);
     startDate.setMonth(startDate.getMonth() - monthsToSubtract);
-    startDate.setDate(1);  
+    startDate.setDate(1);
     return date >= startDate;
   });
 
@@ -569,7 +678,6 @@ function GrowthChart(props: {
 
   return (
     <div className="space-y-4">
-
       <ChartContainer config={chartConfig} className="h-80 w-full">
         <AreaChart
           accessibilityLayer
@@ -611,8 +719,8 @@ function GrowthChart(props: {
             minTickGap={32}
             tickFormatter={(value) => {
               const date = new Date(value);
-              return date.toLocaleDateString("pt-BR", {
-                month: "short",
+              return date.toLocaleDateString('pt-BR', {
+                month: 'short',
               });
             }}
           />
@@ -621,9 +729,9 @@ function GrowthChart(props: {
             content={
               <ChartTooltipContent
                 labelFormatter={(value) => {
-                  return new Date(value).toLocaleDateString("pt-BR", {
-                    month: "long",
-                    year: "numeric",
+                  return new Date(value).toLocaleDateString('pt-BR', {
+                    month: 'long',
+                    year: 'numeric',
                   });
                 }}
                 indicator="dot"
@@ -637,7 +745,11 @@ function GrowthChart(props: {
             stroke="var(--color-demitidos)"
             stackId="a"
             dot={{ fill: 'var(--color-demitidos)', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: 'var(--color-demitidos)', strokeWidth: 2 }}
+            activeDot={{
+              r: 6,
+              stroke: 'var(--color-demitidos)',
+              strokeWidth: 2,
+            }}
           />
           <Area
             dataKey="ativos"
@@ -664,34 +776,41 @@ function ContractTypeChart(props: { data: { type: string; count: number }[] }) {
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-64">
-      <BarChart
-        accessibilityLayer
-        data={props.data}
-        layout="vertical"
-        margin={{ left: 20, right: 16 }}
-      >
-        <CartesianGrid horizontal={false} />
-        <YAxis
-          dataKey="type"
-          type="category"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-        />
-        <XAxis dataKey="count" type="number" hide />
-        <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-        <Bar dataKey="count" layout="vertical" fill="#f97316" radius={4}>
-          <LabelList
-            dataKey="count"
-            position="right"
-            offset={8}
-            className="fill-foreground"
-            fontSize={12}
+    <div className="w-full overflow-hidden">
+      <ChartContainer config={chartConfig} className="h-64 w-full">
+        <BarChart
+          accessibilityLayer
+          data={props.data}
+          layout="vertical"
+          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          width={undefined}
+          height={undefined}
+        >
+          <CartesianGrid horizontal={false} />
+          <YAxis
+            dataKey="type"
+            type="category"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
           />
-        </Bar>
-      </BarChart>
-    </ChartContainer>
+          <XAxis dataKey="count" type="number" hide />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="line" />}
+          />
+          <Bar dataKey="count" layout="vertical" fill="#f97316" radius={4}>
+            <LabelList
+              dataKey="count"
+              position="right"
+              offset={8}
+              className="fill-foreground"
+              fontSize={12}
+            />
+          </Bar>
+        </BarChart>
+      </ChartContainer>
+    </div>
   );
 }
 
@@ -704,37 +823,43 @@ function BranchChart(props: { data: { branch: string; count: number }[] }) {
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-64">
-      <BarChart
-        accessibilityLayer
-        data={props.data}
-        layout="vertical"
-        margin={{ left: 20, right: 16 }}
-      >
-        <CartesianGrid horizontal={false} />
-        <YAxis
-          dataKey="branch"
-          type="category"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-        />
-        <XAxis dataKey="count" type="number" hide />
-        <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-        <Bar dataKey="count" layout="vertical" fill="#f97316" radius={4}>
-          <LabelList
-            dataKey="count"
-            position="right"
-            offset={8}
-            className="fill-foreground"
-            fontSize={12}
+    <div className="w-full overflow-hidden">
+      <ChartContainer config={chartConfig} className="h-64 w-full">
+        <BarChart
+          accessibilityLayer
+          data={props.data}
+          layout="vertical"
+          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          width={undefined}
+          height={undefined}
+        >
+          <CartesianGrid horizontal={false} />
+          <YAxis
+            dataKey="branch"
+            type="category"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
           />
-        </Bar>
-      </BarChart>
-    </ChartContainer>
+          <XAxis dataKey="count" type="number" hide />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="line" />}
+          />
+          <Bar dataKey="count" layout="vertical" fill="#f97316" radius={4}>
+            <LabelList
+              dataKey="count"
+              position="right"
+              offset={8}
+              className="fill-foreground"
+              fontSize={12}
+            />
+          </Bar>
+        </BarChart>
+      </ChartContainer>
+    </div>
   );
 }
-
 
 function _CustomersTable() {
   const customers = [
@@ -1410,4 +1535,3 @@ export function PageViewsChart() {
     </Card>
   );
 }
-
