@@ -7,7 +7,8 @@ import { createI18nServerInstance } from '~/lib/i18n/i18n.server';
 import { withI18n } from '~/lib/i18n/with-i18n';
 
 import { TeamAccountLayoutPageHeader } from '../_components/team-account-layout-page-header';
-import { WorkforcePanels } from '../_components/workforce-panels';
+import { WorkforceCostsFilters } from '../_components/workforce-costs-filters';
+import { WorkforceCostsPanels } from '../_components/workforce-costs-panels';
 
 interface TeamAccountHomePageProps {
   params: Promise<{ account: string }>;
@@ -18,7 +19,7 @@ export const generateMetadata = async () => {
   const title = i18n.t('teams:home.pageTitle');
 
   return {
-    title: 'Painel de força de trabalho',
+    title: 'Painel de custos da força de trabalho',
   };
 };
 
@@ -31,12 +32,16 @@ function TeamAccountHomePage({ params }: TeamAccountHomePageProps) {
         account={account}
         title="Turnover"
         description={
-          <AppBreadcrumbs values={{ 'panel-workforce': 'Força Trabalho' }} />
+          <AppBreadcrumbs
+            values={{ 'panel-workforce-costs': 'Custos folha' }}
+          />
         }
-      />
+      >
+        <WorkforceCostsFilters />
+      </TeamAccountLayoutPageHeader>
 
       <PageBody>
-        <WorkforcePanels />
+        <WorkforceCostsPanels />
       </PageBody>
     </>
   );

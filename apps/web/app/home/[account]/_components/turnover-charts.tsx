@@ -609,31 +609,31 @@ function TurnoverByAreaLineChart(props: {
   
   const chartConfig = {
     TI: {
-      label: "TI",
+      label: "TI:",
       color: DEPARTMENT_COLORS[0],
     },
     RH: {
-      label: "RH",
+      label: "RH:",
       color: DEPARTMENT_COLORS[1],
     },
     Comercial: {
-      label: "Comercial",
+      label: "Comercial:",
       color: DEPARTMENT_COLORS[2],
     },
     Administrativo: {
-      label: "Administrativo",
+      label: "Administrativo:",
       color: DEPARTMENT_COLORS[3],
     },
     Operações: {
-      label: "Operações",
+      label: "Operações:",
       color: DEPARTMENT_COLORS[4],
     },
     Desenvolvimento: {
-      label: "Desenvolvimento",
+      label: "Desenvolvimento:",
       color: DEPARTMENT_COLORS[5],
     },
     Marketing: {
-      label: "Marketing",
+      label: "Marketing:",
       color: DEPARTMENT_COLORS[6],
     },
   } satisfies ChartConfig;
@@ -751,21 +751,21 @@ function TurnoverByRoleLineChart(props: {
   console.log('TurnoverByRoleLineChart data:', props.data);
 
   const chartConfig = {
-    suporteTecnico: { label: "Suporte Técnico", color: DEPARTMENT_COLORS[0] },
-    coordenadorVendas: { label: "Coordenador de Vendas", color: DEPARTMENT_COLORS[1] },
-    vendedor: { label: "Vendedor", color: DEPARTMENT_COLORS[2] },
-    assistenteAdmin: { label: "Assistente Administrativo", color: DEPARTMENT_COLORS[3] },
-    coordenadorAdmin: { label: "Coordenador Administrativo", color: DEPARTMENT_COLORS[4] },
-    analistaDP: { label: "Analista de DP", color: DEPARTMENT_COLORS[5] },
-    auxiliarSuporte: { label: "Auxiliar de Suporte", color: DEPARTMENT_COLORS[6] },
-    coordenadorSuporte: { label: "Coordenador de Suporte", color: DEPARTMENT_COLORS[7] },
-    devPythonSenior: { label: "Desenvolvedor Python Sênior", color: DEPARTMENT_COLORS[8] },
-    devPythonJunior: { label: "Desenvolvedor Python Junior", color: DEPARTMENT_COLORS[9] },
-    devPythonPleno: { label: "Desenvolvedor Python Pleno", color: "#fbbf24" },
-    coordenadorDev: { label: "Coordenador de Desenvolvimento", color: "#a78bfa" },
-    analistaMarketing: { label: "Analista de Marketing", color: "#34d399" },
-    coordenadorMarketing: { label: "Coordenador de Marketing", color: "#f472b6" },
-    devFullStack: { label: "Desenvolvedor Full Stack", color: "#94a3b8" },
+    suporteTecnico: { label: "Suporte Técnico:", color: DEPARTMENT_COLORS[0] },
+    coordenadorVendas: { label: "Coordenador de Vendas:", color: DEPARTMENT_COLORS[1] },
+    vendedor: { label: "Vendedor:", color: DEPARTMENT_COLORS[2] },
+    assistenteAdmin: { label: "Assistente Administrativo:", color: DEPARTMENT_COLORS[3] },
+    coordenadorAdmin: { label: "Coordenador Administrativo:", color: DEPARTMENT_COLORS[4] },
+    analistaDP: { label: "Analista de DP:", color: DEPARTMENT_COLORS[5] },
+    auxiliarSuporte: { label: "Auxiliar de Suporte:", color: DEPARTMENT_COLORS[6] },
+    coordenadorSuporte: { label: "Coordenador de Suporte:", color: DEPARTMENT_COLORS[7] },
+    devPythonSenior: { label: "Desenvolvedor Python Sênior:", color: DEPARTMENT_COLORS[8] },
+    devPythonJunior: { label: "Desenvolvedor Python Junior:", color: DEPARTMENT_COLORS[9] },
+    devPythonPleno: { label: "Desenvolvedor Python Pleno:", color: "#fbbf24" },
+    coordenadorDev: { label: "Coordenador de Desenvolvimento:", color: "#a78bfa" },
+    analistaMarketing: { label: "Analista de Marketing:", color: "#34d399" },
+    coordenadorMarketing: { label: "Coordenador de Marketing:", color: "#f472b6" },
+    devFullStack: { label: "Desenvolvedor Full Stack:", color: "#94a3b8" },
   } satisfies ChartConfig;
 
   if (!props.data || props.data.length === 0) {
@@ -775,8 +775,8 @@ function TurnoverByRoleLineChart(props: {
   return (
     <ChartContainer config={chartConfig} className="h-48 w-full">
       <LineChart
-        accessibilityLayer
-        data={props.data}
+          accessibilityLayer
+          data={props.data}
         margin={{
           left: 12,
           right: 12,
@@ -785,8 +785,8 @@ function TurnoverByRoleLineChart(props: {
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
-              tickLine={false}
-              axisLine={false}
+            tickLine={false}
+            axisLine={false}
               tickMargin={8}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
@@ -896,7 +896,7 @@ function TurnoverByRoleLineChart(props: {
           dot={false}
         />
       </LineChart>
-        </ChartContainer>
+      </ChartContainer>
   );
 }
 
@@ -945,11 +945,11 @@ function TurnoverByAgeGroupLineChart(props: {
   console.log('TurnoverByAgeGroupLineChart data:', props.data);
   
   const chartConfig = {
-    faixa18_25: { label: "18-25", color: DEPARTMENT_COLORS[0] },
-    faixa26_35: { label: "26-35", color: DEPARTMENT_COLORS[1] },
-    faixa36_45: { label: "36-45", color: DEPARTMENT_COLORS[2] },
-    faixa46_55: { label: "46-55", color: DEPARTMENT_COLORS[3] },
-    faixa56_mais: { label: "56+", color: DEPARTMENT_COLORS[4] },
+    faixa18_25: { label: "18-25:", color: DEPARTMENT_COLORS[0] },
+    faixa26_35: { label: "26-35:", color: DEPARTMENT_COLORS[1] },
+    faixa36_45: { label: "36-45:", color: DEPARTMENT_COLORS[2] },
+    faixa46_55: { label: "46-55:", color: DEPARTMENT_COLORS[3] },
+    faixa56_mais: { label: "56+:", color: DEPARTMENT_COLORS[4] },
   } satisfies ChartConfig;
 
   if (!props.data || props.data.length === 0) {
@@ -1047,13 +1047,13 @@ function TurnoverByBranchLineChart(props: {
   data: { month: string; saoPaulo: number; campinas: number; beloHorizonte: number; curitiba: number; salvador: number }[];
 }) {
   console.log('TurnoverByBranchLineChart data:', props.data);
-  
+
   const chartConfig = {
-    saoPaulo: { label: "São Paulo", color: DEPARTMENT_COLORS[0] },
-    campinas: { label: "Campinas", color: DEPARTMENT_COLORS[1] },
-    beloHorizonte: { label: "Belo Horizonte", color: DEPARTMENT_COLORS[2] },
-    curitiba: { label: "Curitiba", color: DEPARTMENT_COLORS[3] },
-    salvador: { label: "Salvador", color: DEPARTMENT_COLORS[4] },
+    saoPaulo: { label: "São Paulo:", color: DEPARTMENT_COLORS[0] },
+    campinas: { label: "Campinas:", color: DEPARTMENT_COLORS[1] },
+    beloHorizonte: { label: "Belo Horizonte:", color: DEPARTMENT_COLORS[2] },
+    curitiba: { label: "Curitiba:", color: DEPARTMENT_COLORS[3] },
+    salvador: { label: "Salvador:", color: DEPARTMENT_COLORS[4] },
   } satisfies ChartConfig;
 
   if (!props.data || props.data.length === 0) {
@@ -1070,12 +1070,12 @@ function TurnoverByBranchLineChart(props: {
           right: 12,
         }}
       >
-        <CartesianGrid vertical={false} />
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
         <Line
@@ -1114,7 +1114,7 @@ function TurnoverByBranchLineChart(props: {
           dot={false}
         />
       </LineChart>
-    </ChartContainer>
+        </ChartContainer>
   );
 }
 
@@ -1140,10 +1140,10 @@ function TurnoverByBranchYTDSummary() {
               style={{ backgroundColor: branch.color }}
             />
             <span className="text-muted-foreground">{branch.name}: <span className="text-foreground">{branch.value}%</span></span>
-          </div>
+            </div>
         ))}
-      </div>
-    </div>
+            </div>
+          </div>
   );
 }
 
@@ -1151,10 +1151,10 @@ function TurnoverBreakdownChart(props: {
   data: { category: string; percentage: number }[];
 }) {
   console.log('TurnoverBreakdownChart data:', props.data);
-  
+
   const chartConfig = {
     percentage: {
-      label: "Percentage",
+      label: "Percentage:",
       color: "var(--chart-1)",
     },
   } satisfies ChartConfig;
@@ -1177,17 +1177,17 @@ function TurnoverBreakdownChart(props: {
         <YAxis
           dataKey="category"
           type="category"
-          tickLine={false}
+              tickLine={false}
           tickMargin={10}
-          axisLine={false}
-        />
-        <ChartTooltip
+              axisLine={false}
+            />
+            <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel />}
         />
         <Bar dataKey="percentage" fill="var(--color-percentage)" radius={5} />
-      </BarChart>
-    </ChartContainer>
+          </BarChart>
+        </ChartContainer>
   );
 }
 

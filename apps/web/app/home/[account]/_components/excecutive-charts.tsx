@@ -95,7 +95,7 @@ export default function DashboardDemo() {
             </CardDescription>
 
             <div>
-              <Figure>220</Figure>
+              <Figure>152</Figure>
             </div>
           </CardHeader>
 
@@ -114,7 +114,7 @@ export default function DashboardDemo() {
                       <Venus />
                     </span>
                   </div>
-                  <span className="text-2xl font-bold">155</span>
+                  <span className="text-2xl font-bold">97</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
@@ -122,7 +122,7 @@ export default function DashboardDemo() {
                       <Mars />
                     </span>
                   </div>
-                  <span className="text-2xl font-bold">65</span>
+                  <span className="text-2xl font-bold">55</span>
                 </div>
               </div>
             </div>
@@ -292,9 +292,12 @@ export default function DashboardDemo() {
                   <p className="text-muted-foreground text-sm">
                     Custo da folha
                   </p>
-                  <p className="text-lg font-bold">R$ 987.345,87</p>
+                  <p className="text-lg font-bold">R$ 724.317,37</p>
+                  <p className="text-xs text-muted-foreground">
+                    Jul./25: R$ 713.497,85
+                  </p>
                 </div>
-                <Trend trend={'down'}>-25%</Trend>
+                <Trend trend={'up'}>+1,5%</Trend>
               </div>
 
               <div className="flex items-center gap-4">
@@ -302,9 +305,12 @@ export default function DashboardDemo() {
                   <p className="text-muted-foreground text-sm">
                     Custo da folha com encargos
                   </p>
-                  <p className="text-lg font-bold">R$ 2.054.159,31</p>
+                  <p className="text-lg font-bold">R$ 990.866,16</p>
+                  <p className="text-xs text-muted-foreground">
+                    Jul./25: R$ 976.065,06
+                  </p>
                 </div>
-                <Trend trend={'down'}>-25%</Trend>
+                <Trend trend={'up'}>+1,5%</Trend>
               </div>
 
               <div className="flex items-center gap-4">
@@ -312,9 +318,12 @@ export default function DashboardDemo() {
                   <p className="text-muted-foreground text-sm">
                     Custo médio de rescisões
                   </p>
-                  <p className="text-lg font-bold">R$ 54.783,78</p>
+                  <p className="text-lg font-bold">R$ 129.945,68</p>
+                  <p className="text-xs text-muted-foreground">
+                    Jul./25: R$ 125.456,88
+                  </p>
                 </div>
-                <Trend trend={'up'}>12%</Trend>
+                <Trend trend={'up'}>+3,6%</Trend>
               </div>
 
               <div className="flex items-center gap-4">
@@ -322,9 +331,12 @@ export default function DashboardDemo() {
                   <p className="text-muted-foreground text-sm">
                     Custo de horas extras
                   </p>
-                  <p className="text-lg font-bold">R$ 35.664,07</p>
+                  <p className="text-lg font-bold">R$ 1.274,64</p>
+                  <p className="text-xs text-muted-foreground">
+                    Jul./25: R$ 311,20
+                  </p>
                 </div>
-                <Trend trend={'up'}>14%</Trend>
+                <Trend trend={'up'}>+309,6%</Trend>
               </div>
             </div>
           </CardContent>
@@ -335,75 +347,83 @@ export default function DashboardDemo() {
 }
 
 function generateColaboradoresData() {
-  const today = new Date();
-  const formatter = new Intl.DateTimeFormat('pt-BR', {
-    month: 'short',
-    year: 'numeric',
-  });
-
-  const data: {
-    month: string;
-    ativos: number;
-    afastados: number;
-    demitidos: number;
-  }[] = [];
-
-  for (let n = 3; n > 0; n -= 1) {
-    const date = new Date(today.getFullYear(), today.getMonth() - n, 1);
-    let formatted = formatter.format(date);
-    formatted = formatted.replace(' de ', ' ').replace('.', '').toUpperCase();
-
-    data.push({
-      month: formatted,
-      ativos: Math.floor(Math.random() * 15) + 15,
-      afastados: Math.floor(Math.random() * 5) + 2, 
-      demitidos: Math.floor(Math.random() * 8) + 1, 
-    });
-  }
-
-  return data;
+  return [
+    {
+      month: 'jun./25',
+      ativos: 140,
+      afastados: 1,
+      demitidos: 1,
+    },
+    {
+      month: 'jul./25',
+      ativos: 148,
+      afastados: 2,
+      demitidos: 2,
+    },
+    {
+      month: 'ago./25',
+      ativos: 152,
+      afastados: 2,
+      demitidos: 2,
+    },
+  ];
 }
 
 function generateTurnoverData() {
-  const today = new Date();
-  const formatter = new Intl.DateTimeFormat('pt-BR', {
-    month: 'short',
-    year: 'numeric',
-  });
-
-  const data: { month: string; turnover: number }[] = [];
-
-  for (let n = 4; n > 0; n -= 1) {
-    const date = new Date(today.getFullYear(), today.getMonth() - n, 1);
-    let formatted = formatter.format(date);
-    formatted = formatted.replace(' de ', ' ').replace('.', '').toUpperCase();
-
-    data.push({
-      month: formatted,
-      turnover: Math.floor(Math.random() * 8) + 8, 
-    });
-  }
-
-  return data;
+  return [
+    {
+      month: 'jun./25',
+      turnover: 0.70,
+    },
+    {
+      month: 'jul./25',
+      turnover: 1.39,
+    },
+    {
+      month: 'ago./25',
+      turnover: 1.33,
+    },
+  ];
 }
 
 function generateTurnoverByDepartmentData() {
-  const departments = [
-    'Administrativo',
-    'Financeiro',
-    'Comercial',
-    'Marketing',
-    'RH',
-    'TI',
-    'Operações',
-    'Vendas',
+  return [
+    {
+      department: 'Comercial',
+      turnover: 4.3,
+      color: '#f59e0b',
+    },
+    {
+      department: 'Operações',
+      turnover: 3.6,
+      color: '#f97316',
+    },
+    {
+      department: 'Desenvolvimento',
+      turnover: 3.6,
+      color: '#06b6d4',
+    },
+    {
+      department: 'Administrativo',
+      turnover: 2.2,
+      color: '#3b82f6',
+    },
+    {
+      department: 'Marketing',
+      turnover: 1.4,
+      color: '#ef4444',
+    },
+    {
+      department: 'TI',
+      turnover: 0.7,
+      color: '#8b5cf6',
+    },
+    {
+      department: 'RH',
+      turnover: 0.0,
+      color: '#10b981',
+    },
   ];
-
-  return departments.map((department) => ({
-    department,
-    turnover: Math.floor(Math.random() * 25) + 5, 
-    color: getDepartmentColor(department),
-  }));
 }
 
 function getDepartmentColor(department: string): string {
@@ -441,40 +461,26 @@ function generateLeadershipPositionsData() {
 }
 
 function generateCostTrendsData() {
-  const today = new Date();
-  const formatter = new Intl.DateTimeFormat('pt-BR', {
-    month: 'short',
-    year: 'numeric',
-  });
-
-  const data: {
-    month: string;
-    custoFolha: number;
-    custoFolhaEncargos: number;
-    custoMedioRescisoes: number;
-    custoHorasExtras: number;
-  }[] = [];
-
-
-  for (let n = 3; n > 0; n -= 1) {
-    const date = new Date(today.getFullYear(), today.getMonth() - n, 1);
-    let formatted = formatter.format(date);
-    formatted = formatted.replace(' de ', ' ').replace('.', '').toUpperCase();
-
-    data.push({
-      month: formatted,
-      custoFolha: Math.floor(Math.random() * 100000) + 900000, 
-      custoFolhaEncargos: Math.floor(Math.random() * 200000) + 1900000,
-      custoMedioRescisoes: Math.floor(Math.random() * 10000) + 50000,
-      custoHorasExtras: Math.floor(Math.random() * 5000) + 33000,
-    });
-  }
-
-  return data;
+  return [
+    {
+      month: 'jul./25',
+      custoFolha: 713497.85,
+      custoFolhaEncargos: 976065.06,
+      custoMedioRescisoes: 125456.88,
+      custoHorasExtras: 311.20,
+    },
+    {
+      month: 'ago./25',
+      custoFolha: 724317.37,
+      custoFolhaEncargos: 990866.16,
+      custoMedioRescisoes: 129945.68,
+      custoHorasExtras: 1274.64,
+    },
+  ];
 }
 
 function LeadershipRadialChart() {
-  const chartData = [{ mulheres: 20, homens: 200 }];
+  const chartData = [{ mulheres: 6, homens: 17 }];
 
   const chartConfig = {
     mulheres: {
@@ -696,10 +702,6 @@ function ColaboradoresChart(
       label: 'Ativos',
       color: '#00c950', 
     },
-    afastados: {
-      label: 'Afastados',
-      color: '#6b7280', 
-    },
     demitidos: {
       label: 'Demitidos',
       color: '#ef4444', 
@@ -725,12 +727,7 @@ function ColaboradoresChart(
           fill="#00c950"
           radius={[0, 0, 4, 4]}
         />
-        <Bar
-          dataKey="afastados"
-          stackId="a"
-          fill="#6b7280"
-          radius={[0, 0, 0, 0]}
-        />
+     
         <Bar
           dataKey="demitidos"
           stackId="a"

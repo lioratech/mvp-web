@@ -28,22 +28,13 @@ const getRoutes = (
   },
 ) => [
   {
-    label: 'common:routes.application',
+    label: 'Painéis',
     children: [
     
           {
-            label: 'Estrutura salarial',
+            label: 'Painel executivo',
             path: pathsConfig.app.accountHome.replace('[account]', account),
             Icon: <ArrowRight className={iconClasses} />,
-          },
-          {
-            label: 'Força de trabalho',
-            path: pathsConfig.app.accountWorkforcePanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <ArrowRight className={iconClasses} />,
-            end: true,
           },
           {
             label: 'Rotatividade e estabilidade',
@@ -52,8 +43,32 @@ const getRoutes = (
               account,
             ),
             Icon: <ArrowRight className={iconClasses} />,
-            end: true,
       },
+          {
+            label: 'Força de trabalho',
+            path: pathsConfig.app.accountWorkforcePanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <ArrowRight className={iconClasses} />,
+          },
+          {
+            label: 'Salários e equidade',
+            path: pathsConfig.app.accountSalariesPanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <ArrowRight className={iconClasses} />,
+          },
+          {
+            label: 'Custos da folha',
+            path: pathsConfig.app.accountWorkforceCostsPanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <ArrowRight className={iconClasses} />,
+          },
+       
     ],
   },
   {

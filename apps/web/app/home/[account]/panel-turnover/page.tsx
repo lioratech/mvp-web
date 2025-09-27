@@ -19,7 +19,7 @@ export const generateMetadata = async () => {
   const title = i18n.t('teams:home.pageTitle');
 
   return {
-    title: 'Painel de Turnover',
+    title: 'Painel de rotatividade e estabilidade',
   };
 };
 
