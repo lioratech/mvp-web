@@ -1,14 +1,14 @@
 import {
+  ArrowRight,
+  Building2,
   CreditCard,
+  DollarSign,
   LayoutDashboard,
   Settings,
+  Tags,
+  Upload,
   User,
   Users,
-  Building2,
-  Tags,
-  DollarSign,
-  Upload,
-  ArrowRight
 } from 'lucide-react';
 
 import { NavigationConfigSchema } from '@kit/ui/navigation-schema';
@@ -30,23 +30,30 @@ const getRoutes = (
   {
     label: 'common:routes.application',
     children: [
-      {
-        label: 'Painel executivo',
-        path: pathsConfig.app.accountHome.replace('[account]', account),
-        Icon: <LayoutDashboard className={iconClasses} />,
-        children: [ {
-          label: 'Estrutura salarial',
-          path: pathsConfig.app.accountHome.replace('[account]', account),
-          Icon: <ArrowRight className={iconClasses} />,
-        },
-        {
-          label: 'Força de trabalho',
-          path: pathsConfig.app.accountTurnoverPanels.replace('[account]', account),
-          Icon: <ArrowRight className={iconClasses} />,
-          end: true,
-        },
-      ]},
-     
+    
+          {
+            label: 'Estrutura salarial',
+            path: pathsConfig.app.accountHome.replace('[account]', account),
+            Icon: <ArrowRight className={iconClasses} />,
+          },
+          {
+            label: 'Força de trabalho',
+            path: pathsConfig.app.accountWorkforcePanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <ArrowRight className={iconClasses} />,
+            end: true,
+          },
+          {
+            label: 'Rotatividade e estabilidade',
+            path: pathsConfig.app.accountTurnoverPanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <ArrowRight className={iconClasses} />,
+            end: true,
+      },
     ],
   },
   {
@@ -86,28 +93,28 @@ const getRoutes = (
   {
     label: 'Setup',
     collapsible: true,
-          children: [
-        {
-          label: 'departments:departments',
-          path: createPath('/home/[account]/departments', account),
-          Icon: <Building2 className={iconClasses} />,
-        },
-        {
-          label: 'payroll-events:pageTitle',
-          path: createPath('/home/[account]/payroll-events', account),
-          Icon: <Tags className={iconClasses} />,
-        },
-        // {
-        //   label: 'payroll:page.title',
-        //   path: createPath('/home/[account]/payroll', account),
-        //   Icon: <DollarSign className={iconClasses} />,
-        // },
-        {
-          label: 'uploads:page.title',
-          path: createPath('/home/[account]/uploads', account),
-          Icon: <Upload className={iconClasses} />,
-        },
-      ],
+    children: [
+      {
+        label: 'departments:departments',
+        path: createPath('/home/[account]/departments', account),
+        Icon: <Building2 className={iconClasses} />,
+      },
+      {
+        label: 'payroll-events:pageTitle',
+        path: createPath('/home/[account]/payroll-events', account),
+        Icon: <Tags className={iconClasses} />,
+      },
+      // {
+      //   label: 'payroll:page.title',
+      //   path: createPath('/home/[account]/payroll', account),
+      //   Icon: <DollarSign className={iconClasses} />,
+      // },
+      {
+        label: 'uploads:page.title',
+        path: createPath('/home/[account]/uploads', account),
+        Icon: <Upload className={iconClasses} />,
+      },
+    ],
   },
 ];
 
