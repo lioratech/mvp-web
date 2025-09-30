@@ -692,7 +692,7 @@ function OvertimeCostsByAreaChart(props: {
           accessibilityLayer
           data={props.data}
           layout="vertical"
-          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          margin={{ left: 80, right: 120, top: 20, bottom: 20 }}
           width={undefined}
           height={undefined}
         >
@@ -703,6 +703,8 @@ function OvertimeCostsByAreaChart(props: {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
+            width={70}
+            tick={{ fontSize: 12 }}
           />
           <XAxis dataKey="cost" type="number" hide />
           <ChartTooltip
@@ -750,7 +752,7 @@ function OvertimeCostsByBranchChart(props: {
           accessibilityLayer
           data={props.data}
           layout="vertical"
-          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          margin={{ left: 80, right: 120, top: 20, bottom: 20 }}
           width={undefined}
           height={undefined}
         >
@@ -761,6 +763,8 @@ function OvertimeCostsByBranchChart(props: {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
+            width={70}
+            tick={{ fontSize: 12 }}
           />
           <XAxis dataKey="cost" type="number" hide />
           <ChartTooltip
@@ -808,7 +812,7 @@ function PayrollCostsByAreaChart(props: {
           accessibilityLayer
           data={props.data}
           layout="vertical"
-          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          margin={{ left: 80, right: 120, top: 20, bottom: 20 }}
           width={undefined}
           height={undefined}
         >
