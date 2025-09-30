@@ -1,41 +1,38 @@
 {
-    "analyse": {
-      "current": [
-        "O quadro total de colaboradores é de 152, com uma distribuição relativamente equilibrada entre homens (52,6%) e mulheres (47,4%).",
-        "A maior concentração de colaboradores está entre 26 e 35 anos (72 pessoas, quase 47% do total).",
-        "Produção (50 colaboradores) e Vendas (33 colaboradores) são as áreas mais numerosas, seguidas por RH (28) e TI (18).",
-        "Nos cargos, Analistas (55) e Técnicos de Campo (25) formam a maior base da estrutura, enquanto Gerentes (13) representam a camada mais enxuta.",
-        "O histórico de crescimento nos últimos 12 meses mostra aumento contínuo, partindo de 180 ativos em janeiro para 235 em dezembro.",
-        "Os contratos CLT representam a maioria (35), mas há presença significativa de contratos PJ, estagiários e temporários (27 somados).",
-        "A filial de Pinheiros concentra a maior parte da equipe (35), enquanto as demais filiais apresentam quadros menores.",
-        "Turnover mais elevado é observado em Vendas (15,2%) e Produção (12,8%), enquanto áreas como Jurídico e Marketing apresentam taxas baixas.",
-        "Nos cargos de liderança, há maior presença em níveis de coordenação (20 coordenadores e 12 coordenadores sênior) do que em gerência (13 no total)."
+  "analyse": {
+    "current": [
+      "O quadro total de colaboradores é de 152, com predominância masculina (63,8%) frente ao feminino (36,2%).",
+      "A faixa etária mais concentrada está entre 26 e 35 anos (36,2% do total), seguida por 36 a 45 anos (28,3%), indicando uma força de trabalho majoritariamente adulta em fase de consolidação profissional.",
+      "Áreas como Operações (38,2%) e Desenvolvimento (23,0%) concentram a maior parte da equipe, enquanto áreas de suporte estratégico como RH e Marketing têm participação reduzida.",
+      "Os cargos mais comuns são de suporte e vendas, especialmente Auxiliar de Suporte (32,2%) e Vendedor (13,8%), evidenciando grande peso em funções operacionais.",
+      "O saldo anual de colaboradores mostra crescimento, com picos positivos em novembro (+8) e setembro (+6), mas também quedas pontuais em junho e outubro.",
+      "A maioria dos contratos é CLT (71,1%), seguida por PJ (15,8%), sugerindo preferência por vínculos tradicionais, embora exista diversidade contratual.",
+      "A distribuição por filiais está concentrada em Pinheiros (23%), mas apenas 44,1% da força total aparece listada nas filiais apresentadas, sugerindo que parte relevante da equipe atua em outras localidades ou não está alocada em filiais específicas."
+    ],
+    "hiphotesis": [
+      "A predominância masculina pode estar relacionada ao perfil das funções operacionais e de desenvolvimento, que historicamente atraem mais homens.",
+      "A concentração etária entre 26 e 45 anos pode indicar que a empresa tem atraído profissionais em estágios intermediários da carreira, possivelmente devido ao nível de complexidade e exigência das funções.",
+      "A forte presença em Operações e Desenvolvimento sugere que o modelo de negócios da empresa pode ser intensivo em execução técnica e suporte.",
+      "O crescimento positivo ao longo do ano, ainda que com oscilações, pode estar ligado à expansão de projetos ou aumento de demanda em determinadas áreas.",
+      "A diversidade de contratos (CLT, PJ, temporários e estagiários) pode refletir uma estratégia de flexibilidade para equilibrar custos e atender picos de demanda.",
+      "A concentração em Pinheiros e a presença em diferentes cidades podem indicar foco em centros urbanos estratégicos, mas também pode sugerir que parte da operação ainda está centralizada."
+    ],
+    "next_steps": {
+      "estrategico": [
+        "A empresa pode avaliar se a atual distribuição etária está alinhada às necessidades futuras de sucessão e liderança.",
+        "Vale considerar uma análise de diversidade de gênero por área, verificando oportunidades para maior equilíbrio em funções técnicas e de liderança.",
+        "Poderia ser interessante refletir se a concentração em cargos operacionais está alinhada com os objetivos de inovação e diferenciação da empresa."
       ],
-      "hiphotesis": [
-        "A concentração de colaboradores entre 26 e 35 anos pode indicar que a empresa tem atraído profissionais em estágio intermediário de carreira, possivelmente devido ao tipo de oportunidades e desafios oferecidos.",
-        "O maior número de colaboradores em Produção e Vendas sugere que essas áreas podem ser o motor principal do negócio.",
-        "A distribuição relativamente equilibrada de gênero pode estar relacionada a políticas internas de diversidade, mas a concentração feminina em RH e Jurídico e masculina em Produção e Vendas pode refletir padrões do mercado.",
-        "O crescimento constante do headcount pode indicar um período de expansão organizacional, mas também pode estar relacionado a uma alta rotatividade em determinadas áreas.",
-        "O turnover mais elevado em Vendas e Produção pode estar relacionado a pressões de metas, condições de trabalho específicas ou dinâmica competitiva do mercado.",
-        "A maior quantidade de cargos em níveis de coordenação pode sugerir uma estrutura organizacional mais horizontalizada, ou um foco em supervisão direta das operações."
+      "tatico": [
+        "A empresa poderia analisar os fatores que explicam as oscilações no saldo de colaboradores ao longo do ano, especialmente as reduções em meses específicos.",
+        "Pode ser útil mapear a proporção de profissionais CLT e PJ por área, verificando se a escolha contratual está alinhada ao nível de criticidade e confidencialidade das funções.",
+        "Vale avaliar a distribuição regional para identificar se há oportunidades de expansão em outras localidades ou necessidade de maior equilíbrio entre filiais."
       ],
-      "next_steps": {
-        "estrategico": [
-          "A empresa pode avaliar se a atual distribuição etária está alinhada às necessidades futuras de sucessão e liderança.",
-          "Considerar análises de longo prazo sobre a sustentabilidade da estrutura de cargos, verificando se o peso em coordenação atende à estratégia de crescimento.",
-          "Avaliar o alinhamento entre a concentração de áreas (Produção e Vendas) e o plano estratégico da organização."
-        ],
-        "tatico": [
-          "A empresa poderia analisar mais profundamente as causas do turnover em Produção e Vendas, mapeando fatores como remuneração, clima e expectativas.",
-          "Considerar um estudo sobre a efetividade do mix de contratos (CLT, PJ, temporários, estagiários) em termos de custo, engajamento e retenção.",
-          "Explorar oportunidades de mobilidade interna entre áreas que apresentam mais equilíbrio de gênero e menor turnover, como forma de retenção."
-        ],
-        "operacional_cultural": [
-          "Vale considerar a realização de pesquisas internas de engajamento e satisfação, especialmente em Produção e Vendas.",
-          "Promover diálogos sobre diversidade e inclusão para compreender se a distribuição por gênero em algumas áreas reflete preferências individuais ou barreiras culturais.",
-          "Revisitar práticas de onboarding e treinamento contínuo, sobretudo em áreas com maior rotatividade."
-        ]
-      }
+      "operacional_cultural": [
+        "A empresa pode considerar a realização de pesquisas internas de engajamento e satisfação para entender como colaboradores de diferentes áreas percebem seu ambiente de trabalho.",
+        "Pode ser interessante implementar ações de integração entre áreas de suporte e áreas operacionais para fortalecer a colaboração.",
+        "Vale considerar programas de desenvolvimento e capacitação voltados às áreas com maior concentração de jovens profissionais, para apoiar seu crescimento e retenção."
+      ]
     }
   }
-  
+}

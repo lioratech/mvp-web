@@ -163,7 +163,7 @@ export default function WorkforceCostsCharts() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle className="text-left">
-              Evolução dos Custos da Folha
+              Evolução dos custos da folha
             </CardTitle>
             <div className="flex items-center space-x-2">
               <Select value={timeRange} onValueChange={setTimeRange}>
@@ -219,7 +219,7 @@ export default function WorkforceCostsCharts() {
 
       <div className="grid grid-cols-1">
         <InsightsModel 
-          panelType="financial"
+          panelType="workforce-costs"
         />
       </div>
     </div>
@@ -556,15 +556,18 @@ function WorkforceCostsChart(props: {
                 'ago./25': 'Agosto de 2025',
               };
 
+              // Ordenar os payloads por valor decrescente para seguir a ordem visual do gráfico
+              const sortedPayload = payload
+                .filter((entry) => entry.value !== 0)
+                .sort((a, b) => (b.value as number) - (a.value as number));
+
               return (
                 <div className="bg-background border border-border shadow-lg rounded-lg p-3 min-w-[280px]">
                   <p className="font-medium text-sm mb-2">
                     {monthNames[label as keyof typeof monthNames] || label}
                   </p>
                   <div className="space-y-1">
-                    {payload
-                      .filter((entry) => entry.value !== 0)
-                      .map((entry, index) => {
+                    {sortedPayload.map((entry, index) => {
                         const config = chartConfig[entry.dataKey as keyof typeof chartConfig];
                         if (!config) return null;
                         

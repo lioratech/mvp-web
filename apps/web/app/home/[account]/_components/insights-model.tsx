@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@kit/ui/button";
 import { loadInsightsData } from './ia';
 interface InsightsModelProps {
-  panelType?: 'workforce' | 'financial' | 'sales';
+  panelType?: 'workforce' | 'workforce-costs' | 'turnover' | 'sales';
   data?: {
     analyse: {
       current: string[];

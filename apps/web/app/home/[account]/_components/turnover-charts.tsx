@@ -20,6 +20,9 @@ import {
   YAxis,
 } from 'recharts';
 
+import { InsightsModel } from './insights-model';
+
+
 import {
   Card,
   CardContent,
@@ -242,6 +245,11 @@ export default function TurnoverCharts() {
             <TurnoverByAgeGroupYTDSummary />
           </CardFooter>
         </Card>
+      </div>
+      <div className="grid grid-cols-1">
+        <InsightsModel 
+          panelType="turnover"
+        />
       </div>
     </div>
   );

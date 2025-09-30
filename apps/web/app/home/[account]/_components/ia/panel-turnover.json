@@ -1,41 +1,39 @@
 {
-    "analyse": {
-      "current": [
-        "O quadro total de colaboradores é de 152, com uma distribuição relativamente equilibrada entre homens (52,6%) e mulheres (47,4%).",
-        "A maior concentração de colaboradores está entre 26 e 35 anos (72 pessoas, quase 47% do total).",
-        "Produção (50 colaboradores) e Vendas (33 colaboradores) são as áreas mais numerosas, seguidas por RH (28) e TI (18).",
-        "Nos cargos, Analistas (55) e Técnicos de Campo (25) formam a maior base da estrutura, enquanto Gerentes (13) representam a camada mais enxuta.",
-        "O histórico de crescimento nos últimos 12 meses mostra aumento contínuo, partindo de 180 ativos em janeiro para 235 em dezembro.",
-        "Os contratos CLT representam a maioria (35), mas há presença significativa de contratos PJ, estagiários e temporários (27 somados).",
-        "A filial de Pinheiros concentra a maior parte da equipe (35), enquanto as demais filiais apresentam quadros menores.",
-        "Turnover mais elevado é observado em Vendas (15,2%) e Produção (12,8%), enquanto áreas como Jurídico e Marketing apresentam taxas baixas.",
-        "Nos cargos de liderança, há maior presença em níveis de coordenação (20 coordenadores e 12 coordenadores sênior) do que em gerência (13 no total)."
+  "analyse": {
+    "current": [
+      "O turnover atual em agosto de 2025 ficou em 1,33%, dentro de uma faixa considerada média, mas ainda acima do ideal em termos de estabilidade.",
+      "O índice acumulado no ano (YTD) está em 15,77%, sugerindo um ritmo de rotatividade menor em relação ao histórico, com tendência de queda.",
+      "Chamam atenção os desligamentos precoces: 62,5% dos casos recentes ocorreram antes de 6 meses e 50% antes de 3 meses, o que indica possíveis desafios de adaptação ou seleção.",
+      "As áreas de Comercial, Operações e Desenvolvimento concentram os maiores índices de turnover no ano, enquanto RH e TI apresentam alta estabilidade.",
+      "No recorte por cargos, vendedores e auxiliares de suporte lideram em rotatividade, reforçando a correlação com áreas mais operacionais e de pressão por metas.",
+      "A filial de São Paulo concentra mais da metade da rotatividade total (6,4% YTD), sugerindo um polo de maior instabilidade comparado às demais localidades.",
+      "A faixa etária de 26 a 35 anos responde pela maior rotatividade (6,5%), seguida dos jovens de 18 a 25 anos (5,0%), enquanto faixas acima de 36 anos apresentam índices bem menores.",
+      "No corte por gênero, observa-se variação mensal, mas nos últimos 12 meses houve maior concentração de desligamentos entre homens em vários períodos, embora não de forma uniforme."
+    ],
+    "hiphotesis": [
+      "A alta rotatividade em vendedores e auxiliares de suporte pode estar relacionada à pressão por metas, sobrecarga operacional ou condições de trabalho percebidas como desafiadoras.",
+      "A concentração de turnover em São Paulo pode indicar maior competitividade do mercado de trabalho local, com mais opções para profissionais migrarem rapidamente.",
+      "Os desligamentos precoces sugerem que o processo de integração e adaptação pode não estar atendendo plenamente às expectativas dos novos colaboradores.",
+      "A faixa etária de 26 a 35 anos, com maior índice de turnover, pode estar associada a uma fase de busca por crescimento rápido na carreira e maior exposição a ofertas do mercado.",
+      "A oscilação por gênero, com momentos de maior turnover masculino, pode estar vinculada à distribuição de cargos e funções entre os gêneros dentro da organização.",
+      "A estabilidade em áreas como TI e RH pode indicar maior clareza de funções, menor pressão operacional ou maior valorização de especialização técnica."
+    ],
+    "next_steps": {
+      "estrategico": [
+        "A empresa pode avaliar sua proposta de valor ao colaborador (EVP), especialmente para cargos mais impactados pelo turnover, considerando fatores de carreira, remuneração e propósito.",
+        "Vale considerar uma análise comparativa entre filiais para entender se São Paulo demanda políticas específicas de retenção ou ajustes de competitividade salarial.",
+        "A organização poderia explorar um plano de sucessão e desenvolvimento para reduzir a dependência de perfis de alta rotatividade em áreas críticas como Comercial e Operações."
       ],
-      "hiphotesis": [
-        "A concentração de colaboradores entre 26 e 35 anos pode indicar que a empresa tem atraído profissionais em estágio intermediário de carreira, possivelmente devido ao tipo de oportunidades e desafios oferecidos.",
-        "O maior número de colaboradores em Produção e Vendas sugere que essas áreas podem ser o motor principal do negócio.",
-        "A distribuição relativamente equilibrada de gênero pode estar relacionada a políticas internas de diversidade, mas a concentração feminina em RH e Jurídico e masculina em Produção e Vendas pode refletir padrões do mercado.",
-        "O crescimento constante do headcount pode indicar um período de expansão organizacional, mas também pode estar relacionado a uma alta rotatividade em determinadas áreas.",
-        "O turnover mais elevado em Vendas e Produção pode estar relacionado a pressões de metas, condições de trabalho específicas ou dinâmica competitiva do mercado.",
-        "A maior quantidade de cargos em níveis de coordenação pode sugerir uma estrutura organizacional mais horizontalizada, ou um foco em supervisão direta das operações."
+      "tatico": [
+        "Pode ser interessante analisar os processos de seleção e onboarding para identificar pontos que impactam nos desligamentos precoces.",
+        "A empresa pode realizar entrevistas de desligamento estruturadas, buscando padrões de causas e expectativas não atendidas.",
+        "Vale considerar programas de carreira e mobilidade interna voltados ao público de 26 a 35 anos, oferecendo perspectivas de crescimento dentro da empresa."
       ],
-      "next_steps": {
-        "estrategico": [
-          "A empresa pode avaliar se a atual distribuição etária está alinhada às necessidades futuras de sucessão e liderança.",
-          "Considerar análises de longo prazo sobre a sustentabilidade da estrutura de cargos, verificando se o peso em coordenação atende à estratégia de crescimento.",
-          "Avaliar o alinhamento entre a concentração de áreas (Produção e Vendas) e o plano estratégico da organização."
-        ],
-        "tatico": [
-          "A empresa poderia analisar mais profundamente as causas do turnover em Produção e Vendas, mapeando fatores como remuneração, clima e expectativas.",
-          "Considerar um estudo sobre a efetividade do mix de contratos (CLT, PJ, temporários, estagiários) em termos de custo, engajamento e retenção.",
-          "Explorar oportunidades de mobilidade interna entre áreas que apresentam mais equilíbrio de gênero e menor turnover, como forma de retenção."
-        ],
-        "operacional_cultural": [
-          "Vale considerar a realização de pesquisas internas de engajamento e satisfação, especialmente em Produção e Vendas.",
-          "Promover diálogos sobre diversidade e inclusão para compreender se a distribuição por gênero em algumas áreas reflete preferências individuais ou barreiras culturais.",
-          "Revisitar práticas de onboarding e treinamento contínuo, sobretudo em áreas com maior rotatividade."
-        ]
-      }
+      "operacional_cultural": [
+        "A empresa pode aplicar pesquisas rápidas de pulso para medir engajamento em áreas críticas e agir preventivamente.",
+        "Poderia ser interessante criar grupos de escuta ativa ou fóruns de diálogo com equipes comerciais e de suporte, permitindo captar percepções diretamente.",
+        "Vale considerar pequenos ajustes culturais e de reconhecimento, como celebração de metas intermediárias ou valorização de conquistas de curto prazo."
+      ]
     }
   }
-  
+}

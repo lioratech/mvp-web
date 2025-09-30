@@ -225,40 +225,64 @@ export default function DashboardDemo() {
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-orange-500"></div>
                       <span className="text-sm font-medium text-gray-700">
-                        Gerente
+                      Coord. Administrativo
                       </span>
                     </div>
-                    <span className="text-sm font-bold text-gray-700">11</span>
+                    <span className="text-sm font-bold text-gray-700">1</span>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-green-500"></div>
                       <span className="text-sm font-medium text-gray-700">
-                        Coordenador
+                      Coord. de Vendas
                       </span>
                     </div>
-                    <span className="text-sm font-bold text-gray-700">10</span>
+                    <span className="text-sm font-bold text-gray-700">5</span>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-green-500"></div>
                       <span className="text-sm font-medium text-gray-700">
-                        Supervisor
+                      Gerente de Suporte
                       </span>
                     </div>
-                    <span className="text-sm font-bold text-gray-700">7</span>
+                    <span className="text-sm font-bold text-gray-700">1</span>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-green-500"></div>
                       <span className="text-sm font-medium text-gray-700">
-                        Líder
+                      Coord. de Suporte 
                       </span>
                     </div>
-                    <span className="text-sm font-bold text-gray-700">10</span>
+                    <span className="text-sm font-bold text-gray-700">8</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                      <span className="text-sm font-medium text-gray-700">
+                      Gerente de Tecnol.                      </span>
+                    </div>
+                    <span className="text-sm font-bold text-gray-700">1</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                      <span className="text-sm font-medium text-gray-700">
+                      Coord. de Dev                     </span>
+                    </div>
+                    <span className="text-sm font-bold text-gray-700">4</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                      <span className="text-sm font-medium text-gray-700">
+                      Coord. de Marketing                  </span>
+                    </div>
+                    <span className="text-sm font-bold text-gray-700">1</span>
                   </div>
                 </div>
               </div>
@@ -447,22 +471,16 @@ function getDepartmentColor(department: string): string {
 }
 
 function generateLeadershipPositionsData() {
-  const positions = [
-    'Diretor',
-    'Gerente',
-    'Coordenador',
-    'Supervisor',
-    'Líder',
-    'Chefe',
-    'Head',
-    'VP',
+  return [
+    { position: 'Coord. de Suporte', count: 8, color: '#fbbf24' },
+    { position: 'Coord. de Vendas', count: 5, color: '#f59e0b' },
+    { position: 'Diretor', count: 4, color: '#d97706' },
+    { position: 'Coord. de Dev', count: 4, color: '#b45309' },
+    { position: 'Coord. Administrativo', count: 1, color: '#92400e' },
+    { position: 'Gerente de Suporte', count: 1, color: '#78350f' },
+    { position: 'Gerente de Tecnol.', count: 1, color: '#451a03' },
+    { position: 'Coord. de Marketing', count: 1, color: '#fbbf24' },
   ];
-
-  return positions.map((position) => ({
-    position,
-    count: Math.floor(Math.random() * 15) + 5, 
-    color: '#fbbf24',
-  }));
 }
 
 function generateCostTrendsData() {
@@ -577,13 +595,16 @@ function LeadershipPositionsChart(
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-48">
+    <ChartContainer config={chartConfig} className="h-80 w-full overflow-hidden">
       <BarChart
         accessibilityLayer
         data={props.data}
         layout="vertical"
         margin={{
-          right: 16,
+          left: 80,
+          right: 80,
+          top: 10,
+          bottom: 10,
         }}
       >
         <CartesianGrid horizontal={false} />
@@ -593,28 +614,26 @@ function LeadershipPositionsChart(
           tickLine={false}
           tickMargin={10}
           axisLine={false}
-          tickFormatter={(value: string) => value.slice(0, 8)}
-          hide
+          width={70}
+          tick={{ fontSize: 12 }}
         />
         <XAxis dataKey="count" type="number" hide />
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar dataKey="count" layout="vertical" fill="#fbbf24" radius={4}>
-          <LabelList
-            dataKey="position"
-            position="insideLeft"
-            offset={8}
-            className="fill-(--color-label)"
-            fontSize={12}
-          />
+        <Bar 
+          dataKey="count" 
+          layout="vertical" 
+          radius={4}
+          fill="#f97316"
+        >
           <LabelList
             dataKey="count"
             position="right"
-            offset={8}
+            offset={4}
             className="fill-foreground"
-            fontSize={12}
+            fontSize={11}
           />
         </Bar>
       </BarChart>
@@ -819,13 +838,16 @@ function TurnoverByDepartmentChart(
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-48">
+    <ChartContainer config={chartConfig} className="h-80 w-full overflow-hidden">
       <BarChart
         accessibilityLayer
         data={props.data}
         layout="vertical"
         margin={{
-          right: 16,
+          left: 100,
+          right: 80,
+          top: 10,
+          bottom: 10,
         }}
       >
         <CartesianGrid horizontal={false} />
@@ -835,8 +857,8 @@ function TurnoverByDepartmentChart(
           tickLine={false}
           tickMargin={10}
           axisLine={false}
-          tickFormatter={(value: string) => value.slice(0, 8)}
-          hide
+          width={90}
+          tick={{ fontSize: 12 }}
         />
         <XAxis dataKey="turnover" type="number" hide />
         <ChartTooltip
@@ -845,18 +867,11 @@ function TurnoverByDepartmentChart(
         />
         <Bar dataKey="turnover" layout="vertical" fill="#f97316" radius={4}>
           <LabelList
-            dataKey="department"
-            position="insideLeft"
-            offset={8}
-            className="fill-(--color-label)"
-            fontSize={12}
-          />
-          <LabelList
             dataKey="turnover"
             position="right"
-            offset={8}
+            offset={4}
             className="fill-foreground"
-            fontSize={12}
+            fontSize={11}
           />
         </Bar>
       </BarChart>
