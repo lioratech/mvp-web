@@ -25,6 +25,7 @@ import {
 } from 'recharts';
 
 import { Button } from '@kit/ui/button';
+import { InsightsModel } from './insights-model';
 import {
   Card,
   CardContent,
@@ -214,6 +215,12 @@ export default function WorkforceCostsCharts() {
             <PayrollCostsByAreaChart data={payrollCostsByAreaData} />
           </CardContent>
         </Card>
+      </div>
+
+      <div className="grid grid-cols-1">
+        <InsightsModel 
+          panelType="financial"
+        />
       </div>
     </div>
   );

@@ -1,0 +1,41 @@
+{
+    "analyse": {
+      "current": [
+        "O quadro total de colaboradores é de 152, com uma distribuição relativamente equilibrada entre homens (52,6%) e mulheres (47,4%).",
+        "A maior concentração de colaboradores está entre 26 e 35 anos (72 pessoas, quase 47% do total).",
+        "Produção (50 colaboradores) e Vendas (33 colaboradores) são as áreas mais numerosas, seguidas por RH (28) e TI (18).",
+        "Nos cargos, Analistas (55) e Técnicos de Campo (25) formam a maior base da estrutura, enquanto Gerentes (13) representam a camada mais enxuta.",
+        "O histórico de crescimento nos últimos 12 meses mostra aumento contínuo, partindo de 180 ativos em janeiro para 235 em dezembro.",
+        "Os contratos CLT representam a maioria (35), mas há presença significativa de contratos PJ, estagiários e temporários (27 somados).",
+        "A filial de Pinheiros concentra a maior parte da equipe (35), enquanto as demais filiais apresentam quadros menores.",
+        "Turnover mais elevado é observado em Vendas (15,2%) e Produção (12,8%), enquanto áreas como Jurídico e Marketing apresentam taxas baixas.",
+        "Nos cargos de liderança, há maior presença em níveis de coordenação (20 coordenadores e 12 coordenadores sênior) do que em gerência (13 no total)."
+      ],
+      "hiphotesis": [
+        "A concentração de colaboradores entre 26 e 35 anos pode indicar que a empresa tem atraído profissionais em estágio intermediário de carreira, possivelmente devido ao tipo de oportunidades e desafios oferecidos.",
+        "O maior número de colaboradores em Produção e Vendas sugere que essas áreas podem ser o motor principal do negócio.",
+        "A distribuição relativamente equilibrada de gênero pode estar relacionada a políticas internas de diversidade, mas a concentração feminina em RH e Jurídico e masculina em Produção e Vendas pode refletir padrões do mercado.",
+        "O crescimento constante do headcount pode indicar um período de expansão organizacional, mas também pode estar relacionado a uma alta rotatividade em determinadas áreas.",
+        "O turnover mais elevado em Vendas e Produção pode estar relacionado a pressões de metas, condições de trabalho específicas ou dinâmica competitiva do mercado.",
+        "A maior quantidade de cargos em níveis de coordenação pode sugerir uma estrutura organizacional mais horizontalizada, ou um foco em supervisão direta das operações."
+      ],
+      "next_steps": {
+        "estrategico": [
+          "A empresa pode avaliar se a atual distribuição etária está alinhada às necessidades futuras de sucessão e liderança.",
+          "Considerar análises de longo prazo sobre a sustentabilidade da estrutura de cargos, verificando se o peso em coordenação atende à estratégia de crescimento.",
+          "Avaliar o alinhamento entre a concentração de áreas (Produção e Vendas) e o plano estratégico da organização."
+        ],
+        "tatico": [
+          "A empresa poderia analisar mais profundamente as causas do turnover em Produção e Vendas, mapeando fatores como remuneração, clima e expectativas.",
+          "Considerar um estudo sobre a efetividade do mix de contratos (CLT, PJ, temporários, estagiários) em termos de custo, engajamento e retenção.",
+          "Explorar oportunidades de mobilidade interna entre áreas que apresentam mais equilíbrio de gênero e menor turnover, como forma de retenção."
+        ],
+        "operacional_cultural": [
+          "Vale considerar a realização de pesquisas internas de engajamento e satisfação, especialmente em Produção e Vendas.",
+          "Promover diálogos sobre diversidade e inclusão para compreender se a distribuição por gênero em algumas áreas reflete preferências individuais ou barreiras culturais.",
+          "Revisitar práticas de onboarding e treinamento contínuo, sobretudo em áreas com maior rotatividade."
+        ]
+      }
+    }
+  }
+  

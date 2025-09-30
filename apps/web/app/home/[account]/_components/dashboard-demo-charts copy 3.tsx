@@ -125,14 +125,12 @@ export default function DashboardDemo() {
 
           <CardContent>
             <div className="flex items-start gap-8">
-              {/* QTD de Líderes */}
               <div className="flex flex-1 flex-col items-center">
                 <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-500">
                   <span className="text-3xl font-bold text-white">42</span>
                 </div>
               </div>
 
-              {/* Span of Control */}
               <div className="flex flex-1 flex-col">
                 <h3 className="text-md mb-4 font-semibold text-gray-700">
                   Span of Control

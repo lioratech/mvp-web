@@ -1,12 +1,35 @@
 "use client";
 
+import React from "react";
 import { AlertTriangle, Brain, Clock, Lightbulb, TrendingUp, Users, Target, Zap, Heart, Download, Printer } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@kit/ui/card";
 import { Button } from "@kit/ui/button";
-import iaData from "./ia.json";
+import { loadInsightsData } from './ia';
+interface InsightsModelProps {
+  panelType?: 'workforce' | 'financial' | 'sales';
+  data?: {
+    analyse: {
+      current: string[];
+      hiphotesis: string[];
+      next_steps: {
+        estrategico: string[];
+        tatico: string[];
+        operacional_cultural: string[];
+      };
+    };
+  };
+}
 
-export function InsightsModel() {
-  const { analyse } = iaData;
+export function InsightsModel({ panelType = 'workforce', data }: InsightsModelProps) {
+  const [insightsData, setInsightsData] = React.useState(data);
+
+  React.useEffect(() => {
+    if (!data) {
+      loadInsightsData(panelType).then(setInsightsData);
+    }
+  }, [panelType, data]);
+
+  const { analyse } = insightsData || { analyse: { current: [], hiphotesis: [], next_steps: { estrategico: [], tatico: [], operacional_cultural: [] } } };
 
   const handlePrint = () => {
     const printContent = document.getElementById('analise-liora-content');

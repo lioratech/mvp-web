@@ -199,7 +199,9 @@ export default function WorkforceCharts() {
       </div>
 
       <div className="grid grid-cols-1">
-        <InsightsModel />
+        <InsightsModel 
+          panelType="workforce"
+        />
       </div>
     </div>
   );

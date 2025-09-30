@@ -32,6 +32,7 @@ import {
 } from 'recharts';
 
 import { Badge } from '@kit/ui/badge';
+import { InsightsModel } from './insights-model';
 import {
   Card,
   CardContent,
@@ -201,15 +202,13 @@ export default function DashboardDemo() {
 
           <CardContent>
             <div className="flex items-start gap-8">
-              {/* QTD de Líderes */}
               <div className="flex flex-1 flex-col items-center">
                 <LeadershipRadialChart />
               </div>
 
-              {/* Span of Control */}
               <div className="flex flex-1 flex-col">
                 <h3 className="text-md mb-4 font-semibold text-gray-700">
-                  Span of Control
+                  Amplitude de controle
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
@@ -341,6 +340,12 @@ export default function DashboardDemo() {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="grid grid-cols-1">
+        <InsightsModel 
+          panelType="sales"
+        />
       </div>
     </div>
   );
