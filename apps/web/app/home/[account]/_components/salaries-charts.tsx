@@ -47,7 +47,7 @@ export default function SalariesCharts() {
           <CardContent>
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                {formatCurrency(900776.98)}
+                {formatCurrency(1250000.00)}
               </span>
             </div>
           </CardContent>
@@ -62,18 +62,18 @@ export default function SalariesCharts() {
            <CardContent className='flex flex-col gap-2 lg:flex-row lg:justify-between lg:items-center'>
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                {formatCurrency(11654.87)}
+                {formatCurrency(7850.00)}
               </span>
             </div>
              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
               <div className="flex items-center gap-2">
                 <Venus size={19} className="text-pink-500" />
-                <span className="text-md">R$ 11.654,87
+                <span className="text-md">R$ 7.200,00
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Mars size={19} className="text-blue-500" />
-                <span className="text-md">R$ 11.654,87
+                <span className="text-md">R$ 8.500,00
                 </span>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function SalariesCharts() {
           <CardContent>
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                {formatCurrency(125887.76)}
+                {formatCurrency(180000.00)}
               </span>
             </div>
           </CardContent>
@@ -103,7 +103,7 @@ export default function SalariesCharts() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center space-x-2">
-              <span className="text-2xl font-bold">{formatCurrency(0)}</span>
+              <span className="text-2xl font-bold">{formatCurrency(45000.00)}</span>
             </div>
           </CardContent>
         </Card>
@@ -114,7 +114,7 @@ export default function SalariesCharts() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle>Salário Base por Área</CardTitle>
+            <CardTitle>Salário base por area</CardTitle>
           </CardHeader>
           <CardContent>
             <SalariesByAreaChart data={salariesByAreaData} />
@@ -123,7 +123,7 @@ export default function SalariesCharts() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Salário Médio por Cargo</CardTitle>
+            <CardTitle>Salário médio por cargo</CardTitle>
           </CardHeader>
           <CardContent>
             <SalariesByRoleChart data={salariesByRoleData} />
@@ -132,7 +132,7 @@ export default function SalariesCharts() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Salário Base por Filial</CardTitle>
+            <CardTitle>Salário base por filial</CardTitle>
           </CardHeader>
           <CardContent>
             <SalariesByBranchChart data={salariesByBranchData} />
@@ -145,30 +145,35 @@ export default function SalariesCharts() {
 
 function generateSalariesByAreaData() {
   return [
-    { area: 'Administrativo', salary: 30776.98 },
-    { area: 'Financeiro', salary: 30776.98 },
-    { area: 'Comercial', salary: 30776.98 },
-    { area: 'Marketing', salary: 30776.98 },
-    { area: 'RH', salary: 30776.98 },
+    { area: 'Tecnologia', salary: 12500.00 },
+    { area: 'Financeiro', salary: 8900.00 },
+    { area: 'Comercial', salary: 7200.00 },
+    { area: 'Marketing', salary: 6800.00 },
+    { area: 'RH', salary: 5500.00 },
+    { area: 'Administrativo', salary: 4800.00 },
+    { area: 'Operacional', salary: 4200.00 },
   ];
 }
 
 function generateSalariesByRoleData() {
   return [
-    { role: 'Cargo', salary: 30776.98 },
-    { role: 'Cargo cargo', salary: 30776.98 },
-    { role: 'RH', salary: 30776.98 },
-    { role: 'Financeiro', salary: 30776.98 },
+    { role: 'Desenvolvedor Senior', salary: 15000.00 },
+    { role: 'Gerente de Projetos', salary: 12000.00 },
+    { role: 'Analista Financeiro', salary: 8500.00 },
+    { role: 'Coordenador de Vendas', salary: 7500.00 },
+    { role: 'Designer UX/UI', salary: 6800.00 },
+    { role: 'Assistente Administrativo', salary: 4500.00 },
   ];
 }
 
 function generateSalariesByBranchData() {
   return [
-    { branch: 'Administrativo', salary: 30776.98 },
-    { branch: 'Financeiro', salary: 30776.98 },
-    { branch: 'Comercial', salary: 30776.98 },
-    { branch: 'Marketing', salary: 30776.98 },
-    { branch: 'RH', salary: 30776.98 },
+    { branch: 'São Paulo - SP', salary: 9500.00 },
+    { branch: 'Rio de Janeiro - RJ', salary: 8200.00 },
+    { branch: 'Belo Horizonte - MG', salary: 7200.00 },
+    { branch: 'Brasília - DF', salary: 6800.00 },
+    { branch: 'Porto Alegre - RS', salary: 6500.00 },
+    { branch: 'Salvador - BA', salary: 5800.00 },
   ];
 }
 
@@ -184,7 +189,7 @@ function SalariesByAreaChart(props: {
 
   if (!props.data || props.data.length === 0) {
     return (
-      <div className="flex h-64 w-full items-center justify-center">
+      <div className="flex h-80 w-full items-center justify-center">
         Sem dados
       </div>
     );
@@ -192,12 +197,12 @@ function SalariesByAreaChart(props: {
 
   return (
     <div className="w-full overflow-hidden">
-      <ChartContainer config={chartConfig} className="h-64 w-full">
+      <ChartContainer config={chartConfig} className="h-80 w-full">
         <BarChart
           accessibilityLayer
           data={props.data}
           layout="vertical"
-          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          margin={{ left: 100, right: 40, top: 10, bottom: 10 }}
           width={undefined}
           height={undefined}
         >
@@ -208,6 +213,8 @@ function SalariesByAreaChart(props: {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
+            width={90}
+            tick={{ fontSize: 12 }}
           />
           <XAxis dataKey="salary" type="number" hide />
           <ChartTooltip
@@ -247,7 +254,7 @@ function SalariesByRoleChart(props: {
 
   if (!props.data || props.data.length === 0) {
     return (
-      <div className="flex h-64 w-full items-center justify-center">
+      <div className="flex h-80 w-full items-center justify-center">
         Sem dados
       </div>
     );
@@ -255,12 +262,12 @@ function SalariesByRoleChart(props: {
 
   return (
     <div className="w-full overflow-hidden">
-      <ChartContainer config={chartConfig} className="h-64 w-full">
+      <ChartContainer config={chartConfig} className="h-80 w-full">
         <BarChart
           accessibilityLayer
           data={props.data}
           layout="vertical"
-          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          margin={{ left: 120, right: 40, top: 10, bottom: 10 }}
           width={undefined}
           height={undefined}
         >
@@ -271,6 +278,8 @@ function SalariesByRoleChart(props: {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
+            width={110}
+            tick={{ fontSize: 12 }}
           />
           <XAxis dataKey="salary" type="number" hide />
           <ChartTooltip
@@ -310,7 +319,7 @@ function SalariesByBranchChart(props: {
 
   if (!props.data || props.data.length === 0) {
     return (
-      <div className="flex h-64 w-full items-center justify-center">
+      <div className="flex h-80 w-full items-center justify-center">
         Sem dados
       </div>
     );
@@ -318,12 +327,12 @@ function SalariesByBranchChart(props: {
 
   return (
     <div className="w-full overflow-hidden">
-      <ChartContainer config={chartConfig} className="h-64 w-full">
+      <ChartContainer config={chartConfig} className="h-80 w-full">
         <BarChart
           accessibilityLayer
           data={props.data}
           layout="vertical"
-          margin={{ left: 30, right: 40, top: 10, bottom: 10 }}
+          margin={{ left: 120, right: 40, top: 10, bottom: 10 }}
           width={undefined}
           height={undefined}
         >
@@ -334,6 +343,8 @@ function SalariesByBranchChart(props: {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
+            width={110}
+            tick={{ fontSize: 12 }}
           />
           <XAxis dataKey="salary" type="number" hide />
           <ChartTooltip
