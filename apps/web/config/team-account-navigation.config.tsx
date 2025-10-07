@@ -68,6 +68,14 @@ const getRoutes = (
             ),
             Icon: <ArrowRight className={iconClasses} />,
           },
+          {
+            label: 'Passivos trabalhistas',
+            path: pathsConfig.app.accountLaborLiabilitiesPanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <ArrowRight className={iconClasses} />,
+          },
        
     ],
   },
