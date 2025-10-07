@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { CreateEmployeeSchema, UpdateEmployeeSchema, Employee } from '../schema/employee.schema';
 
 // Simula operações CRUD com dados mockados
-let mockEmployees: Employee[] = [
+const mockEmployees: Employee[] = [
   {
     id: '1',
     name: 'Ana Silva',
