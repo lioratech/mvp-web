@@ -43,4 +43,7 @@ values (
   'settings.manage'),
 (
   'member',
-  'invites.manage');
+  'invites.manage'),
+  (
+  'owner',
+  'positions.manage');

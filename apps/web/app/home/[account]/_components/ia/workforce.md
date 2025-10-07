@@ -85,13 +85,6 @@ Este documento consolida todos os dados utilizados nos gráficos de força de tr
 | Novembro | 148 | 2 | +8 |
 | Dezembro | 152 | 2 | +4 |
 
-### Indicadores de Crescimento
-- **Crescimento Total**: 27 colaboradores (+21.6%)
-- **Média de Demissões/Mês**: 2.7
-- **Taxa de Crescimento Mensal**: 1.7%
-- **Pico de Crescimento**: Setembro (+6 colaboradores)
-- **Maior Redução**: Outubro (-5 colaboradores)
-
 ## 6. Tipos de Contrato
 
 | Tipo de Contrato | Quantidade | Percentual |
@@ -112,30 +105,3 @@ Este documento consolida todos os dados utilizados nos gráficos de força de tr
 | Curitiba | 8 | 5.3% |
 | Salvador | 5 | 3.3% |
 | **Total** | **67** | **44.1%** |
-
-*Nota: 85 colaboradores (55.9%) não possuem filial especificada nos dados.*
-
-## 8. Análises e Insights
-
-### Pontos de Atenção
-1. **Concentração Etária**: 41.4% dos colaboradores estão entre 26-35 anos
-2. **Distribuição de Gênero**: Desequilíbrio de 27.6% mais homens que mulheres
-3. **Concentração por Área**: 61.2% dos colaboradores estão em Operações e Desenvolvimento
-4. **Tipo de Contrato**: 71.1% são CLT, indicando estabilidade no quadro
-
-### Oportunidades
-1. **Diversidade de Gênero**: Implementar políticas para equilibrar a distribuição
-2. **Sucessão**: Preparar plano de sucessão considerando a concentração etária
-3. **Expansão Geográfica**: Aproveitar a presença em múltiplas filiais para crescimento
-
-## 9. Metadados dos Dados
-
-- **Período de Referência**: Últimos 12 meses
-- **Data de Atualização**: Dezembro 2024
-- **Total de Colaboradores**: 152
-- **Fonte**: Sistema de RH da Liora
-- **Responsável**: Equipe de People Analytics
-
----
-
-*Este documento é atualizado mensalmente com base nos dados do sistema de gestão de pessoas da Liora.*

@@ -21,9 +21,13 @@ import { useQuery } from '@tanstack/react-query';
 import { useSupabase } from '@kit/supabase/hooks/use-supabase';
 import { Badge } from '@kit/ui/badge';
 
-export function MainEventSelector({ value, onChange }) {
+interface MainEventSelectorProps {
+  value: number | null;
+  onChange: (value: number) => void;
+}
+
+export function MainEventSelector({ value, onChange }: MainEventSelectorProps) {
   const [open, setOpen] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState('');
   const supabase = useSupabase();
 
   const { data: mainEvents } = useQuery({
@@ -37,10 +41,6 @@ export function MainEventSelector({ value, onChange }) {
       return data;
     },
   });
-
-  const filteredEvents = mainEvents?.filter(event =>
-    event.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <Popover modal={true} open={open} onOpenChange={setOpen}>
@@ -75,22 +75,16 @@ export function MainEventSelector({ value, onChange }) {
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput
-            placeholder="Buscar evento..."
-            onValueChange={(value) => {
-              setSearchTerm(value.toLowerCase());
-              console.log('Search Term:', value);
-            }}
-          />
+          <CommandInput placeholder="Buscar evento..." />
           <CommandList>
             <CommandEmpty>Nenhum evento encontrado.</CommandEmpty>
             <CommandGroup>
-              {filteredEvents?.map((event) => (
+              {mainEvents?.map((event) => (
                 <CommandItem
                   key={event.id}
-                  value={String(event.id)}
-                  onSelect={(currentValue) => {
-                    onChange(Number(currentValue));
+                  value={`${event.id} ${event.description} ${event.type}`}
+                  onSelect={() => {
+                    onChange(event.id);
                     setOpen(false);
                   }}
                 >

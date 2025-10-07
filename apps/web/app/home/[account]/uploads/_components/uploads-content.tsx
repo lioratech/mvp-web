@@ -138,7 +138,7 @@ export function UploadsContent() {
       formData.append('file', selectedFile);
       formData.append('template', selectedTemplate);
 
-      const response = await fetch('https://api-extractor-production.up.railway.app/extract', {
+      const response = await fetch('http://127.0.0.1:8000/extract', {
         method: 'POST',
         body: formData,
       });

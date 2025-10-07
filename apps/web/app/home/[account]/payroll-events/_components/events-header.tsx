@@ -6,25 +6,30 @@ import { Trans } from '@kit/ui/trans';
 import { CreateEventDialog } from './create-event-dialog';
 
 export function EventsHeader({
-  title,
-  description,
   accountId,
+  canManageEvents,
 }: {
-  title: React.ReactNode;
-  description: React.ReactNode;
   accountId: string;
+  canManageEvents: boolean;
 }) {
   return (
     <PageHeader
-      title={title}
-      description={description}
+      title={<Trans i18nKey="payroll-events:pageTitle" defaults="Eventos de Folha" />}
+      description={
+        <Trans 
+          i18nKey="payroll-events:pageDescription" 
+          defaults="Gerencie os eventos de folha de pagamento da sua equipe"
+        />
+      }
     >
-      <CreateEventDialog accountId={accountId}>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          <Trans i18nKey="payroll-events:createEvent" />
-        </Button>
-      </CreateEventDialog>
+      {canManageEvents && (
+        <CreateEventDialog accountId={accountId}>
+          <Button>
+            <Plus className="mr-2 h-4 w-4" />
+            <Trans i18nKey="payroll-events:createEvent" defaults="Criar Evento" />
+          </Button>
+        </CreateEventDialog>
+      )}
     </PageHeader>
   );
 } 

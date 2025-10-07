@@ -7,42 +7,46 @@ import { createI18nServerInstance } from '~/lib/i18n/i18n.server';
 import { withI18n } from '~/lib/i18n/with-i18n';
 
 import { loadTeamWorkspace } from '../_lib/server/team-account-workspace.loader';
-import { EventsHeader } from './_components/events-header';
-import { EventsList } from './_components/events-list';
+import { loadEmployees } from './_lib/server/employees.loader';
+import { EmployeesHeader } from './_components/employees-header';
+import { EmployeesList } from './_components/employees-list';
 
 export const generateMetadata = async () => {
   const i18n = await createI18nServerInstance();
-  const title = i18n.t('payroll-events:pageTitle');
+  const title = "Colaboradores";
 
   return {
     title,
   };
 };
 
-function EventsPage({ params }: { params: Promise<{ account: string }> }) {
+function EmployeesPage({ params }: { params: Promise<{ account: string }> }) {
   const account = use(params).account;
   const workspace = use(loadTeamWorkspace(account));
+  const employeesRaw = use(loadEmployees(workspace.account.id));
+  const employees = Array.isArray(employeesRaw) ? employeesRaw : [];
 
   // Permissão customizada
-  const canManageEvents =
-    (workspace.account.permissions as string[]).includes('payroll.manage') ||
+  const canManageEmployees =
+    (workspace.account.permissions as string[]).includes('employees.manage') ||
     workspace.account.role === 'owner';
 
   return (
     <>
-      <EventsHeader 
+      <EmployeesHeader 
         accountId={workspace.account.id}
-        canManageEvents={canManageEvents}
+        canManageEmployees={canManageEmployees}
       />
 
       <PageBody>
-        <EventsList 
+        <EmployeesList 
+          employees={employees}
           accountId={workspace.account.id}
-          canManageEvents={canManageEvents}
+          canManageEmployees={canManageEmployees}
         />
       </PageBody>
     </>
   );
 }
 
-export default withI18n(EventsPage); 
+export default withI18n(EmployeesPage);

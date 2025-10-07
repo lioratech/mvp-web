@@ -119,11 +119,11 @@ const getRoutes = (
         path: createPath('/home/[account]/payroll-events', account),
         Icon: <Tags className={iconClasses} />,
       },
-      // {
-      //   label: 'payroll:page.title',
-      //   path: createPath('/home/[account]/payroll', account),
-      //   Icon: <DollarSign className={iconClasses} />,
-      // },
+      {
+        label: 'Colaboradores',
+        path: createPath('/home/[account]/employees', account),
+        Icon: <Users  className={iconClasses} />,
+      },
       {
         label: 'uploads:page.title',
         path: createPath('/home/[account]/uploads', account),
