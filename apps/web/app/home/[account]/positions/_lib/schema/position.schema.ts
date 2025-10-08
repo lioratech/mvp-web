@@ -22,3 +22,4 @@ export type CreatePositionData = z.infer<typeof CreatePositionSchema>;
 export type CreatePositionServerData = z.infer<typeof CreatePositionServerSchema>;
 export type UpdatePositionData = z.infer<typeof UpdatePositionSchema>;
 
+

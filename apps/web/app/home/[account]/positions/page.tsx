@@ -47,3 +47,4 @@ function PositionsPage({ params }: { params: Promise<{ account: string }> }) {
 
 export default withI18n(PositionsPage);
 
+

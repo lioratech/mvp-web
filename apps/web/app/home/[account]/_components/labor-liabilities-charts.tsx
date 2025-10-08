@@ -458,7 +458,7 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
               </Button>
             </TableHead>
             <TableHead>Tipo</TableHead>
-            <TableHead>
+            {/* <TableHead>
               <Button
                 variant="ghost"
                 size="sm"
@@ -470,7 +470,7 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
                   {getSortIcon('riskLevel')}
                 </span>
               </Button>
-            </TableHead>
+            </TableHead> */}
             <TableHead>
               <Button
                 variant="ghost"
@@ -529,9 +529,9 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
               <TableCell>
                 {getTerminationTypeBadge(liability.terminationType)}
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 {getRiskBadge(liability.riskLevel)}
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 <div className="flex items-center space-x-1">
                   <Clock className="h-3 w-3 text-muted-foreground" />
