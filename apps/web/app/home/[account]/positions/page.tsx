@@ -23,6 +23,9 @@ function PositionsPage({ params }: { params: Promise<{ account: string }> }) {
   const account = use(params).account;
   const workspace = use(loadTeamWorkspace(account));
 
+  console.log('PositionsPage - account:', account);
+  console.log('PositionsPage - workspace.account.id:', workspace.account.id);
+
   // Permissão customizada
   const canManagePositions =
     (workspace.account.permissions as string[]).includes('positions.manage') ||

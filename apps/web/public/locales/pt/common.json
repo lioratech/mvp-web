@@ -46,6 +46,9 @@
   "signedInAs": "Conectado como",
   "pageOfPages": "Página {{page}} de {{total}}",
   "noData": "Nenhum dado disponível",
+  "status": "Status",
+  "table": "Tabela",
+  "grid": "Grade",
   "pageNotFoundHeading": "Ops! :|",
   "errorPageHeading": "Ops! :|",
   "notifications": "Notificações",
@@ -101,5 +104,6 @@
   "noResults": "Nenhum resultado encontrado",
   "noResultsDescription": "Tente ajustar sua busca",
   "notSet": "Não definido",
-  "noDescription": "Sem descrição"
+  "noDescription": "Sem descrição",
+  "all": "Todos"
 }

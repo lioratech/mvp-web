@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTransition } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { useTranslation } from 'react-i18next';
 
@@ -39,6 +40,7 @@ export function DeletePositionDialog({
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
 
   const handleDelete = () => {
     startTransition(async () => {
@@ -52,8 +54,18 @@ export function DeletePositionDialog({
           },
         );
 
+        // Remover dados do cache
+        queryClient.removeQueries({ 
+          queryKey: ['positions-with-relations', accountId]
+        });
+        
+        // Forçar refetch imediato
+        await queryClient.refetchQueries({ 
+          queryKey: ['positions-with-relations', accountId],
+          type: 'active'
+        });
+        
         setOpen(false);
-        window.location.reload();
       } catch (error) {
         console.error('Error deleting position:', error);
       }

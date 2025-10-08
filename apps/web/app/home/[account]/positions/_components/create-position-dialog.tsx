@@ -6,6 +6,7 @@ import { useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { Button } from '@kit/ui/button';
 import {
@@ -29,6 +30,15 @@ import { Switch } from '@kit/ui/switch';
 import { toast } from '@kit/ui/sonner';
 import { Textarea } from '@kit/ui/textarea';
 import { Trans } from '@kit/ui/trans';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@kit/ui/select';
+
+import { useSupabase } from '@kit/supabase/hooks/use-supabase';
 
 import {
   type CreatePositionData,
@@ -47,6 +57,39 @@ export function CreatePositionDialog({
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const { t } = useTranslation();
+  const supabase = useSupabase();
+  const queryClient = useQueryClient();
+
+  // Buscar positions existentes para o parent_id
+  const { data: positions } = useQuery({
+    queryKey: ['positions', accountId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('positions')
+        .select('id, name')
+        .eq('account_id', accountId)
+        .eq('is_active', true)
+        .order('name');
+
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  // Buscar departments para o department_id
+  const { data: departments } = useQuery({
+    queryKey: ['departments', accountId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('departments')
+        .select('id, name')
+        .eq('account_id', accountId)
+        .order('name');
+
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const form = useForm<CreatePositionData>({
     resolver: zodResolver(CreatePositionSchema),
@@ -55,7 +98,9 @@ export function CreatePositionDialog({
       external_id: '',
       description: '',
       color: '#3B82F6',
-      hierarchy_level: 0,
+      parent_id: null,
+      department_id: null,
+      is_leadership: false,
       is_active: true,
     },
   });
@@ -75,9 +120,19 @@ export function CreatePositionDialog({
           },
         );
 
+        // Remover dados do cache
+        queryClient.removeQueries({ 
+          queryKey: ['positions-with-relations', accountId]
+        });
+        
+        // Forçar refetch imediato
+        await queryClient.refetchQueries({ 
+          queryKey: ['positions-with-relations', accountId],
+          type: 'active'
+        });
+        
         setOpen(false);
         form.reset();
-        window.location.reload();
       } catch (error) {
         console.error('Error creating position:', error);
       }
@@ -159,21 +214,32 @@ export function CreatePositionDialog({
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="hierarchy_level"
+                name="parent_id"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      <Trans i18nKey="positions:hierarchyLevel" defaults="Nível Hierárquico" />
+                      <Trans i18nKey="positions:parentPosition" defaults="Cargo Superior" />
                     </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        min="0"
-                        placeholder="0"
-                        {...field}
-                        onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                      />
-                    </FormControl>
+                    <Select
+                      onValueChange={(value) => field.onChange(value === 'null' ? null : value)}
+                      value={field.value || 'null'}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder={t('positions:selectParent', 'Selecione...')} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="null">
+                          <Trans i18nKey="common:none" defaults="Nenhum" />
+                        </SelectItem>
+                        {positions?.map((position) => (
+                          <SelectItem key={position.id} value={position.id}>
+                            {position.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -181,20 +247,76 @@ export function CreatePositionDialog({
 
               <FormField
                 control={form.control}
-                name="color"
+                name="department_id"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      <Trans i18nKey="positions:color" defaults="Cor" />
+                      <Trans i18nKey="positions:department" defaults="Departamento" />
                     </FormLabel>
-                    <FormControl>
-                      <Input type="color" className="h-10 w-16 p-1" {...field} />
-                    </FormControl>
+                    <Select
+                      onValueChange={(value) => field.onChange(value === 'null' ? null : value)}
+                      value={field.value || 'null'}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder={t('positions:selectDepartment', 'Selecione...')} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="null">
+                          <Trans i18nKey="common:none" defaults="Nenhum" />
+                        </SelectItem>
+                        {departments?.map((department) => (
+                          <SelectItem key={department.id} value={department.id}>
+                            {department.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="color"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <Trans i18nKey="positions:color" defaults="Cor" />
+                  </FormLabel>
+                  <FormControl>
+                    <Input type="color" className="h-10 w-full p-1" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="is_leadership"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                  <div className="space-y-0.5">
+                    <FormLabel className="text-base">
+                      <Trans i18nKey="positions:isLeadership" defaults="Cargo de Liderança" />
+                    </FormLabel>
+                    <div className="text-sm text-muted-foreground">
+                      <Trans i18nKey="positions:isLeadershipDescription" defaults="Indica se este cargo possui função de liderança" />
+                    </div>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
             <FormField
               control={form.control}

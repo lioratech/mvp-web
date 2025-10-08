@@ -5,7 +5,9 @@ export const CreatePositionSchema = z.object({
   external_id: z.string().optional(),
   description: z.string().optional(),
   color: z.string().regex(/^#[0-9A-F]{6}$/i, 'Formato de cor inválido'),
-  hierarchy_level: z.number().int().min(0).default(0),
+  parent_id: z.string().uuid().nullable().optional(),
+  department_id: z.string().uuid().nullable().optional(),
+  is_leadership: z.boolean().default(false),
   is_active: z.boolean().default(true),
   accountId: z.string().uuid().optional(),
 });

@@ -14,7 +14,7 @@ export function PositionsHeader({
 }) {
   return (
     <PageHeader
-      title={<Trans i18nKey="positions:pageTitle" defaults="Cargos" />}
+      title={<Trans i18nKey="positions:pageTitle2" defaults="Cargos" />}
       description={
         <Trans 
           i18nKey="positions:pageDescription" 
@@ -26,7 +26,7 @@ export function PositionsHeader({
         <CreatePositionDialog accountId={accountId}>
           <Button>
             <Plus className="mr-2 h-4 w-4" />
-            <Trans i18nKey="positions:createPosition" defaults="Criar Cargo" />
+            <Trans i18nKey="positions:createPosition2" defaults="Criar Cargo" />
           </Button>
         </CreatePositionDialog>
       )}
