@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { JWTUserData } from '@kit/supabase/types';
 import {
   Sidebar,
@@ -6,6 +8,7 @@ import {
   SidebarHeader,
 } from '@kit/ui/shadcn-sidebar';
 
+import { AppLogo } from '~/components/app-logo';
 import { ProfileAccountDropdownContainer } from '~/components//personal-account-dropdown-container';
 import { getTeamAccountSidebarConfig } from '~/config/team-account-navigation.config';
 import { TeamAccountNotifications } from '~/home/[account]/_components/team-account-notifications';
@@ -58,19 +61,25 @@ function SidebarContainer(props: {
   return (
     <Sidebar collapsible={collapsible}>
       <SidebarHeader className={'h-16 justify-center'}>
-        <div className={'flex items-center justify-between gap-x-3'}>
-          <TeamAccountAccountsSelector
+        <div className={'flex items-center  gap-x-3'}>
+        <Image
+            src="/images/favicon/android-chrome-192x192.png"
+            alt="Logo"
+            width={32}
+            height={32}
+            className="h-8 w-8"
+          />          <TeamAccountAccountsSelector
             userId={userId}
             selectedAccount={account}
             accounts={accounts}
           />
 
-          <div className={'group-data-[minimized=true]/sidebar:hidden'}>
+          {/* <div className={'group-data-[minimized=true]/sidebar:hidden'}>
             <TeamAccountNotifications
               userId={userId}
               accountId={props.accountId}
             />
-          </div>
+          </div> */}
         </div>
       </SidebarHeader>
 
