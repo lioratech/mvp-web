@@ -125,9 +125,10 @@ export default function WorkforceCostsCharts() {
         </Card>
       </div>
 
-      {/* Custo Médio por Colaborador e por Rescisões */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Card>
+    
+
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+      <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-muted-foreground text-sm font-medium">
               Custo Médio por Colaborador
@@ -141,24 +142,83 @@ export default function WorkforceCostsCharts() {
             </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-muted-foreground text-sm font-medium">
-              Custo Médio por Rescisões
+              Custo Médio Estimado de Rotatividade
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                {formatCurrency(129945.68)}
+                {formatCurrency(185420.50)}
               </span>
+              <TrendingUp className="h-4 w-4 text-green-500" />
             </div>
+            <span className="text-sm text-muted-foreground">
+              +12,3% vs mês anterior
+            </span>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
+              Custo de Horas Extras
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-2xl font-bold">
+                {formatCurrency(1274.64)}
+              </span>
+              <Clock className="h-4 w-4 text-orange-500" />
+            </div>
+            <span className="text-sm text-muted-foreground">
+              -8,2% vs mês anterior
+            </span>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
+              Custo Médio de Rescisões Voluntárias
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-2xl font-bold">
+                {formatCurrency(89450.25)}
+              </span>
+              <ArrowUp className="h-4 w-4 text-blue-500" />
+            </div>
+            <span className="text-sm text-muted-foreground">
+              +5,7% vs mês anterior
+            </span>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
+              Custo Médio de Rescisões Involuntárias
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-2xl font-bold">
+                {formatCurrency(145680.90)}
+              </span>
+              <ArrowDown className="h-4 w-4 text-red-500" />
+            </div>
+            <span className="text-sm text-muted-foreground">
+              -3,1% vs mês anterior
+            </span>
           </CardContent>
         </Card>
       </div>
 
-      {/* Gráfico de Evolução dos Custos */}
       <div className="grid grid-cols-1">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
@@ -226,7 +286,6 @@ export default function WorkforceCostsCharts() {
   );
 }
 
-// Funções de geração de dados
 function generateWorkforceCostsData() {
   return [
     { 
@@ -386,7 +445,6 @@ function generatePayrollCostsByAreaData() {
   ];
 }
 
-// Componentes de gráficos
 function WorkforceCostsChart(props: {
   data: any[];
   timeRange: string;
@@ -556,7 +614,6 @@ function WorkforceCostsChart(props: {
                 'ago./25': 'Agosto de 2025',
               };
 
-              // Ordenar os payloads por valor decrescente para seguir a ordem visual do gráfico
               const sortedPayload = payload
                 .filter((entry) => entry.value !== 0)
                 .sort((a, b) => (b.value as number) - (a.value as number));

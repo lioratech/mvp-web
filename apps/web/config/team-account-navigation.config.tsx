@@ -2,13 +2,13 @@ import {
   ArrowRight,
   Building2,
   CreditCard,
-  DollarSign,
-  LayoutDashboard,
   Settings,
   Tags,
   Upload,
   User,
   Users,
+  TrendingUp,
+  Award,
 } from 'lucide-react';
 
 import { NavigationConfigSchema } from '@kit/ui/navigation-schema';
@@ -75,6 +75,22 @@ const getRoutes = (
               account,
             ),
             Icon: <ArrowRight className={iconClasses} />,
+          },
+          {
+            label: 'Previsões e Projeções',
+            path: pathsConfig.app.accountForecastsPanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <TrendingUp className={iconClasses} />,
+          },
+          {
+            label: 'Liderança e Gestão',
+            path: pathsConfig.app.accountLeadershipPanels.replace(
+              '[account]',
+              account,
+            ),
+            Icon: <Award className={iconClasses} />,
           },
        
     ],

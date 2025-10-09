@@ -149,12 +149,12 @@ export default function DashboardDemo() {
 
           <CardContent>
             <TurnoverChart data={turnoverData} />
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <h3 className="text-muted-foreground mb-3 text-sm font-semibold">
                 Turnover por departamento
               </h3>
               <TurnoverByDepartmentChart data={turnoverByDepartmentData} />
-            </div>
+            </div> */}
           </CardContent>
         </Card>
 
@@ -206,7 +206,7 @@ export default function DashboardDemo() {
                 <LeadershipRadialChart />
               </div>
 
-              <div className="flex flex-1 flex-col">
+              {/* <div className="flex flex-1 flex-col">
                 <h3 className="text-md mb-4 font-semibold text-gray-700">
                   Amplitude de controle
                 </h3>
@@ -285,14 +285,14 @@ export default function DashboardDemo() {
                     <span className="text-sm font-bold text-gray-700">1</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div className="mt-8">
+            {/* <div className="mt-8">
               <h3 className="text-muted-foreground mb-3 text-sm font-semibold">
                 Cargos de liderança
               </h3>
               <LeadershipPositionsChart data={leadershipPositionsData} />
-            </div>
+            </div> */}
           </CardContent>
         </Card>
 
