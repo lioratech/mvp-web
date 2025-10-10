@@ -136,6 +136,183 @@ function BenchmarkPopover({ children, benchmarks }: { children: React.ReactNode;
   );
 }
 
+// Componente para Popover de Níveis Hierárquicos
+function HierarchyLevelsPopover({ children }: { children: React.ReactNode }) {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        {children}
+      </PopoverTrigger>
+      <PopoverContent className="w-96" align="start">
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <h4 className="font-medium leading-none">Níveis Hierárquicos Ideais</h4>
+            <p className="text-sm text-muted-foreground">
+              Referências de profundidade organizacional por tipo de liderança
+            </p>
+          </div>
+          <div className="space-y-3">
+            <div className="text-sm">
+              <div className="font-medium mb-1">
+                <strong>Estratégico</strong>
+              </div>
+              <div className="text-xs text-muted-foreground">
+                1 a 2 níveis abaixo (acima de 2 níveis indica complexidade ou burocracia excessiva)
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="font-medium mb-1">
+                  <strong>Operacional</strong>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  1 nível abaixo (Mais de 2 níveis indica possível redundância ou excesso de camadas, podendo sinalizar estrutura ineficiente ou fragmentada)
+                </div>
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="font-medium mb-1">
+                  <strong>Técnico</strong>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Nenhum ou 1 nível abaixo (Ideal é estar próximo do operacional, mais que isso indica microgestão ou perda de agilidade)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+// Componente para Popover de Taxa de Promoção Interna
+function PromotionRatePopover({ children }: { children: React.ReactNode }) {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        {children}
+      </PopoverTrigger>
+      <PopoverContent className="w-96" align="start">
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <h4 className="font-medium leading-none">Benchmarks de Promoção Interna</h4>
+            <p className="text-sm text-muted-foreground">
+              Referências de mercado para gestão de talentos
+            </p>
+          </div>
+          <div className="space-y-3">
+            <div className="text-sm">
+              <div className="text-xs">
+                <div className="mb-2">
+                  <strong className="text-green-600">Alta performance em gestão de talentos:</strong>
+                  <div className="text-muted-foreground mt-1">
+                    70% dos líderes são promovidos internamente.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="text-xs">
+                  <div className="mb-2">
+                    <strong className="text-blue-600">Média de mercado saudável:</strong>
+                    <div className="text-muted-foreground mt-1">
+                      Entre 50% e 60% das posições de liderança preenchidas internamente.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="text-xs">
+                  <div className="mb-2">
+                    <strong className="text-orange-600">Abaixo de 40%:</strong>
+                    <div className="text-muted-foreground mt-1">
+                      Pode indicar falta de plano de sucessão ou deficiência no desenvolvimento de pessoas.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="text-xs">
+                  <div className="mb-2">
+                    <strong className="text-red-600">Acima de 80%:</strong>
+                    <div className="text-muted-foreground mt-1">
+                      Pode sinalizar "endogamia organizacional", pouca oxigenação e risco de pensamento homogêneo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+// Componente para Popover de Amplitude de Controle Médio
+function SpanOfControlPopover({ children }: { children: React.ReactNode }) {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        {children}
+      </PopoverTrigger>
+      <PopoverContent className="w-96" align="start">
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <h4 className="font-medium leading-none">Benchmarks de Amplitude de Controle</h4>
+            <p className="text-sm text-muted-foreground">
+              Referências para avaliação da estrutura organizacional
+            </p>
+          </div>
+          <div className="space-y-3">
+            <div className="text-sm">
+              <div className="text-xs">
+                <div className="mb-2">
+                  <strong className="text-red-600">&lt; 4,0</strong>
+                  <div className="text-muted-foreground mt-1">
+                    Estrutura muito verticalizada → excesso de chefias, burocracia e lentidão nas decisões
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="text-xs">
+                  <div className="mb-2">
+                    <strong className="text-green-600">4,0 a 8,0</strong>
+                    <div className="text-muted-foreground mt-1">
+                      Faixa equilibrada → bom balanceamento entre controle e autonomia
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t pt-2">
+              <div className="text-sm">
+                <div className="text-xs">
+                  <div className="mb-2">
+                    <strong className="text-orange-600">&gt; 8,0</strong>
+                    <div className="text-muted-foreground mt-1">
+                      Estrutura enxuta → pode indicar eficiência ou sobrecarga de gestores, dependendo do contexto
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
 export default function LeadershipCharts() {
   const leadersByPositionData = useMemo(() => generateLeadersByPositionData(), []);
   const leadersByAreaData = useMemo(() => generateLeadersByAreaData(), []);
@@ -176,8 +353,11 @@ export default function LeadershipCharts() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Span of Control Médio
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              Amplitude de Controle Médio
+              <SpanOfControlPopover>
+                <Info className="h-3.5 w-3.5 text-muted-foreground hover:text-foreground cursor-help" />
+              </SpanOfControlPopover>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -193,8 +373,11 @@ export default function LeadershipCharts() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               Taxa de Promoção Interna
+              <PromotionRatePopover>
+                <Info className="h-3.5 w-3.5 text-muted-foreground hover:text-foreground cursor-help" />
+              </PromotionRatePopover>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -302,9 +485,9 @@ export default function LeadershipCharts() {
             <CardTitle className="flex items-center gap-2">
               <Network className="h-5 w-5" />
               Amplitude de Controle Direto por Área
-              <BenchmarkPopover benchmarks="Suporte: 8.2 (⚠️ acima), Vendas: 7.5 (⚠️ acima), Dev: 6.8 (✅ ideal)">
+              <HierarchyLevelsPopover>
                 <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
-              </BenchmarkPopover>
+              </HierarchyLevelsPopover>
             </CardTitle>
             <CardDescription>
               Média de subordinados diretos por área
@@ -319,10 +502,10 @@ export default function LeadershipCharts() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <UserCog className="h-5 w-5" />
-              Amplitude Direto vs Indireto por Área
-              <BenchmarkPopover benchmarks="Direto: gestão imediata, Indireto: toda a hierarquia abaixo">
+              Amplitude de Controle Direto Vs Indireto por Área
+              <HierarchyLevelsPopover>
                 <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
-              </BenchmarkPopover>
+              </HierarchyLevelsPopover>
             </CardTitle>
             <CardDescription>
               Comparação entre subordinados diretos e indiretos

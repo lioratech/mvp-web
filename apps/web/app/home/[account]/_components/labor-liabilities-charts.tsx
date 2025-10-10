@@ -484,7 +484,7 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
                 </span>
               </Button>
             </TableHead>
-            <TableHead>
+            {/* <TableHead>
               <Button
                 variant="ghost"
                 size="sm"
@@ -496,7 +496,7 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
                   {getSortIcon('severancePay')}
                 </span>
               </Button>
-            </TableHead>
+            </TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -538,7 +538,7 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
                   {calculateTimeRemaining(liability.terminationDate)}
                 </div>
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 {liability.severancePay ? (
                   <div className="flex items-center space-x-1">
                     <span className="text-sm font-mono">
@@ -548,7 +548,7 @@ function LaborLiabilitiesTable({ data }: { data: any[] }) {
                 ) : (
                   <span className="text-muted-foreground">-</span>
                 )}
-              </TableCell>
+              </TableCell> */}
             </TableRow>
           ))}
         </TableBody>

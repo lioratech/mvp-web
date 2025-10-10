@@ -1,14 +1,14 @@
 import {
   ArrowRight,
+  Award,
   Building2,
   CreditCard,
   Settings,
   Tags,
+  TrendingUp,
   Upload,
   User,
   Users,
-  TrendingUp,
-  Award,
 } from 'lucide-react';
 
 import { NavigationConfigSchema } from '@kit/ui/navigation-schema';
@@ -30,69 +30,70 @@ const getRoutes = (
   {
     label: 'Painéis',
     children: [
-    
-          {
-            label: 'Painel executivo',
-            path: pathsConfig.app.accountHome.replace('[account]', account),
-            Icon: <ArrowRight className={iconClasses} />,
-          },
-          {
-            label: 'Rotatividade e estabilidade',
-            path: pathsConfig.app.accountTurnoverPanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <ArrowRight className={iconClasses} />,
+      {
+        label: 'Painel Executivo',
+        path: pathsConfig.app.accountHome.replace('[account]', account),
+        Icon: <ArrowRight className={iconClasses} />,
       },
-          {
-            label: 'Força de trabalho',
-            path: pathsConfig.app.accountWorkforcePanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <ArrowRight className={iconClasses} />,
-          },
-          {
-            label: 'Salários e equidade',
-            path: pathsConfig.app.accountSalariesPanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <ArrowRight className={iconClasses} />,
-          },
-          {
-            label: 'Custos da folha',
-            path: pathsConfig.app.accountWorkforceCostsPanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <ArrowRight className={iconClasses} />,
-          },
-          {
-            label: 'Passivos trabalhistas',
-            path: pathsConfig.app.accountLaborLiabilitiesPanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <ArrowRight className={iconClasses} />,
-          },
-          {
-            label: 'Previsões e Projeções',
-            path: pathsConfig.app.accountForecastsPanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <TrendingUp className={iconClasses} />,
-          },
-          {
-            label: 'Liderança e Gestão',
-            path: pathsConfig.app.accountLeadershipPanels.replace(
-              '[account]',
-              account,
-            ),
-            Icon: <Award className={iconClasses} />,
-          },
-       
+      {
+        label: 'Força de Trabalho',
+        path: pathsConfig.app.accountWorkforcePanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <ArrowRight className={iconClasses} />,
+      },
+
+      {
+        label: 'Rotatividade e Estabilidade',
+        path: pathsConfig.app.accountTurnoverPanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <ArrowRight className={iconClasses} />,
+      },
+      {
+        label: 'Remuneração',
+        path: pathsConfig.app.accountSalariesPanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <ArrowRight className={iconClasses} />,
+      },
+
+      {
+        label: 'Liderança e Gestão',
+        path: pathsConfig.app.accountLeadershipPanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <Award className={iconClasses} />,
+      },
+
+      {
+        label: 'Custos da Folha',
+        path: pathsConfig.app.accountWorkforceCostsPanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <ArrowRight className={iconClasses} />,
+      },
+      {
+        label: 'Previsões e Projeções',
+        path: pathsConfig.app.accountForecastsPanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <TrendingUp className={iconClasses} />,
+      },
+      {
+        label: 'Passivos Trabalhistas',
+        path: pathsConfig.app.accountLaborLiabilitiesPanels.replace(
+          '[account]',
+          account,
+        ),
+        Icon: <ArrowRight className={iconClasses} />,
+      },
     ],
   },
   {
@@ -146,7 +147,7 @@ const getRoutes = (
       {
         label: 'Colaboradores',
         path: createPath('/home/[account]/employees', account),
-        Icon: <Users  className={iconClasses} />,
+        Icon: <Users className={iconClasses} />,
       },
       {
         label: 'uploads:page.title',

@@ -62,11 +62,7 @@ export default function ForecastsCharts() {
           <CardContent>
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold">
-                {new Intl.NumberFormat('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                  minimumFractionDigits: 0,
-                }).format(totalProvisions)}
+                1.435M
               </span>
               <TrendingUp className="h-4 w-4 text-green-500" />
             </div>
@@ -102,7 +98,7 @@ export default function ForecastsCharts() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center space-x-2">
-              <span className="text-2xl font-bold">R$ 745K</span>
+              <span className="text-2xl font-bold">R$ 543.238,02</span>
             </div>
             <span className="text-sm text-muted-foreground">
               11/12 meses acumulados
@@ -119,7 +115,7 @@ export default function ForecastsCharts() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-orange-700 dark:text-orange-400">R$ 145K</span>
+              <span className="text-2xl font-bold text-orange-700 dark:text-orange-400">R$ 143K</span>
             </div>
             <span className="text-sm text-orange-600 dark:text-orange-500">
               {criticalItems} colaboradores
@@ -235,7 +231,7 @@ function generateProvisionsBreakdownData() {
   return [
     { tipo: 'Férias', value: 892000, percentage: 31.8, fill: '#3b82f6' },
     { tipo: '13º Salário', value: 745000, percentage: 26.6, fill: '#10b981' },
-    { tipo: 'Encargos Férias', value: 249760, percentage: 8.9, fill: '#8b5cf6' },
+    { tipo: 'Encargos Férias', value: 383000, percentage: 8.9, fill: '#8b5cf6' },
     { tipo: 'Multas FGTS', value: 185000, percentage: 6.6, fill: '#f59e0b' },
     { tipo: 'Férias Vencidas', value: 145000, percentage: 5.2, fill: '#ef4444' },
     { tipo: 'Outros', value: 166240, percentage: 5.9, fill: '#6b7280' },
@@ -266,7 +262,6 @@ function generateOverdueVacationsData() {
     { name: 'Carlos Souza', department: 'Comercial', daysOverdue: 352, provision: 19800, risk: 'critical' },
     { name: 'Juliana Lima', department: 'Marketing', daysOverdue: 340, provision: 17600, risk: 'critical' },
     { name: 'Roberto Alves', department: 'Operações', daysOverdue: 328, provision: 21200, risk: 'critical' },
-    { name: 'Fernanda Rocha', department: 'RH', daysOverdue: 315, provision: 16800, risk: 'high' },
   ];
 }
 
