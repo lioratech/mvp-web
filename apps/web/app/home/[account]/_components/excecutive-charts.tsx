@@ -78,6 +78,72 @@ export default function DashboardDemo() {
         'animate-in fade-in flex flex-col space-y-4 pb-36 duration-500'
       }
     >
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Índice de Estabilidade
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-3xl font-bold">92%</span>
+            </div>
+            <span className="text-sm text-muted-foreground">
+              Líderes com +2 anos na função
+            </span>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Férias em Risco
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-3xl font-bold">8</span>
+            </div>
+            <span className="text-sm text-muted-foreground">
+              Colaboradores com férias vencendo
+            </span>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Cota de PCD
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-3xl font-bold">5/8</span>
+            </div>
+            <span className="text-sm text-muted-foreground">
+              62,5% da cota preenchida
+            </span>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Cota de Aprendizes
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center space-x-2">
+              <span className="text-3xl font-bold">12/15</span>
+            </div>
+            <span className="text-sm text-muted-foreground">
+              80% da cota preenchida
+            </span>
+          </CardContent>
+        </Card>
+      </div>
+
       <div
         className={
           'grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4'
@@ -367,9 +433,9 @@ export default function DashboardDemo() {
       </div>
 
       <div className="grid grid-cols-1">
-        <InsightsModel 
+        {/* <InsightsModel 
           panelType="sales"
-        />
+        /> */}
       </div>
     </div>
   );

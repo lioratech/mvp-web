@@ -50,7 +50,6 @@ export const UpdateTeamAccountForm = (props: {
 
   return (
     <div className={'space-y-8'}>
-      <pre>{JSON.stringify(props.account, null, 2)}</pre>
       <Form {...form}>
         <form
           data-test={'update-team-account-name-form'}
