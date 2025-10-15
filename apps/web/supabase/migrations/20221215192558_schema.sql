@@ -2470,7 +2470,7 @@ select
 -- we create a view to load the user's accounts and memberships
 -- useful to display the user's accounts in the app
 create or replace view
-  public.user_accounts (id, name, picture_url, slug, role)
+  public.user_accounts (id, name, picture_url, slug, role, cnpj, branch)
 with
   (security_invoker = true) as
 select
@@ -2478,7 +2478,9 @@ select
   account.name,
   account.picture_url,
   account.slug,
-  membership.account_role
+  membership.account_role,
+  account.cnpj,
+  account.branch
 from
   public.accounts account
   join public.accounts_memberships membership on account.id = membership.account_id

@@ -32,6 +32,8 @@ export default withI18n(UserHomeLayout);
 
 function SidebarLayout({ children }: React.PropsWithChildren) {
   const workspace = use(loadUserWorkspace());
+
+  console.log("WORKSPACE", workspace);
   const state = use(getLayoutState());
 
   return (

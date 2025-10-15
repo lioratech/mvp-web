@@ -671,309 +671,6 @@ export type Database = {
           },
         ]
       }
-      payroll_departments: {
-        Row: {
-          account_id: string
-          cost_center: string | null
-          created_at: string | null
-          department_code: string
-          id: string
-          name: string
-          updated_at: string | null
-        }
-        Insert: {
-          account_id: string
-          cost_center?: string | null
-          created_at?: string | null
-          department_code: string
-          id?: string
-          name: string
-          updated_at?: string | null
-        }
-        Update: {
-          account_id?: string
-          cost_center?: string | null
-          created_at?: string | null
-          department_code?: string
-          id?: string
-          name?: string
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "payroll_departments_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "accounts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_departments_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "user_account_workspace"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_departments_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "user_accounts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      payroll_employees: {
-        Row: {
-          account_id: string
-          branch: string | null
-          cbo: string | null
-          cpf: string
-          created_at: string | null
-          employee_code: string
-          employment_type: string
-          hire_date: string
-          id: string
-          name: string
-          position_code: string | null
-          position_description: string | null
-          status: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          account_id: string
-          branch?: string | null
-          cbo?: string | null
-          cpf: string
-          created_at?: string | null
-          employee_code: string
-          employment_type: string
-          hire_date: string
-          id?: string
-          name: string
-          position_code?: string | null
-          position_description?: string | null
-          status?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          account_id?: string
-          branch?: string | null
-          cbo?: string | null
-          cpf?: string
-          created_at?: string | null
-          employee_code?: string
-          employment_type?: string
-          hire_date?: string
-          id?: string
-          name?: string
-          position_code?: string | null
-          position_description?: string | null
-          status?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "payroll_employees_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "accounts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_employees_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "user_account_workspace"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_employees_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "user_accounts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      payroll_events: {
-        Row: {
-          amount: number
-          category: string | null
-          created_at: string | null
-          description: string
-          event_code: string
-          event_type: string
-          id: string
-          quantity: number
-          sheet_id: string
-        }
-        Insert: {
-          amount?: number
-          category?: string | null
-          created_at?: string | null
-          description: string
-          event_code: string
-          event_type: string
-          id?: string
-          quantity?: number
-          sheet_id: string
-        }
-        Update: {
-          amount?: number
-          category?: string | null
-          created_at?: string | null
-          description?: string
-          event_code?: string
-          event_type?: string
-          id?: string
-          quantity?: number
-          sheet_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "payroll_events_sheet_id_fkey"
-            columns: ["sheet_id"]
-            isOneToOne: false
-            referencedRelation: "payroll_sheets"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      payroll_periods: {
-        Row: {
-          account_id: string
-          created_at: string | null
-          id: string
-          issue_date: string
-          period: string
-          status: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          account_id: string
-          created_at?: string | null
-          id?: string
-          issue_date: string
-          period: string
-          status?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          account_id?: string
-          created_at?: string | null
-          id?: string
-          issue_date?: string
-          period?: string
-          status?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "payroll_periods_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "accounts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_periods_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "user_account_workspace"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_periods_account_id_fkey"
-            columns: ["account_id"]
-            isOneToOne: false
-            referencedRelation: "user_accounts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      payroll_sheets: {
-        Row: {
-          base_salary: number
-          created_at: string | null
-          department_id: string | null
-          employee_id: string
-          employment_status: string
-          fgts_amount: number
-          fgts_base: number
-          id: string
-          inss_base: number
-          irrf_base: number
-          monthly_hours: number
-          net_pay: number
-          period_id: string
-          salary: number
-          total_deductions: number
-          total_earnings: number
-          updated_at: string | null
-        }
-        Insert: {
-          base_salary: number
-          created_at?: string | null
-          department_id?: string | null
-          employee_id: string
-          employment_status: string
-          fgts_amount?: number
-          fgts_base?: number
-          id?: string
-          inss_base?: number
-          irrf_base?: number
-          monthly_hours: number
-          net_pay?: number
-          period_id: string
-          salary: number
-          total_deductions?: number
-          total_earnings?: number
-          updated_at?: string | null
-        }
-        Update: {
-          base_salary?: number
-          created_at?: string | null
-          department_id?: string | null
-          employee_id?: string
-          employment_status?: string
-          fgts_amount?: number
-          fgts_base?: number
-          id?: string
-          inss_base?: number
-          irrf_base?: number
-          monthly_hours?: number
-          net_pay?: number
-          period_id?: string
-          salary?: number
-          total_deductions?: number
-          total_earnings?: number
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "payroll_sheets_department_id_fkey"
-            columns: ["department_id"]
-            isOneToOne: false
-            referencedRelation: "payroll_departments"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_sheets_employee_id_fkey"
-            columns: ["employee_id"]
-            isOneToOne: false
-            referencedRelation: "payroll_employees"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "payroll_sheets_period_id_fkey"
-            columns: ["period_id"]
-            isOneToOne: false
-            referencedRelation: "payroll_periods"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       positions: {
         Row: {
           account_id: string
@@ -1234,41 +931,6 @@ export type Database = {
       }
     }
     Views: {
-      department_summary: {
-        Row: {
-          average_hours: number | null
-          average_salary: number | null
-          company_name: string | null
-          department_name: string | null
-          period: string | null
-          total_deductions: number | null
-          total_earnings: number | null
-          total_employees: number | null
-          total_net_pay: number | null
-          total_salaries: number | null
-        }
-        Relationships: []
-      }
-      people_analytics: {
-        Row: {
-          company_name: string | null
-          cpf: string | null
-          department_name: string | null
-          employee_name: string | null
-          fgts_amount: number | null
-          fgts_base: number | null
-          inss_base: number | null
-          issue_date: string | null
-          monthly_hours: number | null
-          net_pay: number | null
-          period: string | null
-          position_description: string | null
-          salary: number | null
-          total_deductions: number | null
-          total_earnings: number | null
-        }
-        Relationships: []
-      }
       user_account_workspace: {
         Row: {
           id: string | null
@@ -1282,6 +944,8 @@ export type Database = {
       }
       user_accounts: {
         Row: {
+          branch: number | null
+          cnpj: string | null
           id: string | null
           name: string | null
           picture_url: string | null
@@ -1362,32 +1026,32 @@ export type Database = {
       get_account_invitations: {
         Args: { account_slug: string }
         Returns: {
-          account_id: string
           id: number
+          account_id: string
           inviter_email: string
-          role: string
-          invited_by: string
-          email: string
           inviter_name: string
           expires_at: string
           updated_at: string
           created_at: string
+          role: string
+          invited_by: string
+          email: string
         }[]
       }
       get_account_members: {
         Args: { account_slug: string }
         Returns: {
-          id: string
           updated_at: string
+          id: string
+          user_id: string
+          account_id: string
+          role: string
+          role_hierarchy_level: number
+          primary_owner_user_id: string
+          name: string
+          email: string
           created_at: string
           picture_url: string
-          email: string
-          name: string
-          primary_owner_user_id: string
-          role_hierarchy_level: number
-          role: string
-          account_id: string
-          user_id: string
         }[]
       }
       get_config: {
@@ -1397,27 +1061,6 @@ export type Database = {
       get_nonce_status: {
         Args: { p_id: string }
         Returns: Json
-      }
-      get_positions_with_relations: {
-        Args: { p_account_id: string }
-        Returns: {
-          id: string
-          account_id: string
-          name: string
-          external_id: string
-          description: string
-          color: string
-          parent_id: string
-          parent_name: string
-          updated_by: string
-          created_by: string
-          updated_at: string
-          created_at: string
-          is_active: boolean
-          is_leadership: boolean
-          department_id: string
-          department_name: string
-        }[]
       }
       get_upper_system_role: {
         Args: Record<PropertyKey, never>
@@ -1490,10 +1133,10 @@ export type Database = {
       team_account_workspace: {
         Args: { account_slug: string }
         Returns: {
+          slug: string
           id: string
           name: string
           picture_url: string
-          slug: string
           role: string
           role_hierarchy_level: number
           primary_owner_user_id: string

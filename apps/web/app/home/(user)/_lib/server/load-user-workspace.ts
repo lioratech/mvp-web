@@ -34,6 +34,8 @@ async function workspaceLoader() {
     requireUserInServerComponent(),
   ]);
 
+    console.log("ACCOUNTS WORKSPACE", accounts);
+
   return {
     accounts,
     workspace,

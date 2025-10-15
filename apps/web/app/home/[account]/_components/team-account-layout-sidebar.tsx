@@ -8,8 +8,8 @@ import {
   SidebarHeader,
 } from '@kit/ui/shadcn-sidebar';
 
-import { AppLogo } from '~/components/app-logo';
 import { ProfileAccountDropdownContainer } from '~/components//personal-account-dropdown-container';
+import { AppLogo } from '~/components/app-logo';
 import { getTeamAccountSidebarConfig } from '~/config/team-account-navigation.config';
 import { TeamAccountNotifications } from '~/home/[account]/_components/team-account-notifications';
 
@@ -20,6 +20,8 @@ type AccountModel = {
   label: string | null;
   value: string | null;
   image: string | null;
+  cnpj: string | null;
+  branch: string | null;
 };
 
 type WorkspaceData = {
@@ -58,22 +60,24 @@ function SidebarContainer(props: {
   const config = getTeamAccountSidebarConfig(account, workspace);
   const collapsible = config.sidebarCollapsedStyle;
 
+  console.log('ACCOUNTS SIDEBAR', accounts);
+
   return (
     <Sidebar collapsible={collapsible}>
       <SidebarHeader className={'h-16 justify-center'}>
-        <div className={'flex items-center  gap-x-3'}>
-        <Image
+        <div className={'flex items-center gap-x-3'}>
+          <Image
             src="/images/favicon/android-chrome-192x192.png"
             alt="Logo"
             width={32}
             height={32}
             className="h-8 w-8"
-          />          <TeamAccountAccountsSelector
+          />{' '}
+          <TeamAccountAccountsSelector
             userId={userId}
             selectedAccount={account}
             accounts={accounts}
           />
-
           {/* <div className={'group-data-[minimized=true]/sidebar:hidden'}>
             <TeamAccountNotifications
               userId={userId}

@@ -7,6 +7,7 @@ import { isRedirectError } from 'next/dist/client/components/redirect-error';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import MaskedInput from 'react-text-mask';
 
 import { Button } from '@kit/ui/button';
 import {
@@ -21,10 +22,17 @@ import { Input } from '@kit/ui/input';
 import { toast } from '@kit/ui/sonner';
 import { Trans } from '@kit/ui/trans';
 
-import MaskedInput from 'react-text-mask';
-
 import { TeamNameFormSchema } from '../../schema/update-team-name.schema';
 import { updateTeamAccountName } from '../../server/actions/team-details-server-actions';
+
+// Função para aplicar máscara no CNPJ
+const formatCNPJ = (cnpj: string) => {
+  if (!cnpj) return '';
+  // Remove caracteres não numéricos
+  const cleanCNPJ = cnpj.replace(/[^\d]/g, '');
+  // Aplica máscara: 12.345.678/0001-90
+  return cleanCNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+};
 
 export const UpdateTeamAccountForm = (props: {
   account: {
@@ -43,7 +51,7 @@ export const UpdateTeamAccountForm = (props: {
     resolver: zodResolver(TeamNameFormSchema),
     defaultValues: {
       name: props.account.name,
-      cnpj: props.account.cnpj,
+      cnpj: formatCNPJ(props.account.cnpj),
       branch: String(props.account.branch),
     },
   });
@@ -90,9 +98,7 @@ export const UpdateTeamAccountForm = (props: {
             });
           })}
         >
-         
-
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+          <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
             <FormField
               name={'name'}
               render={({ field }) => {
@@ -124,12 +130,31 @@ export const UpdateTeamAccountForm = (props: {
                 return (
                   <FormItem>
                     <FormLabel>
-                      <Trans i18nKey={'teams:cnpjInputLabel'} defaults='CNPJ' />
+                      <Trans i18nKey={'teams:cnpjInputLabel'} defaults="CNPJ" />
                     </FormLabel>
 
                     <FormControl>
                       <MaskedInput
-                        mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+                        mask={[
+                          /\d/,
+                          /\d/,
+                          '.',
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          '.',
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          '/',
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          '-',
+                          /\d/,
+                          /\d/,
+                        ]}
                         {...field}
                         render={(ref, props) => (
                           <Input
@@ -155,7 +180,10 @@ export const UpdateTeamAccountForm = (props: {
                 return (
                   <FormItem>
                     <FormLabel>
-                      <Trans i18nKey={'teams:branchInputLabel'} defaults='Filial' />
+                      <Trans
+                        i18nKey={'teams:branchInputLabel'}
+                        defaults="Filial"
+                      />
                     </FormLabel>
 
                     <FormControl>

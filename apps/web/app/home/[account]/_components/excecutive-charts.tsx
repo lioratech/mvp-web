@@ -32,7 +32,6 @@ import {
 } from 'recharts';
 
 import { Badge } from '@kit/ui/badge';
-import { InsightsModel } from './insights-model';
 import {
   Card,
   CardContent,
@@ -51,6 +50,13 @@ import {
 } from '@kit/ui/chart';
 import { Popover, PopoverContent, PopoverTrigger } from '@kit/ui/popover';
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@kit/ui/select';
+import {
   Table,
   TableBody,
   TableCell,
@@ -59,8 +65,87 @@ import {
   TableRow,
 } from '@kit/ui/table';
 
+import { useCollaboratorsMonthly } from '../_hooks/use-collaborators-monthly';
+import { CollaboratorsChartData } from '../_types/collaborators';
+import { InsightsModel } from './insights-model';
+
 export default function DashboardDemo() {
-  const colaboradoresData = useMemo(() => generateColaboradoresData(), []);
+  const [monthsToShow, setMonthsToShow] = useState(3);
+
+  const { data: collaboratorsData, isLoading: collaboratorsLoading } =
+    useCollaboratorsMonthly(monthsToShow);
+
+  const { chartData: colaboradoresData, chartConfig: colaboradoresConfig } =
+    useMemo(() => {
+      if (
+        !collaboratorsData?.monthly ||
+        collaboratorsData.monthly.length === 0
+      ) {
+        return {
+          chartData: [],
+          chartConfig: {},
+        };
+      }
+
+      const allStatuses = new Set<string>();
+      collaboratorsData.monthly.forEach((month) => {
+        month.status_breakdown.forEach((item) => {
+          allStatuses.add(item.status);
+        });
+      });
+
+      const getColorForStatus = (status: string): string => {
+        const lowerStatus = status.toLowerCase();
+
+        if (
+          lowerStatus.includes('ativo') ||
+          lowerStatus.includes('trabalhando') ||
+          lowerStatus.includes('active')
+        ) {
+          return '#00c950';
+        }
+        if (
+          lowerStatus.includes('demitido') ||
+          lowerStatus.includes('rescindido') ||
+          lowerStatus.includes('desligado')
+        ) {
+          return '#ef4444';
+        }
+        if (
+          lowerStatus.includes('afastado') ||
+          lowerStatus.includes('licença') ||
+          lowerStatus.includes('doença')
+        ) {
+          return '#f59e0b';
+        }
+        if (lowerStatus.includes('férias') || lowerStatus.includes('ferias')) {
+          return '#eab308';
+        }
+        return '#3b82f6';
+      };
+
+      const config: Record<string, { label: string; color: string }> = {};
+      allStatuses.forEach((status) => {
+        config[status] = {
+          label: status,
+          color: getColorForStatus(status),
+        };
+      });
+
+      const chartData = collaboratorsData.monthly.map((month) => {
+        const monthData: CollaboratorsChartData = {
+          month: month.month_name,
+        };
+
+        month.status_breakdown.forEach((item) => {
+          monthData[item.status] = item.count;
+        });
+
+        return monthData;
+      });
+
+      return { chartData, chartConfig: config };
+    }, [collaboratorsData]);
   const turnoverData = useMemo(() => generateTurnoverData(), []);
   const turnoverByDepartmentData = useMemo(
     () => generateTurnoverByDepartmentData(),
@@ -81,7 +166,7 @@ export default function DashboardDemo() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
               Índice de Estabilidade
             </CardTitle>
           </CardHeader>
@@ -89,7 +174,7 @@ export default function DashboardDemo() {
             <div className="flex items-center space-x-2">
               <span className="text-3xl font-bold">92%</span>
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               Líderes com +2 anos na função
             </span>
           </CardContent>
@@ -97,7 +182,7 @@ export default function DashboardDemo() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
               Férias em Risco
             </CardTitle>
           </CardHeader>
@@ -105,7 +190,7 @@ export default function DashboardDemo() {
             <div className="flex items-center space-x-2">
               <span className="text-3xl font-bold">8</span>
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               Colaboradores com férias vencendo
             </span>
           </CardContent>
@@ -113,7 +198,7 @@ export default function DashboardDemo() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
               Cota de PCD
             </CardTitle>
           </CardHeader>
@@ -121,7 +206,7 @@ export default function DashboardDemo() {
             <div className="flex items-center space-x-2">
               <span className="text-3xl font-bold">5/8</span>
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               62,5% da cota preenchida
             </span>
           </CardContent>
@@ -129,7 +214,7 @@ export default function DashboardDemo() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-muted-foreground text-sm font-medium">
               Cota de Aprendizes
             </CardTitle>
           </CardHeader>
@@ -137,7 +222,7 @@ export default function DashboardDemo() {
             <div className="flex items-center space-x-2">
               <span className="text-3xl font-bold">12/15</span>
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               80% da cota preenchida
             </span>
           </CardContent>
@@ -151,23 +236,63 @@ export default function DashboardDemo() {
       >
         <Card>
           <CardHeader>
-            <CardTitle className={'flex items-center gap-2.5'}>
-              <Users />
-              <span>Colaboradores</span>
-              <Trend trend={'up'}>20%</Trend>
-            </CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className={'flex items-center gap-2.5'}>
+                <Users />
+                <span>Colaboradores</span>
+                <Trend
+                  trend={
+                    (collaboratorsData?.current?.growth_percentage ?? 0) >= 0
+                      ? 'up'
+                      : 'down'
+                  }
+                >
+                  {collaboratorsData?.current?.growth_percentage ?? 0}%
+                </Trend>
+              </CardTitle>
+
+              <Select
+                value={monthsToShow.toString()}
+                onValueChange={(value) => setMonthsToShow(parseInt(value))}
+              >
+                <SelectTrigger className="w-[130px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="3">3 meses</SelectItem>
+                  <SelectItem value="6">6 meses</SelectItem>
+                  <SelectItem value="12">12 meses</SelectItem>
+                  <SelectItem value="24">24 meses</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
             <CardDescription>
               <span>Quantidade de colaboradores ativos</span>
             </CardDescription>
 
             <div>
-              <Figure>152</Figure>
+              <Figure>
+                {collaboratorsData?.current?.total_colaboradores || 0}
+              </Figure>
             </div>
           </CardHeader>
 
           <CardContent className={'space-y-4'}>
-            <ColaboradoresChart data={colaboradoresData} />
+            {collaboratorsLoading ? (
+              <div className="flex h-32 items-center justify-center">
+                <div className="border-primary h-8 w-8 animate-spin rounded-full border-b-2"></div>
+              </div>
+            ) : colaboradoresData.length === 0 ? (
+              <div className="text-muted-foreground flex h-32 items-center justify-center">
+                <p>Nenhum dado disponível</p>
+              </div>
+            ) : (
+              <ColaboradoresChart
+                data={colaboradoresData}
+                config={colaboradoresConfig}
+              />
+            )}
           </CardContent>
           <CardFooter>
             <div>
@@ -382,7 +507,7 @@ export default function DashboardDemo() {
                     Custo da folha
                   </p>
                   <p className="text-lg font-bold">R$ 724.317,37</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     Jul./25: R$ 713.497,85
                   </p>
                 </div>
@@ -395,7 +520,7 @@ export default function DashboardDemo() {
                     Custo da folha com encargos
                   </p>
                   <p className="text-lg font-bold">R$ 990.866,16</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     Jul./25: R$ 976.065,06
                   </p>
                 </div>
@@ -408,7 +533,7 @@ export default function DashboardDemo() {
                     Custo médio de rescisões
                   </p>
                   <p className="text-lg font-bold">R$ 129.945,68</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     Jul./25: R$ 125.456,88
                   </p>
                 </div>
@@ -421,7 +546,7 @@ export default function DashboardDemo() {
                     Custo de horas extras
                   </p>
                   <p className="text-lg font-bold">R$ 1.274,64</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     Jul./25: R$ 311,20
                   </p>
                 </div>
@@ -441,34 +566,11 @@ export default function DashboardDemo() {
   );
 }
 
-function generateColaboradoresData() {
-  return [
-    {
-      month: 'jun./25',
-      ativos: 140,
-      afastados: 1,
-      demitidos: 1,
-    },
-    {
-      month: 'jul./25',
-      ativos: 148,
-      afastados: 2,
-      demitidos: 2,
-    },
-    {
-      month: 'ago./25',
-      ativos: 152,
-      afastados: 2,
-      demitidos: 2,
-    },
-  ];
-}
-
 function generateTurnoverData() {
   return [
     {
       month: 'jun./25',
-      turnover: 0.70,
+      turnover: 0.7,
     },
     {
       month: 'jul./25',
@@ -523,17 +625,17 @@ function generateTurnoverByDepartmentData() {
 
 function getDepartmentColor(department: string): string {
   const colors: { [key: string]: string } = {
-    Administrativo: '#3b82f6', 
-    Financeiro: '#10b981', 
+    Administrativo: '#3b82f6',
+    Financeiro: '#10b981',
     Comercial: '#f59e0b',
-    Marketing: '#ef4444', 
-    RH: '#8b5cf6', 
-    TI: '#06b6d4', 
-    Operações: '#f97316', 
-    Vendas: '#84cc16', 
+    Marketing: '#ef4444',
+    RH: '#8b5cf6',
+    TI: '#06b6d4',
+    Operações: '#f97316',
+    Vendas: '#84cc16',
   };
 
-  return colors[department] || '#6b7280'; 
+  return colors[department] || '#6b7280';
 }
 
 function generateLeadershipPositionsData() {
@@ -556,7 +658,7 @@ function generateCostTrendsData() {
       custoFolha: 713497.85,
       custoFolhaEncargos: 976065.06,
       custoMedioRescisoes: 125456.88,
-      custoHorasExtras: 311.20,
+      custoHorasExtras: 311.2,
     },
     {
       month: 'ago./25',
@@ -574,11 +676,11 @@ function LeadershipRadialChart() {
   const chartConfig = {
     mulheres: {
       label: 'Mulheres',
-      color: '#ec4899', 
+      color: '#ec4899',
     },
     homens: {
       label: 'Homens',
-      color: '#3b82f6', 
+      color: '#3b82f6',
     },
   } satisfies ChartConfig;
 
@@ -661,7 +763,10 @@ function LeadershipPositionsChart(
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-80 w-full overflow-hidden">
+    <ChartContainer
+      config={chartConfig}
+      className="h-80 w-full overflow-hidden"
+    >
       <BarChart
         accessibilityLayer
         data={props.data}
@@ -688,12 +793,7 @@ function LeadershipPositionsChart(
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar 
-          dataKey="count" 
-          layout="vertical" 
-          radius={4}
-          fill="#f97316"
-        >
+        <Bar dataKey="count" layout="vertical" radius={4} fill="#f97316">
           <LabelList
             dataKey="count"
             position="right"
@@ -779,24 +879,14 @@ function CostTrendChart(
 
 function ColaboradoresChart(
   props: React.PropsWithChildren<{
-    data: {
-      month: string;
-      ativos: number;
-      afastados: number;
-      demitidos: number;
-    }[];
+    data: CollaboratorsChartData[];
+    config: Record<string, { label: string; color: string }>;
   }>,
 ) {
-  const chartConfig = {
-    ativos: {
-      label: 'Ativos',
-      color: '#00c950', 
-    },
-    demitidos: {
-      label: 'Demitidos',
-      color: '#ef4444', 
-    },
-  } satisfies ChartConfig;
+  const chartConfig = props.config satisfies ChartConfig;
+
+  // Obter todos os status (dataKeys) exceto 'month'
+  const statusKeys = Object.keys(props.config);
 
   return (
     <ChartContainer config={chartConfig}>
@@ -807,23 +897,26 @@ function ColaboradoresChart(
           tickLine={false}
           tickMargin={10}
           axisLine={false}
-          tickFormatter={(value) => value.slice(0, 3)}
+          tickFormatter={(value) => value}
         />
         <ChartTooltip content={<ChartTooltipContent hideLabel />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar
-          dataKey="ativos"
-          stackId="a"
-          fill="#00c950"
-          radius={[0, 0, 4, 4]}
-        />
-     
-        <Bar
-          dataKey="demitidos"
-          stackId="a"
-          fill="#ef4444"
-          radius={[4, 4, 0, 0]}
-        />
+        {statusKeys.map((status, index) => {
+          const statusConfig = props.config[status];
+          if (!statusConfig) return null;
+
+          return (
+            <Bar
+              key={status}
+              dataKey={status}
+              stackId="a"
+              fill={statusConfig.color}
+              radius={
+                index === statusKeys.length - 1 ? [4, 4, 0, 0] : [0, 0, 0, 0]
+              }
+            />
+          );
+        })}
       </BarChart>
     </ChartContainer>
   );
@@ -896,7 +989,7 @@ function TurnoverByDepartmentChart(
   const chartConfig = {
     turnover: {
       label: 'Turnover (%)',
-      color: '#f97316', 
+      color: '#f97316',
     },
     label: {
       color: 'var(--background)',
@@ -904,7 +997,10 @@ function TurnoverByDepartmentChart(
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={chartConfig} className="h-80 w-full overflow-hidden">
+    <ChartContainer
+      config={chartConfig}
+      className="h-80 w-full overflow-hidden"
+    >
       <BarChart
         accessibilityLayer
         data={props.data}

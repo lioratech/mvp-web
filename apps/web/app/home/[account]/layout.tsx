@@ -42,10 +42,12 @@ function SidebarLayout({
   const data = use(loadTeamWorkspace(account));
   const state = use(getLayoutState(account));
 
-  const accounts = data.accounts.map(({ name, slug, picture_url }) => ({
+  const accounts = data.accounts.map(({ name, slug, picture_url, cnpj, branch }) => ({
     label: name,
     value: slug,
-    image: picture_url,
+    image: picture_url, 
+    cnpj: cnpj,
+    branch: branch,
   }));
 
   const workspaceData = {

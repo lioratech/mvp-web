@@ -53,19 +53,27 @@ class AccountsApi {
   async loadUserAccounts() {
     const { data: accounts, error } = await this.client
       .from('user_accounts')
-      .select(`name, slug, picture_url`);
+      .select(`name, slug, picture_url, cnpj, branch`);
 
     if (error) {
       throw error;
     }
 
-    return accounts.map(({ name, slug, picture_url }) => {
+    console.log('RAW ACCOUNTS FROM DB:', accounts);
+
+    const mapped = accounts.map(({ name, slug, picture_url, cnpj, branch }) => {
       return {
         label: name,
         value: slug,
         image: picture_url,
+        cnpj,
+        branch,
       };
     });
+
+    console.log('MAPPED ACCOUNTS:', mapped);
+
+    return mapped;
   }
 
   /**

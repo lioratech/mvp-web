@@ -22,6 +22,8 @@ export function TeamAccountAccountsSelector(params: {
     label: string | null;
     value: string | null;
     image: string | null;
+    cnpj: string | null;
+    branch: string | null;
   }>;
 }) {
   const router = useRouter();
