@@ -77,7 +77,7 @@ const getRoutes = (
       Icon: <ArrowRight className={iconClasses} />,
     },
     {
-      label: 'Previsões e Projeções',
+      label: 'Provisões e Projeções',
       path: pathsConfig.app.accountForecastsDemo.replace(
         '[account]',
         account,
@@ -145,7 +145,7 @@ const getRoutes = (
         Icon: <ArrowRight className={iconClasses} />,
       },
       {
-        label: 'Previsões e Projeções',
+        label: 'Provisões e Projeções',
         path: pathsConfig.app.accountForecastsPanels.replace(
           '[account]',
           account,
