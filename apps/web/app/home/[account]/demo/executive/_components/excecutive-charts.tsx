@@ -65,87 +65,38 @@ import {
   TableRow,
 } from '@kit/ui/table';
 
-import { useCollaboratorsMonthly } from '../../../_hooks/use-collaborators-monthly';
-import { CollaboratorsChartData } from '../../../_types/collaborators';
 import { InsightsModel } from '../../../_components/insights-model';
 
 export default function DashboardDemo() {
-  const [monthsToShow, setMonthsToShow] = useState(3);
+  // Dados mockados de colaboradores
+  const colaboradoresData = [
+    { month: 'Janeiro', 'Ativos': 145, 'Afastados': 5, 'Demitidos': 8 },
+    { month: 'Fevereiro', 'Ativos': 148, 'Afastados': 4, 'Demitidos': 6 },
+    { month: 'Março', 'Ativos': 152, 'Afastados': 3, 'Demitidos': 7 },
+  ];
 
-  const { data: collaboratorsData, isLoading: collaboratorsLoading } =
-    useCollaboratorsMonthly(monthsToShow);
+  const colaboradoresConfig = {
+    'Ativos': {
+      label: 'Ativos',
+      color: '#00c950',
+    },
+    'Afastados': {
+      label: 'Afastados',
+      color: '#f59e0b',
+    },
+    'Demitidos': {
+      label: 'Demitidos',
+      color: '#ef4444',
+    },
+  } satisfies ChartConfig;
 
-  const { chartData: colaboradoresData, chartConfig: colaboradoresConfig } =
-    useMemo(() => {
-      if (
-        !collaboratorsData?.monthly ||
-        collaboratorsData.monthly.length === 0
-      ) {
-        return {
-          chartData: [],
-          chartConfig: {},
-        };
-      }
-
-      const allStatuses = new Set<string>();
-      collaboratorsData.monthly.forEach((month) => {
-        month.status_breakdown.forEach((item) => {
-          allStatuses.add(item.status);
-        });
-      });
-
-      const getColorForStatus = (status: string): string => {
-        const lowerStatus = status.toLowerCase();
-
-        if (
-          lowerStatus.includes('ativo') ||
-          lowerStatus.includes('trabalhando') ||
-          lowerStatus.includes('active')
-        ) {
-          return '#00c950';
-        }
-        if (
-          lowerStatus.includes('demitido') ||
-          lowerStatus.includes('rescindido') ||
-          lowerStatus.includes('desligado')
-        ) {
-          return '#ef4444';
-        }
-        if (
-          lowerStatus.includes('afastado') ||
-          lowerStatus.includes('licença') ||
-          lowerStatus.includes('doença')
-        ) {
-          return '#f59e0b';
-        }
-        if (lowerStatus.includes('férias') || lowerStatus.includes('ferias')) {
-          return '#eab308';
-        }
-        return '#3b82f6';
-      };
-
-      const config: Record<string, { label: string; color: string }> = {};
-      allStatuses.forEach((status) => {
-        config[status] = {
-          label: status,
-          color: getColorForStatus(status),
-        };
-      });
-
-      const chartData = collaboratorsData.monthly.map((month) => {
-        const monthData: CollaboratorsChartData = {
-          month: month.month_name,
-        };
-
-        month.status_breakdown.forEach((item) => {
-          monthData[item.status] = item.count;
-        });
-
-        return monthData;
-      });
-
-      return { chartData, chartConfig: config };
-    }, [collaboratorsData]);
+  const collaboratorsLoading = false;
+  const collaboratorsData = {
+    current: {
+      total_colaboradores: 152,
+      growth_percentage: 4.8,
+    },
+  };
   const turnoverData = useMemo(() => generateTurnoverData(), []);
   const turnoverByDepartmentData = useMemo(
     () => generateTurnoverByDepartmentData(),
@@ -236,36 +187,19 @@ export default function DashboardDemo() {
       >
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className={'flex items-center gap-2.5'}>
-                <Users />
-                <span>Colaboradores</span>
-                <Trend
-                  trend={
-                    (collaboratorsData?.current?.growth_percentage ?? 0) >= 0
-                      ? 'up'
-                      : 'down'
-                  }
-                >
-                  {collaboratorsData?.current?.growth_percentage ?? 0}%
-                </Trend>
-              </CardTitle>
-
-              <Select
-                value={monthsToShow.toString()}
-                onValueChange={(value) => setMonthsToShow(parseInt(value))}
+            <CardTitle className={'flex items-center gap-2.5'}>
+              <Users />
+              <span>Colaboradores</span>
+              <Trend
+                trend={
+                  (collaboratorsData?.current?.growth_percentage ?? 0) >= 0
+                    ? 'up'
+                    : 'down'
+                }
               >
-                <SelectTrigger className="w-[130px]">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="3">3 meses</SelectItem>
-                  <SelectItem value="6">6 meses</SelectItem>
-                  <SelectItem value="12">12 meses</SelectItem>
-                  <SelectItem value="24">24 meses</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                {collaboratorsData?.current?.growth_percentage ?? 0}%
+              </Trend>
+            </CardTitle>
 
             <CardDescription>
               <span>Quantidade de colaboradores ativos</span>
