@@ -1,0 +1,17 @@
+{
+  "pageTitle": "Status de Colaboradores",
+  "pageDescription": "Gerencie os status dos colaboradores da sua equipe",
+  "name": "Nome",
+  "type": "Tipo",
+  "status": "Status",
+  "notes": "Observações",
+  "createStatus": "Novo Status",
+  "createStatusDescription": "Crie um novo status para colaboradores",
+  "updateStatus": "Editar Status",
+  "updateStatusDescription": "Edite as informações do status",
+  "deleteStatus": "Excluir Status",
+  "deleteStatusDescription": "Tem certeza que deseja excluir o status",
+  "deleteStatusWarning": "Esta ação não pode ser desfeita.",
+  "noStatus": "Nenhum status encontrado",
+  "noStatusDescription": "Comece criando seu primeiro status de colaborador"
+}

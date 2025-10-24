@@ -7,20 +7,29 @@ let pool: mysql.Pool | null = null;
  * Creates a connection pool that can be reused across requests
  */
 export function getMySQLPool() {
-    console.log("BANCO DE DADOS", process.env.MYSQL_HOST, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, process.env.MYSQL_DATABASE, process.env.MYSQL_PORT);
   if (!pool) {
-    pool = mysql.createPool({
-      host: process.env.MYSQL_HOST || 'localhost',
-      user: process.env.MYSQL_USER,
+    // Using hardcoded credentials
+    const config = {
+      host: 'srv1435.hstgr.io',
+      port: 3306,
+      user: 'u796544318_Abracadabra',
       password: '0$HyIIdXA$Q',
-      database: process.env.MYSQL_DATABASE,
-      port: Number(process.env.MYSQL_PORT) || 3306,
+      database: 'u796544318_L_analytic',
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
       enableKeepAlive: true,
       keepAliveInitialDelay: 0,
+    };
+
+    console.log('[MySQL] Creating new connection pool with hardcoded credentials:', {
+      host: config.host,
+      user: config.user,
+      database: config.database,
+      port: config.port,
     });
+    
+    pool = mysql.createPool(config);
   }
 
   return pool;

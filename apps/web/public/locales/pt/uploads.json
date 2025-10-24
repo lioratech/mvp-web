@@ -61,5 +61,16 @@
     "invalidFileType": "Apenas arquivos PDF são permitidos",
     "fileTooLarge": "O arquivo deve ter no máximo 10MB",
     "processingError": "Erro ao processar arquivo"
+  },
+  "lists": {
+    "title": "Folhas de Pagamento",
+    "description": "Visualize todas as folhas de pagamento enviadas",
+    "empty": "Nenhuma folha de pagamento encontrada",
+    "emptyDescription": "Faça o upload de uma folha para começar"
+  },
+  "deleteDialog": {
+    "title": "Excluir Folha de Pagamento",
+    "description": "Esta ação não pode ser desfeita. Para confirmar, digite a competência:",
+    "confirmLabel": "Digite a competência para confirmar"
   }
 } 

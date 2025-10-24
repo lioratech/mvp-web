@@ -61,5 +61,16 @@
     "invalidFileType": "Only PDF files are allowed",
     "fileTooLarge": "File must be 10MB or smaller",
     "processingError": "Error processing file"
+  },
+  "lists": {
+    "title": "Payrolls",
+    "description": "View all uploaded payrolls",
+    "empty": "No payrolls found",
+    "emptyDescription": "Upload a payroll to get started"
+  },
+  "deleteDialog": {
+    "title": "Delete Payroll",
+    "description": "This action cannot be undone. To confirm, type the competence:",
+    "confirmLabel": "Type the competence to confirm"
   }
 } 

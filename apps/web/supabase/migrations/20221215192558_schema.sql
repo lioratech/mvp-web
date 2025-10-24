@@ -99,7 +99,8 @@ create type public.app_permissions as enum(
   'invites.manage',
   'departments.manage',
   'payroll.manage',
-  'positions.manage'
+  'positions.manage',
+  'payrolls.manage'
 );
 
 /*

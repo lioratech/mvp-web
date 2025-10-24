@@ -46,4 +46,7 @@ values (
   'invites.manage'),
   (
   'owner',
-  'positions.manage');
+  'positions.manage'),
+  (
+  'owner',
+  'payrolls.manage');

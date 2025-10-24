@@ -35,6 +35,7 @@ export const defaultI18nNamespaces = [
   'departments',
   'payroll-events',
   'uploads',
+  'collaborator-status'
 ];
 
 /**

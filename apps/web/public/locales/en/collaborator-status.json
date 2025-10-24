@@ -1,0 +1,17 @@
+{
+  "pageTitle": "Collaborator Status",
+  "pageDescription": "Manage collaborator statuses for your team",
+  "name": "Name",
+  "type": "Type",
+  "status": "Status",
+  "notes": "Notes",
+  "createStatus": "New Status",
+  "createStatusDescription": "Create a new collaborator status",
+  "updateStatus": "Edit Status",
+  "updateStatusDescription": "Edit status information",
+  "deleteStatus": "Delete Status",
+  "deleteStatusDescription": "Are you sure you want to delete the status",
+  "deleteStatusWarning": "This action cannot be undone.",
+  "noStatus": "No status found",
+  "noStatusDescription": "Start by creating your first collaborator status"
+}

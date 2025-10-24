@@ -9,6 +9,7 @@ import {
   Upload,
   User,
   Users,
+  UserCheck,
 } from 'lucide-react';
 
 import { NavigationConfigSchema } from '@kit/ui/navigation-schema';
@@ -29,6 +30,8 @@ const getRoutes = (
 ) => [
   {
     label: 'Painéis',
+    collapsible: true,
+    collapsed: false,
     children: [
       {
         label: 'Painel Executivo',
@@ -97,8 +100,27 @@ const getRoutes = (
     ],
   },
   {
+    label: 'Gestão',
+    collapsible: true,
+    collapsed: false,
+    children: [
+      {
+        label: 'Colaboradores',
+        path: createPath('/home/[account]/collaborators', account),
+        Icon: <Users className={iconClasses} />,
+      },
+      {
+        label: 'uploads:page.title',
+        path: createPath('/home/[account]/uploads', account),
+        Icon: <Upload className={iconClasses} />,
+      },
+    ],
+  },
+ 
+  {
     label: 'common:routes.settings',
-    collapsible: false,
+    collapsible: true,
+    collapsed: true,
     children: [
       workspace?.account.role === 'owner'
         ? {
@@ -133,6 +155,7 @@ const getRoutes = (
   {
     label: 'Setup',
     collapsible: true,
+    collapsed: true,
     children: [
       {
         label: 'departments:departments',
@@ -145,14 +168,9 @@ const getRoutes = (
         Icon: <Tags className={iconClasses} />,
       },
       {
-        label: 'Colaboradores',
-        path: createPath('/home/[account]/employees', account),
-        Icon: <Users className={iconClasses} />,
-      },
-      {
-        label: 'uploads:page.title',
-        path: createPath('/home/[account]/uploads', account),
-        Icon: <Upload className={iconClasses} />,
+        label: 'collaborator-status:pageTitle',
+        path: createPath('/home/[account]/collaborator-status', account),
+        Icon: <UserCheck className={iconClasses} />,
       },
     ],
   },

@@ -671,6 +671,70 @@ export type Database = {
           },
         ]
       }
+      payrolls: {
+        Row: {
+          account_id: string
+          cnpj: string
+          created_at: string | null
+          created_by: string
+          filial: string
+          id: string
+          is_current: boolean | null
+          month: number
+          updated_at: string | null
+          updated_by: string
+          year: number
+        }
+        Insert: {
+          account_id: string
+          cnpj: string
+          created_at?: string | null
+          created_by: string
+          filial: string
+          id?: string
+          is_current?: boolean | null
+          month: number
+          updated_at?: string | null
+          updated_by: string
+          year: number
+        }
+        Update: {
+          account_id?: string
+          cnpj?: string
+          created_at?: string | null
+          created_by?: string
+          filial?: string
+          id?: string
+          is_current?: boolean | null
+          month?: number
+          updated_at?: string | null
+          updated_by?: string
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payrolls_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payrolls_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_account_workspace"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payrolls_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "user_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       positions: {
         Row: {
           account_id: string
@@ -1227,6 +1291,7 @@ export type Database = {
         | "departments.manage"
         | "payroll.manage"
         | "positions.manage"
+        | "payrolls.manage"
       billing_provider: "stripe" | "lemon-squeezy" | "paddle"
       event_type: "provento" | "desconto" | "outro"
       notification_channel: "in_app" | "email"
@@ -1384,6 +1449,7 @@ export const Constants = {
         "departments.manage",
         "payroll.manage",
         "positions.manage",
+        "payrolls.manage",
       ],
       billing_provider: ["stripe", "lemon-squeezy", "paddle"],
       event_type: ["provento", "desconto", "outro"],

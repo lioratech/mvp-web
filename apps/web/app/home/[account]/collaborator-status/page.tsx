@@ -10,56 +10,56 @@ import { createI18nServerInstance } from '~/lib/i18n/i18n.server';
 import { withI18n } from '~/lib/i18n/with-i18n';
 
 import { loadTeamWorkspace } from '../_lib/server/team-account-workspace.loader';
-import { EventsList } from './_components/events-list';
-import { CreateEventDialog } from './_components/create-event-dialog';
+import { CollaboratorStatusList } from './_components/collaborator-status-list';
+import { CreateStatusDialog } from './_components/create-status-dialog';
 
 export const generateMetadata = async () => {
   const i18n = await createI18nServerInstance();
-  const title = i18n.t('payroll-events:pageTitle');
+  const title = i18n.t('collaborator-status:pageTitle');
 
   return {
     title,
   };
 };
 
-function EventsPage({ params }: { params: Promise<{ account: string }> }) {
+function CollaboratorStatusPage({ params }: { params: Promise<{ account: string }> }) {
   const account = use(params).account;
   const workspace = use(loadTeamWorkspace(account));
 
   // Permissão customizada
-  const canManageEvents =
-    (workspace.account.permissions as string[]).includes('payroll.manage') ||
+  const canManageStatus =
+    (workspace.account.permissions as string[]).includes('collaborator-status.manage') ||
     workspace.account.role === 'owner';
 
   return (
     <>
       <PageHeader
-        title={<Trans i18nKey="payroll-events:pageTitle" defaults="Eventos de Folha" />}
+        title={<Trans i18nKey="collaborator-status:pageTitle" defaults="Status de Colaboradores" />}
         description={
           <Trans 
-            i18nKey="payroll-events:pageDescription" 
-            defaults="Gerencie os eventos de folha de pagamento da sua equipe"
+            i18nKey="collaborator-status:pageDescription" 
+            defaults="Gerencie os status dos colaboradores da sua equipe"
           />
         }
       >
-        {canManageEvents && (
-          <CreateEventDialog accountId={workspace.account.id}>
+        {canManageStatus && (
+          <CreateStatusDialog accountId={workspace.account.id}>
             <Button>
               <Plus className="mr-2 h-4 w-4" />
-              <Trans i18nKey="payroll-events:createEvent" defaults="Criar Evento" />
+              <Trans i18nKey="collaborator-status:createStatus" defaults="Novo Status" />
             </Button>
-          </CreateEventDialog>
+          </CreateStatusDialog>
         )}
       </PageHeader>
 
       <PageBody>
-        <EventsList 
+        <CollaboratorStatusList 
           accountId={workspace.account.id}
-          canManageEvents={canManageEvents}
+          canManageStatus={canManageStatus}
         />
       </PageBody>
     </>
   );
 }
 
-export default withI18n(EventsPage); 
+export default withI18n(CollaboratorStatusPage);

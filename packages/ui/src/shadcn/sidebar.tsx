@@ -764,6 +764,32 @@ export function SidebarNavigation({
   const currentPath = usePathname() ?? '';
   const { open } = useSidebar();
 
+  // Helper function to check if any child route is active
+  const hasActiveChild = (
+    children: Array<{
+      path?: string;
+      end?: boolean | ((path: string) => boolean);
+      children?: unknown[];
+    }>,
+  ): boolean => {
+    return children.some((child) => {
+      if ('path' in child && child.path) {
+        const end = 'end' in child ? child.end : false;
+        return isRouteActive(child.path, currentPath, end);
+      }
+      if ('children' in child && Array.isArray(child.children)) {
+        return hasActiveChild(
+          child.children as Array<{
+            path?: string;
+            end?: boolean | ((path: string) => boolean);
+            children?: unknown[];
+          }>,
+        );
+      }
+      return false;
+    });
+  };
+
   return (
     <>
       {config.routes.map((item, index) => {
@@ -774,11 +800,14 @@ export function SidebarNavigation({
         }
 
         if ('children' in item) {
+          // Check if this group has any active child
+          const groupHasActiveChild = hasActiveChild(item.children);
+
           const Container = (props: React.PropsWithChildren) => {
             if (item.collapsible) {
               return (
                 <Collapsible
-                  defaultOpen={!item.collapsed}
+                  defaultOpen={!item.collapsed || groupHasActiveChild}
                   className={'group/collapsible'}
                 >
                   {props.children}
@@ -826,11 +855,25 @@ export function SidebarNavigation({
                   <SidebarMenu>
                     <ContentContainer>
                       {item.children.map((child, childIndex) => {
+                        // Check if this child has any active sub-route
+                        const childHasActiveRoute =
+                          'children' in child &&
+                          child.children &&
+                          hasActiveChild(
+                            child.children as Array<{
+                              path?: string;
+                              end?: boolean | ((path: string) => boolean);
+                              children?: unknown[];
+                            }>,
+                          );
+
                         const Container = (props: React.PropsWithChildren) => {
                           if ('collapsible' in child && child.collapsible) {
                             return (
                               <Collapsible
-                                defaultOpen={!child.collapsed}
+                                defaultOpen={
+                                  !child.collapsed || childHasActiveRoute
+                                }
                                 className={'group/collapsible'}
                               >
                                 {props.children}

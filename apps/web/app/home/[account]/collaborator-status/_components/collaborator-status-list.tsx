@@ -14,52 +14,64 @@ import { If } from '@kit/ui/if';
 import { EmptyState, EmptyStateHeading, EmptyStateText } from '@kit/ui/empty-state';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@kit/ui/select';
 
-import { Search, Edit, Trash2, Calendar } from 'lucide-react';
+import { Search, Edit, Trash2, UserCheck } from 'lucide-react';
 
-import { useSupabase } from '@kit/supabase/hooks/use-supabase';
+import { UpdateStatusDialog } from './update-status-dialog';
+import { DeleteStatusDialog } from './delete-status-dialog';
 
-import { UpdateEventDialog } from './update-event-dialog';
-import { DeleteEventDialog } from './delete-event-dialog';
+type CollaboratorStatus = {
+  id: string;
+  platform_id: string | null;
+  account_id: string;
+  name: string;
+  type: string | null;
+  status: string | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+};
 
-export function EventsList({ accountId, canManageEvents }: { accountId: string; canManageEvents: boolean }) {
-  const supabase = useSupabase();
+export function CollaboratorStatusList({ 
+  accountId, 
+  canManageStatus 
+}: { 
+  accountId: string; 
+  canManageStatus: boolean;
+}) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState('Todos');
 
-  const { data: events, isLoading } = useQuery({
-    queryKey: ['account_payroll_events', accountId],
+  const { data: statuses, isLoading } = useQuery({
+    queryKey: ['collaborator-status', accountId],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('account_payroll_events')
-        .select('*, main_events(id, description, type)')
-        .eq('account_id', accountId)
-        .order('name');
-
-      if (error) {
-        throw error;
+      const response = await fetch(`/api/collaborator-status?account_id=${accountId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch collaborator status');
       }
-
-      return data;
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch collaborator status');
+      }
+      return result.data as CollaboratorStatus[];
     },
   });
 
-  const filteredEvents = useMemo(() => {
-    if (!events) return [];
+  const filteredStatuses = useMemo(() => {
+    if (!statuses) return [];
 
-    return events.filter((event) => {
+    return statuses.filter((status) => {
       const matchesSearch =
-        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.external_id?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.description?.toLowerCase().includes(searchQuery.toLowerCase());
+        status.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        status.notes?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        status.type?.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesType =
-        filterType === 'Todos' || 
-        (filterType === 'outros' && !['provento', 'desconto'].includes(event.main_events?.type || '')) ||
-        event.main_events?.type === filterType;
+        filterType === 'Todos' ||
+        status.type === filterType;
 
       return matchesSearch && matchesType;
     });
-  }, [events, searchQuery, filterType]);
+  }, [statuses, searchQuery, filterType]);
 
   if (isLoading) {
     return (
@@ -80,14 +92,14 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
   }
 
   return (
-    <If condition={events && events.length > 0} fallback={
+    <If condition={statuses && statuses.length > 0} fallback={
       <EmptyState>
-        <Calendar className="h-12 w-12 text-muted-foreground" />
+        <UserCheck className="h-12 w-12 text-muted-foreground" />
         <EmptyStateHeading>
-          <Trans i18nKey="payroll-events:noEvents" />
+          <Trans i18nKey="collaborator-status:noStatus" />
         </EmptyStateHeading>
         <EmptyStateText>
-          <Trans i18nKey="payroll-events:noEventsDescription" />
+          <Trans i18nKey="collaborator-status:noStatusDescription" />
         </EmptyStateText>
       </EmptyState>
     }>
@@ -98,7 +110,7 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
               <div className="relative flex-1 max-w-sm">
                 <Search className="text-muted-foreground absolute left-2 top-2.5 h-4 w-4" />
                 <Input
-                  placeholder="Buscar eventos..."
+                  placeholder="Buscar status..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-8"
@@ -111,9 +123,10 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Todos">Todos</SelectItem>
-                    <SelectItem value="provento">Provento</SelectItem>
-                    <SelectItem value="desconto">Desconto</SelectItem>
-                    <SelectItem value="outros">Outros</SelectItem>
+                    <SelectItem value="Ativo">Ativo</SelectItem>
+                    <SelectItem value="Inativo">Inativo</SelectItem>
+                    <SelectItem value="Licença">Licença</SelectItem>
+                    <SelectItem value="Doença">Doença</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -128,18 +141,18 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
                 <TableRow>
                   <TableHead className="w-[60px]"></TableHead>
                   <TableHead>
-                    <Trans i18nKey="payroll-events:name" defaults="Nome" />
+                    <Trans i18nKey="collaborator-status:name" defaults="Nome" />
                   </TableHead>
                   <TableHead>
-                    <Trans i18nKey="payroll-events:externalId" defaults="ID Externo" />
+                    <Trans i18nKey="collaborator-status:type" defaults="Tipo" />
                   </TableHead>
                   <TableHead>
-                    <Trans i18nKey="payroll-events:description" defaults="Descrição" />
+                    <Trans i18nKey="collaborator-status:status" defaults="Status" />
                   </TableHead>
                   <TableHead>
-                    <Trans i18nKey="payroll-events:mainEventDetails" defaults="Detalhes do Evento Principal" />
+                    <Trans i18nKey="collaborator-status:notes" defaults="Observações" />
                   </TableHead>
-                  <If condition={canManageEvents}>
+                  <If condition={canManageStatus}>
                     <TableHead className="w-[100px]">
                       <Trans i18nKey="common:actions" defaults="Ações" />
                     </TableHead>
@@ -147,86 +160,68 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredEvents.length === 0 ? (
+                {filteredStatuses.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={canManageEvents ? 6 : 5} className="h-24 text-center">
+                    <TableCell colSpan={canManageStatus ? 6 : 5} className="h-24 text-center">
                       <div className="flex flex-col items-center space-y-2">
                         <Search className="h-8 w-8 text-muted-foreground" />
                         <p className="text-sm text-muted-foreground">
-                          Nenhum evento encontrado
+                          Nenhum status encontrado
                         </p>
                       </div>
                     </TableCell>
                   </TableRow>
                 ) : (
-                  filteredEvents.map((event) => (
-                    <TableRow key={event.id} className="hover:bg-muted/50">
+                  filteredStatuses.map((status) => (
+                    <TableRow key={status.id} className="hover:bg-muted/50">
                       <TableCell>
                         <Avatar className="h-8 w-8">
-                          <AvatarFallback 
-                            style={{ 
-                              backgroundColor: event.color || '#3B82F6',
-                              color: 'white'
-                            }}
-                          >
-                            {event.name.charAt(0).toUpperCase()}
+                          <AvatarFallback className="bg-blue-600 text-white">
+                            {status.name.charAt(0).toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
                       </TableCell>
                       <TableCell className="font-medium">
-                        {event.name}
+                        {status.name}
                       </TableCell>
                       <TableCell>
-                        <If condition={event.external_id} fallback={
+                        <If condition={status.type} fallback={
                           <span className="text-muted-foreground text-sm">
                             <Trans i18nKey="common:notSet" defaults="Não definido" />
                           </span>
                         }>
-                          <Badge variant="outline" className="font-mono text-xs">
-                            {event.external_id}
+                          <Badge variant="outline" className="text-xs">
+                            {status.type}
                           </Badge>
                         </If>
                       </TableCell>
                       <TableCell>
-                        <If condition={event.description} fallback={
+                        <If condition={status.status} fallback={
                           <span className="text-muted-foreground text-sm">
-                            <Trans i18nKey="common:noDescription" defaults="Sem descrição" />
+                            <Trans i18nKey="common:notSet" defaults="Não definido" />
                           </span>
                         }>
-                          <span className="max-w-[200px] truncate block text-sm">
-                            {event.description}
-                          </span>
+                          <Badge variant="secondary" className="text-xs">
+                            {status.status}
+                          </Badge>
                         </If>
                       </TableCell>
                       <TableCell>
-                        <If condition={event.main_events}>
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <Badge variant="outline" className="font-mono text-xs">
-                              {event.main_events?.id}
-                            </Badge>
-                            <span className="text-sm">
-                              {event.main_events?.description}
-                            </span>
-                            <Badge
-                              variant="default"
-                              className={
-                                event.main_events?.type === 'provento' 
-                                  ? 'bg-green-600 hover:bg-green-700 text-white text-xs' 
-                                  : event.main_events?.type === 'desconto'
-                                  ? 'bg-red-600 hover:bg-red-700 text-white text-xs'
-                                  : 'bg-gray-600 hover:bg-gray-700 text-white text-xs'
-                              }
-                            >
-                              {event.main_events?.type}
-                            </Badge>
-                          </div>
+                        <If condition={status.notes} fallback={
+                          <span className="text-muted-foreground text-sm">
+                            <Trans i18nKey="common:noDescription" defaults="Sem observações" />
+                          </span>
+                        }>
+                          <span className="max-w-[200px] truncate block text-sm">
+                            {status.notes}
+                          </span>
                         </If>
                       </TableCell>
-                      <If condition={canManageEvents}>
+                      <If condition={canManageStatus}>
                         <TableCell>
                           <div className="flex space-x-1">
-                            <UpdateEventDialog 
-                              event={event}
+                            <UpdateStatusDialog 
+                              status={status}
                               accountId={accountId}
                             >
                               <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -235,16 +230,16 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
                                   <Trans i18nKey="common:edit" defaults="Editar" />
                                 </span>
                               </Button>
-                            </UpdateEventDialog>
+                            </UpdateStatusDialog>
                             
-                            <DeleteEventDialog event={event} accountId={accountId}>
+                            <DeleteStatusDialog status={status} accountId={accountId}>
                               <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-destructive hover:text-destructive">
                                 <Trash2 className="h-4 w-4" />
                                 <span className="sr-only">
                                   <Trans i18nKey="common:delete" defaults="Excluir" />
                                 </span>
                               </Button>
-                            </DeleteEventDialog>
+                            </DeleteStatusDialog>
                           </div>
                         </TableCell>
                       </If>
@@ -258,4 +253,4 @@ export function EventsList({ accountId, canManageEvents }: { accountId: string; 
       </Card>
     </If>
   );
-} 
+}
