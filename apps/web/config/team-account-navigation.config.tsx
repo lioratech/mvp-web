@@ -27,11 +27,77 @@ const getRoutes = (
       permissions: string[];
     };
   },
-) => [
+) => [{
+  label: 'Painéis Demo',
+
+  children: [
+    {
+      label: 'Painel Executivo',
+      path: pathsConfig.app.accountExecutiveDemo.replace('[account]', account),
+      Icon: <ArrowRight className={iconClasses} />,
+    },
+    {
+      label: 'Força de Trabalho',
+      path: pathsConfig.app.accountWorkforceDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <ArrowRight className={iconClasses} />,
+    },
+    {
+      label: 'Rotatividade e Estabilidade',
+      path: pathsConfig.app.accountTurnoverDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <ArrowRight className={iconClasses} />,
+    },
+    {
+      label: 'Remuneração',
+      path: pathsConfig.app.accountSalariesDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <ArrowRight className={iconClasses} />,
+    },
+    {
+      label: 'Liderança e Gestão',
+      path: pathsConfig.app.accountLeadershipDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <Award className={iconClasses} />,
+    },
+    {
+      label: 'Custos da Folha',
+      path: pathsConfig.app.accountWorkforceCostsDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <ArrowRight className={iconClasses} />,
+    },
+    {
+      label: 'Previsões e Projeções',
+      path: pathsConfig.app.accountForecastsDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <TrendingUp className={iconClasses} />,
+    },
+    {
+      label: 'Passivos Trabalhistas',
+      path: pathsConfig.app.accountLaborLiabilitiesDemo.replace(
+        '[account]',
+        account,
+      ),
+      Icon: <ArrowRight className={iconClasses} />,
+    },
+  ],
+},
   {
-    label: 'Painéis',
+    label: 'Painéis Analíticos',
     collapsible: true,
-    collapsed: false,
+    collapsed: true,
     children: [
       {
         label: 'Painel Executivo',
@@ -46,7 +112,6 @@ const getRoutes = (
         ),
         Icon: <ArrowRight className={iconClasses} />,
       },
-
       {
         label: 'Rotatividade e Estabilidade',
         path: pathsConfig.app.accountTurnoverPanels.replace(
@@ -63,7 +128,6 @@ const getRoutes = (
         ),
         Icon: <ArrowRight className={iconClasses} />,
       },
-
       {
         label: 'Liderança e Gestão',
         path: pathsConfig.app.accountLeadershipPanels.replace(
@@ -72,7 +136,6 @@ const getRoutes = (
         ),
         Icon: <Award className={iconClasses} />,
       },
-
       {
         label: 'Custos da Folha',
         path: pathsConfig.app.accountWorkforceCostsPanels.replace(
@@ -99,6 +162,7 @@ const getRoutes = (
       },
     ],
   },
+  
   {
     label: 'Gestão',
     collapsible: true,
